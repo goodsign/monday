@@ -196,8 +196,6 @@ var formatTests = []FormatTest {
 }
 
 func TestFormat(t *testing.T) {
-    ExampleFormat()
-
     for i, ts := range formatTests {
         txt := Format(ts.date, ts.layout, ts.locale)
 
