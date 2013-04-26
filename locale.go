@@ -1,8 +1,7 @@
 package monday
 
 // Locale identifies locales supported by 'monday' package.
-// Here the ICU locale identifiers are used to provide ICU compatibility if
-// needed. See http://userguide.icu-project.org/locale
+// Monday uses ICU locale identifiers. See http://userguide.icu-project.org/locale
 type Locale string
 
 const (
@@ -27,3 +26,29 @@ const (
     LocaleSvSE = "sv_SE"    // Swedish (Sweden)
     LocaleTrTR = "tr_TR"    // Turkish (Turkey)
 )
+
+// ListLocales returns all locales supported by the package.
+func ListLocales() []Locale {
+    return []Locale {
+        LocaleEnUS,
+        LocaleEnGB,
+        LocaleDaDK,
+        LocaleNlBE,
+        LocaleNlNL,
+        LocaleFiFI,
+        LocaleFrFR,
+        LocaleFrCA,
+        LocaleDeDE,
+        LocaleHuHU,
+        LocaleItIT,
+        LocaleNnNO,
+        LocaleNbNO,
+        LocalePtPT,
+        LocalePtBR,
+        LocaleRoRO,
+        LocaleRuRU,
+        LocaleEsES,
+        LocaleSvSE,
+        LocaleTrTR,
+    }
+}

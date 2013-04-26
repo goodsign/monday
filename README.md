@@ -48,6 +48,16 @@ with
   monday.ParseInLocation(yourLayout, yourString, yourLocation, monday.LocaleEnUS) 
 ```
 
+Predefined formats
+---------------------
+
+Monday declares some predefined formats: Full, Long, Medium, Short, DateTime formats for each locale. E.g. to get
+short format for any locale you can use map:
+
+```go
+monday.ShortFormatsByLocale[locale]
+```
+
 Usage notes
 -----------
 
