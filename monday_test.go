@@ -237,8 +237,6 @@ func ExampleFormat() {
         // DateTime format
         fmt.Printf("    DateTime: %s\n", Format(t, DateTimeFormatsByLocale[loc], loc))
     }
-
-    fmt.Printf("    Full: %s\n", Format(t, DefaultFormatEnUSDateTime, LocaleEnUS))
 }
 
 func ExampleParseInLocation() {
