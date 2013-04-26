@@ -115,3 +115,9 @@ Monday Licence
 The **Monday** library is released under the [BSD Licence](http://opensource.org/licenses/bsd-license.php)
 
 [LICENCE file](https://github.com/goodsign/monday/blob/master/LICENCE)
+
+Thanks
+==========
+
+* Martin Angers
+* Andrey Mirtchovski
