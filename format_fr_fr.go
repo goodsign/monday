@@ -49,7 +49,7 @@ var shortMonthNamesFrFR = map[string]string {
     "Jul": "juil",
     "Aug": "août",
     "Sep": "sept",
-    "Oct": "okt",
+    "Oct": "oct",
     "Nov": "nov",
     "Dec": "déc",
 }
