@@ -98,6 +98,7 @@ const (
     LocaleEsES = "es_ES"    // Spanish (Spain)
     LocaleSvSE = "sv_SE"    // Swedish (Sweden)
     LocaleTrTR = "tr_TR"    // Turkish (Turkey)
+    LocaleBgBF = "bg_BG"    // Bulgarian (Bulgaria)
 )
 ```
 

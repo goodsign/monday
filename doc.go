@@ -1,4 +1,4 @@
-/* 
+/*
 Package monday is a minimalistic translator for month and day of week names in time.Date objects
 
 Introduction
@@ -24,14 +24,14 @@ Parse usage:
     layout := "2 January 2006 15:04:05 MST"
 
     // Instead of time.ParseInLocation(layout, "12 April 2013 00:00:00 MST", time.UTC)
-    parsed := monday.ParseInLocation(layout, "12 April 2013 00:00:00 MST", time.UTC, monday.LocaleEnUS)) 
+    parsed := monday.ParseInLocation(layout, "12 April 2013 00:00:00 MST", time.UTC, monday.LocaleEnUS))
     parsed2 = monday.ParseInLocation(layout, "12 апреля 2013 00:00:00 MST", time.UTC, monday.LocaleRuRU))
     ...
 
 Thread safety
 
 Monday initializes all its data once in the init func and then uses only
-func calls and local vars. Thus, it's thread-safe and doesn't need any mutexes to be 
+func calls and local vars. Thus, it's thread-safe and doesn't need any mutexes to be
 used with.
 
 */
