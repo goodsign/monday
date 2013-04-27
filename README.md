@@ -122,5 +122,6 @@ The **Monday** library is released under the [BSD Licence](http://opensource.org
 Thanks
 ==========
 
-* Martin Angers
+* [Martin Angers](https://github.com/PuerkitoBio)
 * Andrey Mirtchovski
+* [mikespook](https://github.com/mikespook)
