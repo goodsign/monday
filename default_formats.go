@@ -130,6 +130,24 @@ const (
 	DefaultFormatBgBGMedium   = "2 Jan 2006"
 	DefaultFormatBgBGShort    = "2.01.2006"
 	DefaultFormatBgBGDateTime = "2.01.2006 15:04"
+
+	DefaultFormatZhCNFull     = "2006年1月2日 Monday" // Chinese (Mainland)
+	DefaultFormatZhCNLong     = "2006年1月2日"
+	DefaultFormatZhCNMedium   = "2006-01-02"
+	DefaultFormatZhCNShort    = "2006/1/2"
+	DefaultFormatZhCNDateTime = "2006-01-02 15:04"
+
+	DefaultFormatZhTWFull     = "2006年1月2日 Monday" // Chinese (Taiwan)
+	DefaultFormatZhTWLong     = "2006年1月2日"
+	DefaultFormatZhTWMedium   = "2006-01-02"
+	DefaultFormatZhTWShort    = "2006/1/2"
+	DefaultFormatZhTWDateTime = "2006-01-02 15:04"
+
+	DefaultFormatZhHKFull     = "2006年1月2日 Monday" // Chinese (Hong Kong)
+	DefaultFormatZhHKLong     = "2006年1月2日"
+	DefaultFormatZhHKMedium   = "2006-01-02"
+	DefaultFormatZhHKShort    = "2006/1/2"
+	DefaultFormatZhHKDateTime = "2006-01-02 15:04"
 )
 
 // 'Full' date formats for all supported locales
@@ -155,6 +173,9 @@ var FullFormatsByLocale = map[Locale]string{
 	LocaleSvSE: DefaultFormatSvSEFull,
 	LocaleTrTR: DefaultFormatTrTRFull,
 	LocaleBgBG: DefaultFormatBgBGFull,
+	LocaleZhCN: DefaultFormatZhCNFull,
+	LocaleZhTW: DefaultFormatZhTWFull,
+	LocaleZhHK: DefaultFormatZhHKFull,
 }
 
 // 'Long' date formats for all supported locales
@@ -180,6 +201,9 @@ var LongFormatsByLocale = map[Locale]string{
 	LocaleSvSE: DefaultFormatSvSELong,
 	LocaleTrTR: DefaultFormatTrTRLong,
 	LocaleBgBG: DefaultFormatBgBGLong,
+	LocaleZhCN: DefaultFormatZhCNLong,
+	LocaleZhTW: DefaultFormatZhTWLong,
+	LocaleZhHK: DefaultFormatZhHKLong,
 }
 
 // 'Medium' date formats for all supported locales
@@ -205,6 +229,9 @@ var MediumFormatsByLocale = map[Locale]string{
 	LocaleSvSE: DefaultFormatSvSEMedium,
 	LocaleTrTR: DefaultFormatTrTRMedium,
 	LocaleBgBG: DefaultFormatBgBGMedium,
+	LocaleZhCN: DefaultFormatZhCNMedium,
+	LocaleZhTW: DefaultFormatZhTWMedium,
+	LocaleZhHK: DefaultFormatZhHKMedium,
 }
 
 // 'Short' date formats for all supported locales
@@ -230,6 +257,9 @@ var ShortFormatsByLocale = map[Locale]string{
 	LocaleSvSE: DefaultFormatSvSEShort,
 	LocaleTrTR: DefaultFormatTrTRShort,
 	LocaleBgBG: DefaultFormatBgBGShort,
+	LocaleZhCN: DefaultFormatZhCNShort,
+	LocaleZhTW: DefaultFormatZhTWShort,
+	LocaleZhHK: DefaultFormatZhHKShort,
 }
 
 // 'DateTime' date formats for all supported locales
@@ -255,4 +285,7 @@ var DateTimeFormatsByLocale = map[Locale]string{
 	LocaleSvSE: DefaultFormatSvSEDateTime,
 	LocaleTrTR: DefaultFormatTrTRDateTime,
 	LocaleBgBG: DefaultFormatBgBGDateTime,
+	LocaleZhCN: DefaultFormatZhCNDateTime,
+	LocaleZhTW: DefaultFormatZhTWDateTime,
+	LocaleZhHK: DefaultFormatZhHKDateTime,
 }
