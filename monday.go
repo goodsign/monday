@@ -59,9 +59,9 @@ var internalParseFuncs = map[Locale]internalParseFunc{
 	LocaleSvSE: createCommonParseFunc(LocaleSvSE),
 	LocaleTrTR: createCommonParseFunc(LocaleTrTR),
 	LocaleBgBG: createCommonParseFunc(LocaleBgBG),
-	LocaleZhCN: createCommonParseFunc(LocaleZhCN),
-	LocaleZhTW: createCommonParseFunc(LocaleZhTW),
-	LocaleZhHK: createCommonParseFunc(LocaleZhHK),
+	LocaleZhCN: parseFuncZhCommon(LocaleZhCN),
+	LocaleZhTW: parseFuncZhCommon(LocaleZhTW),
+	LocaleZhHK: parseFuncZhCommon(LocaleZhHK),
 }
 
 var knownDaysShort = map[Locale]map[string]string{}           // Mapping for 'Format', days of week, short form

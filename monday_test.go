@@ -202,10 +202,14 @@ var formatTests = []FormatTest{
 	{LocaleBgBG, time.Date(2013, 5, 13, 0, 0, 0, 0, time.UTC), "2 Jan 2006", "13 Май 2013"},
 	{LocaleBgBG, time.Date(0, 5, 1, 0, 0, 0, 0, time.UTC), "January", "Май"},
 	{LocaleBgBG, time.Date(0, 5, 13, 0, 0, 0, 0, time.UTC), "2 January", "13 Май"},
+
 	{LocaleZhCN, time.Date(2013, 5, 13, 0, 0, 0, 0, time.UTC), "2006-01-2", "2013-05-13"},
 	{LocaleZhCN, time.Date(2013, 5, 13, 0, 0, 0, 0, time.UTC), "2006/1/2 Monday", "2013/5/13 星期一"},
 	{LocaleZhCN, time.Date(2013, 5, 13, 0, 0, 0, 0, time.UTC), "2006年1月2日 Monday", "2013年5月13日 星期一"},
 	{LocaleZhCN, time.Date(2013, 5, 13, 0, 0, 0, 0, time.UTC), "2006年1月2日", "2013年5月13日"},
+	{LocaleZhCN, time.Date(2013, 5, 13, 0, 0, 0, 0, time.UTC), "2006年 Jan 2日", "2013年 5 13日"},
+	{LocaleZhCN, time.Date(2013, 5, 13, 0, 0, 0, 0, time.UTC), "2006年 January 2日", "2013年 5 月 13日"},
+	{LocaleZhCN, time.Date(0, 5, 1, 0, 0, 0, 0, time.UTC), "January", "5 月"},
 }
 
 func TestFormat(t *testing.T) {

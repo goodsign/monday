@@ -1,5 +1,7 @@
 package monday
 
+import "strings"
+
 // ============================================================
 // Format rules for "zh_CN" locale: Chinese (Mainland)
 // ============================================================
@@ -52,4 +54,22 @@ var shortMonthNamesZhCN = map[string]string{
 	"Oct": "10",
 	"Nov": "11",
 	"Dec": "12",
+}
+
+func parseFuncZhCommon(locale Locale) internalParseFunc {
+	return func(layout, value string) string {
+		// This special case is needed because Zh_CN/Zh/HK/... contains month names
+		// that consist of a number, a delimiter, and '月'. Example: "October" = "10 月"
+		//
+		// This means that probably default time package layout IDs like 'January' or 'Jan'
+		// shouldn't be used in Zh_*. But this is a time-compatible package, so someone
+		// might actually use those and we need to replace those before doing standard procedures.
+		for k, v := range knownMonthsLongReverse[locale] {
+			value = strings.Replace(value, k, v, -1)
+		}
+
+		return commonFormatFunc(value, layout,
+			knownDaysShortReverse[locale], knownDaysLongReverse[locale],
+			knownMonthsShortReverse[locale], knownMonthsLongReverse[locale])
+	}
 }
