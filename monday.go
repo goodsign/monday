@@ -29,6 +29,9 @@ var internalFormatFuncs = map[Locale]internalFormatFunc{
 	LocaleSvSE: createCommonFormatFunc(LocaleSvSE),
 	LocaleTrTR: createCommonFormatFunc(LocaleTrTR),
 	LocaleBgBG: createCommonFormatFunc(LocaleBgBG),
+	LocaleZhCN: createCommonFormatFunc(LocaleZhCN),
+	LocaleZhTW: createCommonFormatFunc(LocaleZhTW),
+	LocaleZhHK: createCommonFormatFunc(LocaleZhHK),
 }
 
 // internalParseFunc is a preprocessor for default time.ParseInLocation func
@@ -56,6 +59,9 @@ var internalParseFuncs = map[Locale]internalParseFunc{
 	LocaleSvSE: createCommonParseFunc(LocaleSvSE),
 	LocaleTrTR: createCommonParseFunc(LocaleTrTR),
 	LocaleBgBG: createCommonParseFunc(LocaleBgBG),
+	LocaleZhCN: createCommonParseFunc(LocaleZhCN),
+	LocaleZhTW: createCommonParseFunc(LocaleZhTW),
+	LocaleZhHK: createCommonParseFunc(LocaleZhHK),
 }
 
 var knownDaysShort = map[Locale]map[string]string{}           // Mapping for 'Format', days of week, short form
@@ -209,6 +215,24 @@ func fillKnownWords() {
 	fillKnownDaysShort(shortDayNamesBgBG, LocaleBgBG)
 	fillKnownMonthsLong(longMonthNamesBgBG, LocaleBgBG)
 	fillKnownMonthsShort(shortMonthNamesBgBG, LocaleBgBG)
+
+	// Zh_CN: Chinese (Mainland)
+	fillKnownDaysLong(longDayNamesZhCN, LocaleZhCN)
+	fillKnownDaysShort(shortDayNamesZhCN, LocaleZhCN)
+	fillKnownMonthsLong(longMonthNamesZhCN, LocaleZhCN)
+	fillKnownMonthsShort(shortMonthNamesZhCN, LocaleZhCN)
+
+	// Zh_TW: Chinese (Taiwan)
+	fillKnownDaysLong(longDayNamesZhTW, LocaleZhTW)
+	fillKnownDaysShort(shortDayNamesZhTW, LocaleZhTW)
+	fillKnownMonthsLong(longMonthNamesZhTW, LocaleZhTW)
+	fillKnownMonthsShort(shortMonthNamesZhTW, LocaleZhTW)
+
+	// Zh_HK: Chinese (Hong Kong)
+	fillKnownDaysLong(longDayNamesZhHK, LocaleZhHK)
+	fillKnownDaysShort(shortDayNamesZhHK, LocaleZhHK)
+	fillKnownMonthsLong(longMonthNamesZhHK, LocaleZhHK)
+	fillKnownMonthsShort(shortMonthNamesZhHK, LocaleZhHK)
 }
 
 func fill(src map[string]string, dest map[Locale]map[string]string, locale Locale) {

@@ -26,6 +26,9 @@ const (
 	LocaleSvSE = "sv_SE" // Swedish (Sweden)
 	LocaleTrTR = "tr_TR" // Turkish (Turkey)
 	LocaleBgBG = "bt_BG" // Bulgarian (Bulgaria)
+	LocaleZhCN = "zh_CN" // Chinese (Mainland)
+	LocaleZhTW = "zh_TW" // Chinese (Taiwan)
+	LocaleZhHK = "zh_HK" // Chinese (Hong Kong)
 )
 
 // ListLocales returns all locales supported by the package.
@@ -52,5 +55,8 @@ func ListLocales() []Locale {
 		LocaleSvSE,
 		LocaleTrTR,
 		LocaleBgBG,
+		LocaleZhCN,
+		LocaleZhTW,
+		LocaleZhHK,
 	}
 }
