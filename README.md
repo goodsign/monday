@@ -99,6 +99,9 @@ const (
     LocaleSvSE = "sv_SE"    // Swedish (Sweden)
     LocaleTrTR = "tr_TR"    // Turkish (Turkey)
     LocaleBgBF = "bg_BG"    // Bulgarian (Bulgaria)
+    LocaleZhCN = "zh_CN"    // Chinese (Mainland)
+    LocaleZhTW = "zh_TW"    // Chinese (Taiwan)
+    LocaleZhHK = "zh_HK"    // Chinese (Hong Kong)
 )
 ```
 
