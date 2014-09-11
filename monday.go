@@ -316,3 +316,19 @@ func ParseInLocation(layout, value string, loc *time.Location, locale Locale) (t
 	pl := intFunc(layout, value)
 	return time.ParseInLocation(layout, pl, loc)
 }
+
+func GetShortDays(locale Locale) (arr []string) {
+	days := knownDaysShort[locale]
+	for _, day := range days {
+		arr = append(arr, day)
+	}
+	return
+}
+
+func GetLongDays(locale Locale) (arr []string) {
+	days := knownDaysLong[locale]
+	for _, day := range days {
+		arr = append(arr, day)
+	}
+	return
+}

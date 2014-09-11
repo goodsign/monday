@@ -236,6 +236,24 @@ func TestFormat(t *testing.T) {
 	}
 }
 
+func TestGetShortDays(t *testing.T) {
+	locales := ListLocales()
+	for _, locale := range locales {
+		if days := GetShortDays(locale); days == nil {
+			t.Error("Not expected result. ", days)
+		}
+	}
+}
+
+func TestGetLongDays(t *testing.T) {
+	locales := ListLocales()
+	for _, locale := range locales {
+		if days := GetLongDays(locale); days == nil {
+			t.Error("Not expected result. ", days)
+		}
+	}
+}
+
 func ExampleFormat() {
 	t := time.Date(2013, 4, 25, 0, 0, 0, 0, time.UTC)
 
