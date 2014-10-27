@@ -91,6 +91,7 @@ const (
     LocaleItIT = "it_IT"    // Italian (Italy)
     LocaleNnNO = "nn_NO"    // Norwegian Nynorsk (Norway)
     LocaleNbNO = "nb_NO"    // Norwegian Bokmål (Norway)
+    LocalePlPL = "pl_PL"    // Polish (Poland)
     LocalePtPT = "pt_PT"    // Portuguese (Portugal)
     LocalePtBR = "pt_BR"    // Portuguese (Brazil)
     LocaleRoRO = "ro_RO"    // Romanian (Romania)
