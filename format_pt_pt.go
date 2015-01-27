@@ -67,6 +67,6 @@ func parseFuncPtCommon(locale Locale) internalParseFunc {
 
 		return commonFormatFunc(value, layout,
 			knownDaysShortReverse[locale], knownDaysLongReverse[locale],
-			knownMonthsShortReverse[locale], knownMonthsLongReverse[locale])
+			knownMonthsShortReverse[locale], knownMonthsLongReverse[locale],knownPeriods[locale])
 	}
 }

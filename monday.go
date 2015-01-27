@@ -32,6 +32,7 @@ var internalFormatFuncs = map[Locale]internalFormatFunc{
 	LocaleZhCN: createCommonFormatFunc(LocaleZhCN),
 	LocaleZhTW: createCommonFormatFunc(LocaleZhTW),
 	LocaleZhHK: createCommonFormatFunc(LocaleZhHK),
+	LocaleJaJP: createCommonFormatFunc(LocaleJaJP),
 }
 
 // internalParseFunc is a preprocessor for default time.ParseInLocation func
@@ -62,6 +63,7 @@ var internalParseFuncs = map[Locale]internalParseFunc{
 	LocaleZhCN: parseFuncZhCommon(LocaleZhCN),
 	LocaleZhTW: parseFuncZhCommon(LocaleZhTW),
 	LocaleZhHK: parseFuncZhCommon(LocaleZhHK),
+	LocaleJaJP: parseFuncJaCommon(LocaleJaJP),
 }
 
 var knownDaysShort = map[Locale]map[string]string{}           // Mapping for 'Format', days of week, short form
@@ -70,6 +72,7 @@ var knownMonthsLong = map[Locale]map[string]string{}          // Mapping for 'Fo
 var knownMonthsShort = map[Locale]map[string]string{}         // Mapping for 'Format', months: short form
 var knownMonthsGenitiveShort = map[Locale]map[string]string{} // Mapping for 'Format', special for names in genitive, short form
 var knownMonthsGenitiveLong = map[Locale]map[string]string{}  // Mapping for 'Format', special for names in genitive, long form
+var knownPeriods = map[Locale]map[string]string{}
 
 // Reverse maps for the same
 
@@ -79,6 +82,7 @@ var knownMonthsLongReverse = map[Locale]map[string]string{}          // Mapping 
 var knownMonthsShortReverse = map[Locale]map[string]string{}         // Mapping for 'Format', months: short form
 var knownMonthsGenitiveShortReverse = map[Locale]map[string]string{} // Mapping for 'Format', special for names in genitive, short form
 var knownMonthsGenitiveLongReverse = map[Locale]map[string]string{}  // Mapping for 'Format', special for names in genitive, long form
+var knownPeriodsReverse = map[Locale]map[string]string{}
 
 func init() {
 	fillKnownWords()
@@ -233,6 +237,13 @@ func fillKnownWords() {
 	fillKnownDaysShort(shortDayNamesZhHK, LocaleZhHK)
 	fillKnownMonthsLong(longMonthNamesZhHK, LocaleZhHK)
 	fillKnownMonthsShort(shortMonthNamesZhHK, LocaleZhHK)
+
+	fillKnownDaysLong(longDayNamesJaJP, LocaleJaJP)
+	fillKnownDaysShort(shortDayNamesJaJP, LocaleJaJP)
+	fillKnownMonthsLong(longMonthNamesJaJP, LocaleJaJP)
+	fillKnownMonthsShort(shortMonthNamesJaJP, LocaleJaJP)
+	fillKnownPeriods(periodsJaJP, LocaleJaJP)
+
 }
 
 func fill(src map[string]string, dest map[Locale]map[string]string, locale Locale) {
@@ -290,6 +301,12 @@ func fillKnownMonthsLong(src map[string]string, locale Locale) {
 	fillReverse(src, knownMonthsLongReverse, locale)
 	fill(src, knownMonthsLong, locale)
 }
+
+func fillKnownPeriods(src map[string]string, locale Locale) {
+	fillReverse(src, knownPeriodsReverse, locale)
+	fill(src, knownPeriods, locale)
+}
+
 
 // Format is the standard time.Format wrapper, that replaces known standard 'time' package
 // identifiers for months and days to their equivalents in the specified language.

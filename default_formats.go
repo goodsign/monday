@@ -148,6 +148,12 @@ const (
 	DefaultFormatZhHKMedium   = "2006-01-02"
 	DefaultFormatZhHKShort    = "2006/1/2"
 	DefaultFormatZhHKDateTime = "2006-01-02 15:04"
+    
+	DefaultFormatJaJPFull     = "2006年1月2日 Monday" // Japanese (Japan)
+	DefaultFormatJaJPLong     = "2006年1月2日"
+	DefaultFormatJaJPMedium   = "2006/01/02"
+	DefaultFormatJaJPShort    = "2006/1/2"
+	DefaultFormatJaJPDateTime = "2006/01/02 15:04"
 )
 
 // 'Full' date formats for all supported locales
@@ -176,6 +182,8 @@ var FullFormatsByLocale = map[Locale]string{
 	LocaleZhCN: DefaultFormatZhCNFull,
 	LocaleZhTW: DefaultFormatZhTWFull,
 	LocaleZhHK: DefaultFormatZhHKFull,
+	LocaleJaJP: DefaultFormatJaJPFull,
+    
 }
 
 // 'Long' date formats for all supported locales
@@ -204,6 +212,7 @@ var LongFormatsByLocale = map[Locale]string{
 	LocaleZhCN: DefaultFormatZhCNLong,
 	LocaleZhTW: DefaultFormatZhTWLong,
 	LocaleZhHK: DefaultFormatZhHKLong,
+	LocaleJaJP: DefaultFormatJaJPLong,
 }
 
 // 'Medium' date formats for all supported locales
@@ -232,6 +241,7 @@ var MediumFormatsByLocale = map[Locale]string{
 	LocaleZhCN: DefaultFormatZhCNMedium,
 	LocaleZhTW: DefaultFormatZhTWMedium,
 	LocaleZhHK: DefaultFormatZhHKMedium,
+	LocaleJaJP: DefaultFormatJaJPMedium,
 }
 
 // 'Short' date formats for all supported locales
@@ -260,6 +270,7 @@ var ShortFormatsByLocale = map[Locale]string{
 	LocaleZhCN: DefaultFormatZhCNShort,
 	LocaleZhTW: DefaultFormatZhTWShort,
 	LocaleZhHK: DefaultFormatZhHKShort,
+	LocaleJaJP: DefaultFormatJaJPShort,
 }
 
 // 'DateTime' date formats for all supported locales
@@ -288,4 +299,5 @@ var DateTimeFormatsByLocale = map[Locale]string{
 	LocaleZhCN: DefaultFormatZhCNDateTime,
 	LocaleZhTW: DefaultFormatZhTWDateTime,
 	LocaleZhHK: DefaultFormatZhHKDateTime,
+	LocaleJaJP: DefaultFormatJaJPDateTime,
 }

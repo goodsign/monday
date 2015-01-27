@@ -16,7 +16,7 @@ func findInString(where string, what string, foundIndex *int, trimRight *int) (f
 // commonFormatFunc is used for languages which don't have changed forms of month names dependent
 // on their position (after day or standalone)
 func commonFormatFunc(value, format string,
-	knownDaysShort, knownDaysLong, knownMonthsShort, knownMonthsLong map[string]string) (res string) {
+	knownDaysShort, knownDaysLong, knownMonthsShort, knownMonthsLong, knownPeriods map[string]string) (res string) {
 	l := stringToLayoutItems(value)
 	f := stringToLayoutItems(format)
 
@@ -26,7 +26,7 @@ func commonFormatFunc(value, format string,
 		// number of symbols before replaced term
 		foundIndex := 0
 		trimRight := 0
-
+        lowerCase := false
 		switch {
 		case findInString(f[i].item, "Monday", &foundIndex, &trimRight):
 			knw = knownDaysLong
@@ -36,11 +36,20 @@ func commonFormatFunc(value, format string,
 			knw = knownMonthsLong
 		case findInString(f[i].item, "Jan", &foundIndex, &trimRight):
 			knw = knownMonthsShort
+        case findInString(f[i].item, "PM", &foundIndex, &trimRight):
+            knw = knownPeriods
+        case findInString(f[i].item, "pm", &foundIndex, &trimRight):
+            lowerCase = true
+            knw = knownPeriods
 		}
 
 		if knw != nil {
 			trimmedItem := v.item[foundIndex : len(v.item)-trimRight]
+
 			tr, ok := knw[trimmedItem]
+            if lowerCase == true {
+                tr = strings.ToLower(tr)
+            }
 
 			if ok {
 				res = res + v.item[:foundIndex] + tr + v.item[len(v.item)-trimRight:]
@@ -64,7 +73,7 @@ func hasDigitBefore(l []dateStringLayoutItem, position int) bool {
 // commonGenitiveFormatFunc is used for languages with genitive forms of names, like Russian.
 func commonGenitiveFormatFunc(value, format string,
 	knownDaysShort, knownDaysLong, knownMonthsShort, knownMonthsLong,
-	knownMonthsGenShort, knownMonthsGenLong map[string]string) (res string) {
+	knownMonthsGenShort, knownMonthsGenLong, knownPeriods map[string]string) (res string) {
 	l := stringToLayoutItems(value)
 	f := stringToLayoutItems(format)
 
@@ -103,7 +112,7 @@ func commonGenitiveFormatFunc(value, format string,
 func createCommonFormatFunc(locale Locale) internalFormatFunc {
 	return func(value, layout string) (res string) {
 		return commonFormatFunc(value, layout,
-			knownDaysShort[locale], knownDaysLong[locale], knownMonthsShort[locale], knownMonthsLong[locale])
+			knownDaysShort[locale], knownDaysLong[locale], knownMonthsShort[locale], knownMonthsLong[locale], knownPeriods[locale])
 	}
 }
 
@@ -111,7 +120,7 @@ func createCommonFormatFuncWithGenitive(locale Locale) internalFormatFunc {
 	return func(value, layout string) (res string) {
 		return commonGenitiveFormatFunc(value, layout,
 			knownDaysShort[locale], knownDaysLong[locale], knownMonthsShort[locale], knownMonthsLong[locale],
-			knownMonthsGenitiveShort[locale], knownMonthsGenitiveLong[locale])
+			knownMonthsGenitiveShort[locale], knownMonthsGenitiveLong[locale], knownPeriods[locale])
 	}
 }
 
@@ -119,7 +128,7 @@ func createCommonParseFunc(locale Locale) internalParseFunc {
 	return func(layout, value string) string {
 		return commonFormatFunc(value, layout,
 			knownDaysShortReverse[locale], knownDaysLongReverse[locale],
-			knownMonthsShortReverse[locale], knownMonthsLongReverse[locale])
+			knownMonthsShortReverse[locale], knownMonthsLongReverse[locale], knownPeriods[locale])
 	}
 }
 
@@ -128,6 +137,6 @@ func createCommonParsetFuncWithGenitive(locale Locale) internalParseFunc {
 		return commonGenitiveFormatFunc(value, layout,
 			knownDaysShortReverse[locale], knownDaysLongReverse[locale],
 			knownMonthsShortReverse[locale], knownMonthsLongReverse[locale],
-			knownMonthsGenitiveShortReverse[locale], knownMonthsGenitiveLongReverse[locale])
+			knownMonthsGenitiveShortReverse[locale], knownMonthsGenitiveLongReverse[locale], knownPeriods[locale])
 	}
 }
