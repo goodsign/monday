@@ -307,7 +307,6 @@ func fillKnownPeriods(src map[string]string, locale Locale) {
 	fill(src, knownPeriods, locale)
 }
 
-
 // Format is the standard time.Format wrapper, that replaces known standard 'time' package
 // identifiers for months and days to their equivalents in the specified language.
 //
@@ -320,8 +319,11 @@ func fillKnownPeriods(src map[string]string, locale Locale) {
 // So, even though March is "Март" in Russian, correctly formatted today's date would be: "7 марта 2007".
 // Thus, some transformations for some languages may be a bit more complex than just plain replacements.
 func Format(dt time.Time, layout string, locale Locale) string {
-	intFunc := internalFormatFuncs[locale]
 	fm := dt.Format(layout)
+	intFunc, ok := internalFormatFuncs[locale]
+	if !ok {
+		return fm
+	}
 	return intFunc(fm, layout)
 }
 
@@ -329,13 +331,18 @@ func Format(dt time.Time, layout string, locale Locale) string {
 // known month/day translations for a specified locale back to English before
 // calling time.ParseInLocation. So, you can parse localized dates with this wrapper.
 func ParseInLocation(layout, value string, loc *time.Location, locale Locale) (time.Time, error) {
-	intFunc := internalParseFuncs[locale]
-	pl := intFunc(layout, value)
-	return time.ParseInLocation(layout, pl, loc)
+	intFunc, ok := internalParseFuncs[locale]
+	if ok {
+		value = intFunc(layout, value)
+	}
+	return time.ParseInLocation(layout, value, loc)
 }
 
 func GetShortDays(locale Locale) (arr []string) {
-	days := knownDaysShort[locale]
+	days, ok := knownDaysShort[locale]
+	if !ok {
+		return
+	}
 	for _, day := range days {
 		arr = append(arr, day)
 	}
@@ -343,7 +350,10 @@ func GetShortDays(locale Locale) (arr []string) {
 }
 
 func GetLongDays(locale Locale) (arr []string) {
-	days := knownDaysLong[locale]
+	days, ok := knownDaysLong[locale]
+	if !ok {
+		return
+	}
 	for _, day := range days {
 		arr = append(arr, day)
 	}
