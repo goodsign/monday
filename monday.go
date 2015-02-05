@@ -2,6 +2,7 @@ package monday
 
 import (
 	"time"
+    "fmt"
 )
 
 // internalFormatFunc is a preprocessor for default time.Format func
@@ -334,8 +335,11 @@ func ParseInLocation(layout, value string, loc *time.Location, locale Locale) (t
 	intFunc, ok := internalParseFuncs[locale]
 	if ok {
 		value = intFunc(layout, value)
+	} else {
+		return time.Now(), fmt.Errorf("monday: coudln't find parse func for locale %v", locale)
 	}
-	return time.ParseInLocation(layout, value, loc)
+	
+    return time.ParseInLocation(layout, value, loc)
 }
 
 func GetShortDays(locale Locale) (arr []string) {

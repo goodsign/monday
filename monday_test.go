@@ -250,6 +250,11 @@ func TestBadLocale(t *testing.T) {
 	if txt != "Tue Sep 3 2013" {
 		t.Error("Failed to test with bad locale. ", txt)
 	}
+
+	_, err := ParseInLocation("Mon January 2006", "Sun April 2013", time.UTC, "aa_AA")
+	if err.Error() != "monday: coudln't find parse func for locale aa_AA" {
+		t.Error("Failed test because since no error with bad locale.")
+	}
 }
 
 func TestGetShortDays(t *testing.T) {
