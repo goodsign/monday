@@ -26,7 +26,7 @@ func commonFormatFunc(value, format string,
 		// number of symbols before replaced term
 		foundIndex := 0
 		trimRight := 0
-        lowerCase := false
+		lowerCase := false
 		switch {
 		case findInString(f[i].item, "Monday", &foundIndex, &trimRight):
 			knw = knownDaysLong
@@ -36,20 +36,20 @@ func commonFormatFunc(value, format string,
 			knw = knownMonthsLong
 		case findInString(f[i].item, "Jan", &foundIndex, &trimRight):
 			knw = knownMonthsShort
-        case findInString(f[i].item, "PM", &foundIndex, &trimRight):
-            knw = knownPeriods
-        case findInString(f[i].item, "pm", &foundIndex, &trimRight):
-            lowerCase = true
-            knw = knownPeriods
+		case findInString(f[i].item, "PM", &foundIndex, &trimRight):
+			knw = knownPeriods
+		case findInString(f[i].item, "pm", &foundIndex, &trimRight):
+			lowerCase = true
+			knw = knownPeriods
 		}
 
 		if knw != nil {
 			trimmedItem := v.item[foundIndex : len(v.item)-trimRight]
 
 			tr, ok := knw[trimmedItem]
-            if lowerCase == true {
-                tr = strings.ToLower(tr)
-            }
+			if lowerCase == true {
+				tr = strings.ToLower(tr)
+			}
 
 			if ok {
 				res = res + v.item[:foundIndex] + tr + v.item[len(v.item)-trimRight:]

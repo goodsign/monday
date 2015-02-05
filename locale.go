@@ -30,7 +30,7 @@ const (
 	LocaleZhTW = "zh_TW" // Chinese (Taiwan)
 	LocaleZhHK = "zh_HK" // Chinese (Hong Kong)
 	LocaleJaJP = "ja_JP" // Japanese (Japan)
-    
+
 )
 
 // ListLocales returns all locales supported by the package.
@@ -60,6 +60,6 @@ func ListLocales() []Locale {
 		LocaleZhCN,
 		LocaleZhTW,
 		LocaleZhHK,
-        LocaleJaJP,
+		LocaleJaJP,
 	}
 }

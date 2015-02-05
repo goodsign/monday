@@ -148,7 +148,7 @@ const (
 	DefaultFormatZhHKMedium   = "2006-01-02"
 	DefaultFormatZhHKShort    = "2006/1/2"
 	DefaultFormatZhHKDateTime = "2006-01-02 15:04"
-    
+
 	DefaultFormatJaJPFull     = "2006年1月2日 Monday" // Japanese (Japan)
 	DefaultFormatJaJPLong     = "2006年1月2日"
 	DefaultFormatJaJPMedium   = "2006/01/02"
@@ -183,7 +183,6 @@ var FullFormatsByLocale = map[Locale]string{
 	LocaleZhTW: DefaultFormatZhTWFull,
 	LocaleZhHK: DefaultFormatZhHKFull,
 	LocaleJaJP: DefaultFormatJaJPFull,
-    
 }
 
 // 'Long' date formats for all supported locales
