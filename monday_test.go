@@ -210,6 +210,15 @@ var formatTests = []FormatTest{
 	{LocaleZhCN, time.Date(2013, 5, 13, 0, 0, 0, 0, time.UTC), "2006年 Jan 2日", "2013年 5 13日"},
 	{LocaleZhCN, time.Date(2013, 5, 13, 0, 0, 0, 0, time.UTC), "2006年 January 2日", "2013年 5 月 13日"},
 	{LocaleZhCN, time.Date(0, 5, 1, 0, 0, 0, 0, time.UTC), "January", "5 月"},
+
+	{LocaleJaJP, time.Date(2013, 5, 13, 0, 0, 0, 0, time.UTC), "2006/01/2", "2013/05/13"},
+	{LocaleJaJP, time.Date(2013, 5, 13, 0, 0, 0, 0, time.UTC), "2006/1/2 Monday", "2013/5/13 月曜日"},
+	{LocaleJaJP, time.Date(2013, 5, 13, 10, 30, 0, 0, time.UTC), "2006/1/2 Monday 3:04pm", "2013/5/13 月曜日 10:30午前"},
+	{LocaleJaJP, time.Date(2013, 5, 13, 23, 30, 0, 0, time.UTC), "2006/1/2 Monday 3:04PM", "2013/5/13 月曜日 11:30午後"},
+	{LocaleJaJP, time.Date(2013, 5, 13, 0, 0, 0, 0, time.UTC), "2006 Jan 2 Monday", "2013 5月 13 月曜日"},
+	{LocaleJaJP, time.Date(2013, 5, 13, 0, 0, 0, 0, time.UTC), "2006 Jan 2", "2013 5月 13"},
+	{LocaleJaJP, time.Date(2013, 5, 13, 0, 0, 0, 0, time.UTC), "2006 January 2", "2013 5月 13"},
+	{LocaleJaJP, time.Date(0, 5, 1, 0, 0, 0, 0, time.UTC), "January", "5月"},
 }
 
 func TestFormat(t *testing.T) {
@@ -233,6 +242,18 @@ func TestFormat(t *testing.T) {
 				i, ts.locale, ts.layout, txt, reverseDate.Format(time.RFC850), ts.date.Format(time.RFC850))
 			continue
 		}
+	}
+}
+
+func TestBadLocale(t *testing.T) {
+	txt := Format(time.Date(2013, 9, 3, 0, 0, 0, 0, time.UTC), "Mon Jan 2 2006", "aa_AA")
+	if txt != "Tue Sep 3 2013" {
+		t.Error("Failed to test with bad locale. ", txt)
+	}
+
+	_, err := ParseInLocation("Mon January 2006", "Sun April 2013", time.UTC, "aa_AA")
+	if err.Error() != "monday: coudln't find parse func for locale aa_AA" {
+		t.Error("Failed test because since no error with bad locale.")
 	}
 }
 

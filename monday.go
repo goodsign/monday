@@ -1,6 +1,7 @@
 package monday
 
 import (
+	"fmt"
 	"time"
 )
 
@@ -32,6 +33,7 @@ var internalFormatFuncs = map[Locale]internalFormatFunc{
 	LocaleZhCN: createCommonFormatFunc(LocaleZhCN),
 	LocaleZhTW: createCommonFormatFunc(LocaleZhTW),
 	LocaleZhHK: createCommonFormatFunc(LocaleZhHK),
+	LocaleJaJP: createCommonFormatFunc(LocaleJaJP),
 }
 
 // internalParseFunc is a preprocessor for default time.ParseInLocation func
@@ -62,6 +64,7 @@ var internalParseFuncs = map[Locale]internalParseFunc{
 	LocaleZhCN: parseFuncZhCommon(LocaleZhCN),
 	LocaleZhTW: parseFuncZhCommon(LocaleZhTW),
 	LocaleZhHK: parseFuncZhCommon(LocaleZhHK),
+	LocaleJaJP: parseFuncJaCommon(LocaleJaJP),
 }
 
 var knownDaysShort = map[Locale]map[string]string{}           // Mapping for 'Format', days of week, short form
@@ -70,6 +73,7 @@ var knownMonthsLong = map[Locale]map[string]string{}          // Mapping for 'Fo
 var knownMonthsShort = map[Locale]map[string]string{}         // Mapping for 'Format', months: short form
 var knownMonthsGenitiveShort = map[Locale]map[string]string{} // Mapping for 'Format', special for names in genitive, short form
 var knownMonthsGenitiveLong = map[Locale]map[string]string{}  // Mapping for 'Format', special for names in genitive, long form
+var knownPeriods = map[Locale]map[string]string{}
 
 // Reverse maps for the same
 
@@ -79,6 +83,7 @@ var knownMonthsLongReverse = map[Locale]map[string]string{}          // Mapping 
 var knownMonthsShortReverse = map[Locale]map[string]string{}         // Mapping for 'Format', months: short form
 var knownMonthsGenitiveShortReverse = map[Locale]map[string]string{} // Mapping for 'Format', special for names in genitive, short form
 var knownMonthsGenitiveLongReverse = map[Locale]map[string]string{}  // Mapping for 'Format', special for names in genitive, long form
+var knownPeriodsReverse = map[Locale]map[string]string{}
 
 func init() {
 	fillKnownWords()
@@ -233,6 +238,13 @@ func fillKnownWords() {
 	fillKnownDaysShort(shortDayNamesZhHK, LocaleZhHK)
 	fillKnownMonthsLong(longMonthNamesZhHK, LocaleZhHK)
 	fillKnownMonthsShort(shortMonthNamesZhHK, LocaleZhHK)
+
+	fillKnownDaysLong(longDayNamesJaJP, LocaleJaJP)
+	fillKnownDaysShort(shortDayNamesJaJP, LocaleJaJP)
+	fillKnownMonthsLong(longMonthNamesJaJP, LocaleJaJP)
+	fillKnownMonthsShort(shortMonthNamesJaJP, LocaleJaJP)
+	fillKnownPeriods(periodsJaJP, LocaleJaJP)
+
 }
 
 func fill(src map[string]string, dest map[Locale]map[string]string, locale Locale) {
@@ -291,6 +303,11 @@ func fillKnownMonthsLong(src map[string]string, locale Locale) {
 	fill(src, knownMonthsLong, locale)
 }
 
+func fillKnownPeriods(src map[string]string, locale Locale) {
+	fillReverse(src, knownPeriodsReverse, locale)
+	fill(src, knownPeriods, locale)
+}
+
 // Format is the standard time.Format wrapper, that replaces known standard 'time' package
 // identifiers for months and days to their equivalents in the specified language.
 //
@@ -303,8 +320,11 @@ func fillKnownMonthsLong(src map[string]string, locale Locale) {
 // So, even though March is "Март" in Russian, correctly formatted today's date would be: "7 марта 2007".
 // Thus, some transformations for some languages may be a bit more complex than just plain replacements.
 func Format(dt time.Time, layout string, locale Locale) string {
-	intFunc := internalFormatFuncs[locale]
 	fm := dt.Format(layout)
+	intFunc, ok := internalFormatFuncs[locale]
+	if !ok {
+		return fm
+	}
 	return intFunc(fm, layout)
 }
 
@@ -312,13 +332,21 @@ func Format(dt time.Time, layout string, locale Locale) string {
 // known month/day translations for a specified locale back to English before
 // calling time.ParseInLocation. So, you can parse localized dates with this wrapper.
 func ParseInLocation(layout, value string, loc *time.Location, locale Locale) (time.Time, error) {
-	intFunc := internalParseFuncs[locale]
-	pl := intFunc(layout, value)
-	return time.ParseInLocation(layout, pl, loc)
+	intFunc, ok := internalParseFuncs[locale]
+	if ok {
+		value = intFunc(layout, value)
+	} else {
+		return time.Now(), fmt.Errorf("monday: coudln't find parse func for locale %v", locale)
+	}
+
+	return time.ParseInLocation(layout, value, loc)
 }
 
 func GetShortDays(locale Locale) (arr []string) {
-	days := knownDaysShort[locale]
+	days, ok := knownDaysShort[locale]
+	if !ok {
+		return
+	}
 	for _, day := range days {
 		arr = append(arr, day)
 	}
@@ -326,7 +354,10 @@ func GetShortDays(locale Locale) (arr []string) {
 }
 
 func GetLongDays(locale Locale) (arr []string) {
-	days := knownDaysLong[locale]
+	days, ok := knownDaysLong[locale]
+	if !ok {
+		return
+	}
 	for _, day := range days {
 		arr = append(arr, day)
 	}
