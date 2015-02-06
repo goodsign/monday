@@ -126,3 +126,4 @@ Thanks
 * [Martin Angers](https://github.com/PuerkitoBio)
 * Andrey Mirtchovski
 * [mikespook](https://github.com/mikespook)
+* [Luis Azevedo](https://github.com/braceta)

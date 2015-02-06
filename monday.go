@@ -336,7 +336,7 @@ func ParseInLocation(layout, value string, loc *time.Location, locale Locale) (t
 	if ok {
 		value = intFunc(layout, value)
 	} else {
-		return time.Now(), fmt.Errorf("monday: coudln't find parse func for locale %v", locale)
+		return time.Now(), fmt.Errorf("unsupported locale: %v", locale)
 	}
 
 	return time.ParseInLocation(layout, value, loc)

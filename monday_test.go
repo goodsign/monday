@@ -252,8 +252,8 @@ func TestBadLocale(t *testing.T) {
 	}
 
 	_, err := ParseInLocation("Mon January 2006", "Sun April 2013", time.UTC, "aa_AA")
-	if err.Error() != "monday: coudln't find parse func for locale aa_AA" {
-		t.Error("Failed test because since no error with bad locale.")
+	if err.Error() != "unsupported locale: aa_AA" {
+		t.Error("Failed to test with unsupported locale.")
 	}
 }
 
