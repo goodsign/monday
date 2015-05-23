@@ -219,6 +219,15 @@ var formatTests = []FormatTest{
 	{LocaleJaJP, time.Date(2013, 5, 13, 0, 0, 0, 0, time.UTC), "2006 Jan 2", "2013 5月 13"},
 	{LocaleJaJP, time.Date(2013, 5, 13, 0, 0, 0, 0, time.UTC), "2006 January 2", "2013 5月 13"},
 	{LocaleJaJP, time.Date(0, 5, 1, 0, 0, 0, 0, time.UTC), "January", "5月"},
+
+	{LocaleElGR, time.Date(2013, 9, 3, 0, 0, 0, 0, time.UTC), "Mon Jan 2 2006", "Τρι Σεπ 3 2013"},
+	{LocaleElGR, time.Date(2013, 9, 4, 0, 0, 0, 0, time.UTC), "Monday Jan 2 2006", "Τετάρτη Σεπ 4 2013"},
+	{LocaleElGR, time.Date(2013, 10, 3, 0, 0, 0, 0, time.UTC), "Monday January 02 2006", "Πέμπτη Οκτώβριος 03 2013"},
+	{LocaleElGR, time.Date(2013, 11, 3, 0, 0, 0, 0, time.UTC), "Monday. 2 January 2006", "Κυριακή. 3 Νοεμβρίου 2013"},
+	{LocaleElGR, time.Date(2013, 5, 13, 0, 0, 0, 0, time.UTC), "2006. 2 January. Monday", "2013. 13 Μαΐου. Δευτέρα"},
+	{LocaleElGR, time.Date(2015, 5, 23, 22, 7, 0, 0, time.UTC), "2 Jan 2006 3:04pm", "23 Μαϊ 2015 10:07μμ"},
+	{LocaleElGR, time.Date(0, 5, 1, 0, 0, 0, 0, time.UTC), "January", "Μάιος"},
+	{LocaleElGR, time.Date(0, 5, 13, 0, 0, 0, 0, time.UTC), "2 January", "13 Μαΐου"},
 }
 
 func TestFormat(t *testing.T) {

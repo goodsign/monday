@@ -34,6 +34,7 @@ var internalFormatFuncs = map[Locale]internalFormatFunc{
 	LocaleZhTW: createCommonFormatFunc(LocaleZhTW),
 	LocaleZhHK: createCommonFormatFunc(LocaleZhHK),
 	LocaleJaJP: createCommonFormatFunc(LocaleJaJP),
+	LocaleElGR: createCommonFormatFuncWithGenitive(LocaleElGR),
 }
 
 // internalParseFunc is a preprocessor for default time.ParseInLocation func
@@ -65,6 +66,7 @@ var internalParseFuncs = map[Locale]internalParseFunc{
 	LocaleZhTW: parseFuncZhCommon(LocaleZhTW),
 	LocaleZhHK: parseFuncZhCommon(LocaleZhHK),
 	LocaleJaJP: parseFuncJaCommon(LocaleJaJP),
+	LocaleElGR: createCommonParsetFuncWithGenitive(LocaleElGR),
 }
 
 var knownDaysShort = map[Locale]map[string]string{}           // Mapping for 'Format', days of week, short form
@@ -239,12 +241,21 @@ func fillKnownWords() {
 	fillKnownMonthsLong(longMonthNamesZhHK, LocaleZhHK)
 	fillKnownMonthsShort(shortMonthNamesZhHK, LocaleZhHK)
 
+	// Ja_JP: Japanese (Japan)
 	fillKnownDaysLong(longDayNamesJaJP, LocaleJaJP)
 	fillKnownDaysShort(shortDayNamesJaJP, LocaleJaJP)
 	fillKnownMonthsLong(longMonthNamesJaJP, LocaleJaJP)
 	fillKnownMonthsShort(shortMonthNamesJaJP, LocaleJaJP)
 	fillKnownPeriods(periodsJaJP, LocaleJaJP)
 
+	// El_GR: Greek (Greece)
+	fillKnownDaysLong(longDayNamesElGR, LocaleElGR)
+	fillKnownDaysShort(shortDayNamesElGR, LocaleElGR)
+	fillKnownMonthsLong(longMonthNamesElGR, LocaleElGR)
+	fillKnownMonthsShort(shortMonthNamesElGR, LocaleElGR)
+	fillKnownMonthsGenitiveLong(longMonthNamesGenitiveElGR, LocaleElGR)
+	fillKnownMonthsGenitiveShort(shortMonthNamesElGR, LocaleElGR)
+	fillKnownPeriods(periodsElGR, LocaleElGR)
 }
 
 func fill(src map[string]string, dest map[Locale]map[string]string, locale Locale) {

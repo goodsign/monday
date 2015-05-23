@@ -78,7 +78,7 @@ func commonGenitiveFormatFunc(value, format string,
 	f := stringToLayoutItems(format)
 
 	for i, v := range l {
-
+		lowerCase := false
 		var knw map[string]string
 		switch f[i].item {
 		case "Mon":
@@ -97,10 +97,18 @@ func commonGenitiveFormatFunc(value, format string,
 			} else {
 				knw = knownMonthsLong
 			}
+		case "PM":
+			knw = knownPeriods
+		case "pm":
+			lowerCase = true
+			knw = knownPeriods
 		}
 
 		if knw != nil {
 			tr, _ := knw[v.item]
+			if lowerCase == true {
+				tr = strings.ToLower(tr)
+			}
 			res = res + tr
 		} else {
 			res = res + v.item
@@ -128,7 +136,7 @@ func createCommonParseFunc(locale Locale) internalParseFunc {
 	return func(layout, value string) string {
 		return commonFormatFunc(value, layout,
 			knownDaysShortReverse[locale], knownDaysLongReverse[locale],
-			knownMonthsShortReverse[locale], knownMonthsLongReverse[locale], knownPeriods[locale])
+			knownMonthsShortReverse[locale], knownMonthsLongReverse[locale], knownPeriodsReverse[locale])
 	}
 }
 
@@ -137,6 +145,6 @@ func createCommonParsetFuncWithGenitive(locale Locale) internalParseFunc {
 		return commonGenitiveFormatFunc(value, layout,
 			knownDaysShortReverse[locale], knownDaysLongReverse[locale],
 			knownMonthsShortReverse[locale], knownMonthsLongReverse[locale],
-			knownMonthsGenitiveShortReverse[locale], knownMonthsGenitiveLongReverse[locale], knownPeriods[locale])
+			knownMonthsGenitiveShortReverse[locale], knownMonthsGenitiveLongReverse[locale], knownPeriodsReverse[locale])
 	}
 }
