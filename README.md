@@ -103,6 +103,8 @@ const (
     LocaleZhCN = "zh_CN"    // Chinese (Mainland)
     LocaleZhTW = "zh_TW"    // Chinese (Taiwan)
     LocaleZhHK = "zh_HK"    // Chinese (Hong Kong)
+    LocaleJaJP = "ja_JP"    // Japanese (Japan)
+    LocaleElGR = "el_GR"    // Greek (Greece)
 )
 ```
 

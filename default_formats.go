@@ -154,6 +154,12 @@ const (
 	DefaultFormatJaJPMedium   = "2006/01/02"
 	DefaultFormatJaJPShort    = "2006/1/2"
 	DefaultFormatJaJPDateTime = "2006/01/02 15:04"
+
+	DefaultFormatElGRFull     = "Δευτέρα, 2 Ιανουαρίου 2006" // Greek (Greece)
+	DefaultFormatElGRLong     = "2 Ιανουαρίου 2006"
+	DefaultFormatElGRMedium   = "2 Ιαν 2006"
+	DefaultFormatElGRShort    = "02/01/06"
+	DefaultFormatElGRDateTime = "02/01/06 15:04"
 )
 
 // 'Full' date formats for all supported locales
@@ -183,6 +189,7 @@ var FullFormatsByLocale = map[Locale]string{
 	LocaleZhTW: DefaultFormatZhTWFull,
 	LocaleZhHK: DefaultFormatZhHKFull,
 	LocaleJaJP: DefaultFormatJaJPFull,
+	LocaleElGR: DefaultFormatElGRFull,
 }
 
 // 'Long' date formats for all supported locales
@@ -212,6 +219,7 @@ var LongFormatsByLocale = map[Locale]string{
 	LocaleZhTW: DefaultFormatZhTWLong,
 	LocaleZhHK: DefaultFormatZhHKLong,
 	LocaleJaJP: DefaultFormatJaJPLong,
+	LocaleElGR: DefaultFormatElGRLong,
 }
 
 // 'Medium' date formats for all supported locales
@@ -241,6 +249,7 @@ var MediumFormatsByLocale = map[Locale]string{
 	LocaleZhTW: DefaultFormatZhTWMedium,
 	LocaleZhHK: DefaultFormatZhHKMedium,
 	LocaleJaJP: DefaultFormatJaJPMedium,
+	LocaleElGR: DefaultFormatElGRMedium,
 }
 
 // 'Short' date formats for all supported locales
@@ -270,6 +279,7 @@ var ShortFormatsByLocale = map[Locale]string{
 	LocaleZhTW: DefaultFormatZhTWShort,
 	LocaleZhHK: DefaultFormatZhHKShort,
 	LocaleJaJP: DefaultFormatJaJPShort,
+	LocaleElGR: DefaultFormatElGRShort,
 }
 
 // 'DateTime' date formats for all supported locales
@@ -299,4 +309,5 @@ var DateTimeFormatsByLocale = map[Locale]string{
 	LocaleZhTW: DefaultFormatZhTWDateTime,
 	LocaleZhHK: DefaultFormatZhHKDateTime,
 	LocaleJaJP: DefaultFormatJaJPDateTime,
+	LocaleElGR: DefaultFormatElGRDateTime,
 }
