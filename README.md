@@ -97,6 +97,7 @@ const (
     LocaleRoRO = "ro_RO"    // Romanian (Romania)
     LocaleRuRU = "ru_RU"    // Russian (Russia)
     LocaleEsES = "es_ES"    // Spanish (Spain)
+    LocaleEsES = "ca_ES"    // Catalan (Spain)
     LocaleSvSE = "sv_SE"    // Swedish (Sweden)
     LocaleTrTR = "tr_TR"    // Turkish (Turkey)
     LocaleBgBF = "bg_BG"    // Bulgarian (Bulgaria)
