@@ -27,6 +27,7 @@ var internalFormatFuncs = map[Locale]internalFormatFunc{
 	LocalePtBR: createCommonFormatFunc(LocalePtBR),
 	LocaleRoRO: createCommonFormatFunc(LocaleRoRO),
 	LocaleEsES: createCommonFormatFunc(LocaleEsES),
+	LocaleCaES: createCommonFormatFunc(LocaleCaES),
 	LocaleSvSE: createCommonFormatFunc(LocaleSvSE),
 	LocaleTrTR: createCommonFormatFunc(LocaleTrTR),
 	LocaleBgBG: createCommonFormatFunc(LocaleBgBG),
@@ -59,6 +60,7 @@ var internalParseFuncs = map[Locale]internalParseFunc{
 	LocalePtBR: parseFuncPtCommon(LocalePtBR),
 	LocaleRoRO: createCommonParseFunc(LocaleRoRO),
 	LocaleEsES: createCommonParseFunc(LocaleEsES),
+	LocaleCaES: createCommonParseFunc(LocaleCaES),
 	LocaleSvSE: createCommonParseFunc(LocaleSvSE),
 	LocaleTrTR: createCommonParseFunc(LocaleTrTR),
 	LocaleBgBG: createCommonParseFunc(LocaleBgBG),
@@ -204,6 +206,12 @@ func fillKnownWords() {
 	fillKnownDaysShort(shortDayNamesEsES, LocaleEsES)
 	fillKnownMonthsLong(longMonthNamesEsES, LocaleEsES)
 	fillKnownMonthsShort(shortMonthNamesEsES, LocaleEsES)
+
+	// Ca_ES: Catalan (Spain)
+	fillKnownDaysLong(longDayNamesCaES, LocaleCaES)
+	fillKnownDaysShort(shortDayNamesCaES, LocaleCaES)
+	fillKnownMonthsLong(longMonthNamesCaES, LocaleCaES)
+	fillKnownMonthsShort(shortMonthNamesCaES, LocaleCaES)
 
 	// Sv_SE: Swedish (Sweden)
 	fillKnownDaysLong(longDayNamesSvSE, LocaleSvSE)

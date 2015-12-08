@@ -176,6 +176,15 @@ var formatTests = []FormatTest{
 	{LocaleEsES, time.Date(0, 5, 1, 0, 0, 0, 0, time.UTC), "January", "mayo"},
 	{LocaleEsES, time.Date(0, 5, 13, 0, 0, 0, 0, time.UTC), "2 January", "13 mayo"},
 
+	{LocaleCaES, time.Date(2013, 9, 3, 0, 0, 0, 0, time.UTC), "Mon Jan 2 2006", "dt set 3 2013"},
+	{LocaleCaES, time.Date(2013, 9, 4, 0, 0, 0, 0, time.UTC), "Monday Jan 2 2006", "dimecres set 4 2013"},
+	{LocaleCaES, time.Date(2013, 10, 3, 0, 0, 0, 0, time.UTC), "Monday January 02 2006", "dijous octubre 03 2013"},
+	{LocaleCaES, time.Date(2013, 11, 3, 0, 0, 0, 0, time.UTC), "Monday. 2 January 2006", "diumenge. 3 novembre 2013"},
+	{LocaleCaES, time.Date(2013, 5, 13, 0, 0, 0, 0, time.UTC), "2006. 2 January. Monday", "2013. 13 maig. dilluns"},
+	{LocaleCaES, time.Date(2013, 5, 13, 0, 0, 0, 0, time.UTC), "2 Jan 2006", "13 maig 2013"},
+	{LocaleCaES, time.Date(0, 5, 1, 0, 0, 0, 0, time.UTC), "January", "maig"},
+	{LocaleCaES, time.Date(0, 5, 13, 0, 0, 0, 0, time.UTC), "2 January", "13 maig"},
+
 	{LocaleSvSE, time.Date(2013, 9, 3, 0, 0, 0, 0, time.UTC), "Mon Jan 2 2006", "tis sep 3 2013"},
 	{LocaleSvSE, time.Date(2013, 9, 4, 0, 0, 0, 0, time.UTC), "Monday Jan 2 2006", "onsdag sep 4 2013"},
 	{LocaleSvSE, time.Date(2013, 10, 3, 0, 0, 0, 0, time.UTC), "Monday January 02 2006", "torsdag oktober 03 2013"},

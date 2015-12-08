@@ -113,6 +113,12 @@ const (
 	DefaultFormatEsESShort    = "02/01/06"
 	DefaultFormatEsESDateTime = "02/01/06 15:04"
 
+	DefaultFormatCaESFull     = "Monday, 2 de January de 2006" // Spanish (Spain)
+	DefaultFormatCaESLong     = "2 de January de 2006"
+	DefaultFormatCaESMedium   = "02/01/2006"
+	DefaultFormatCaESShort    = "02/01/06"
+	DefaultFormatCaESDateTime = "02/01/06 15:04"
+
 	DefaultFormatSvSEFull     = "Mondayen den 2:e January 2006" // Swedish (Sweden)
 	DefaultFormatSvSELong     = "2 January 2006"
 	DefaultFormatSvSEMedium   = "2 Jan 2006"
@@ -182,6 +188,7 @@ var FullFormatsByLocale = map[Locale]string{
 	LocaleRoRO: DefaultFormatRoROFull,
 	LocaleRuRU: DefaultFormatRuRUFull,
 	LocaleEsES: DefaultFormatEsESFull,
+	LocaleCaES: DefaultFormatCaESFull,
 	LocaleSvSE: DefaultFormatSvSEFull,
 	LocaleTrTR: DefaultFormatTrTRFull,
 	LocaleBgBG: DefaultFormatBgBGFull,
@@ -212,6 +219,7 @@ var LongFormatsByLocale = map[Locale]string{
 	LocaleRoRO: DefaultFormatRoROLong,
 	LocaleRuRU: DefaultFormatRuRULong,
 	LocaleEsES: DefaultFormatEsESLong,
+	LocaleCaES: DefaultFormatCaESLong,
 	LocaleSvSE: DefaultFormatSvSELong,
 	LocaleTrTR: DefaultFormatTrTRLong,
 	LocaleBgBG: DefaultFormatBgBGLong,
@@ -242,6 +250,7 @@ var MediumFormatsByLocale = map[Locale]string{
 	LocaleRoRO: DefaultFormatRoROMedium,
 	LocaleRuRU: DefaultFormatRuRUMedium,
 	LocaleEsES: DefaultFormatEsESMedium,
+	LocaleCaES: DefaultFormatCaESMedium,
 	LocaleSvSE: DefaultFormatSvSEMedium,
 	LocaleTrTR: DefaultFormatTrTRMedium,
 	LocaleBgBG: DefaultFormatBgBGMedium,
@@ -272,6 +281,7 @@ var ShortFormatsByLocale = map[Locale]string{
 	LocaleRoRO: DefaultFormatRoROShort,
 	LocaleRuRU: DefaultFormatRuRUShort,
 	LocaleEsES: DefaultFormatEsESShort,
+	LocaleCaES: DefaultFormatCaESShort,
 	LocaleSvSE: DefaultFormatSvSEShort,
 	LocaleTrTR: DefaultFormatTrTRShort,
 	LocaleBgBG: DefaultFormatBgBGShort,
@@ -302,6 +312,7 @@ var DateTimeFormatsByLocale = map[Locale]string{
 	LocaleRoRO: DefaultFormatRoRODateTime,
 	LocaleRuRU: DefaultFormatRuRUDateTime,
 	LocaleEsES: DefaultFormatEsESDateTime,
+	LocaleCaES: DefaultFormatCaESDateTime,
 	LocaleSvSE: DefaultFormatSvSEDateTime,
 	LocaleTrTR: DefaultFormatTrTRDateTime,
 	LocaleBgBG: DefaultFormatBgBGDateTime,
