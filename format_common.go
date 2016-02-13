@@ -3,7 +3,7 @@ package monday
 import "strings"
 
 func findInString(where string, what string, foundIndex *int, trimRight *int) (found bool) {
-	ind := strings.Index(where, what)
+	ind := strings.Index(strings.ToLower(where), strings.ToLower(what))
 	if ind != -1 {
 		*foundIndex = ind
 		*trimRight = len(where) - ind - len(what)
@@ -43,8 +43,10 @@ func commonFormatFunc(value, format string,
 			knw = knownPeriods
 		}
 
+		knw = mapToLowerCase(knw)
+
 		if knw != nil {
-			trimmedItem := v.item[foundIndex : len(v.item)-trimRight]
+			trimmedItem := strings.ToLower(v.item[foundIndex : len(v.item)-trimRight])
 
 			tr, ok := knw[trimmedItem]
 			if lowerCase == true {
@@ -103,9 +105,9 @@ func commonGenitiveFormatFunc(value, format string,
 			lowerCase = true
 			knw = knownPeriods
 		}
-
+		knw = mapToLowerCase(knw)
 		if knw != nil {
-			tr, _ := knw[v.item]
+			tr, _ := knw[strings.ToLower(v.item)]
 			if lowerCase == true {
 				tr = strings.ToLower(tr)
 			}
@@ -147,4 +149,12 @@ func createCommonParsetFuncWithGenitive(locale Locale) internalParseFunc {
 			knownMonthsShortReverse[locale], knownMonthsLongReverse[locale],
 			knownMonthsGenitiveShortReverse[locale], knownMonthsGenitiveLongReverse[locale], knownPeriodsReverse[locale])
 	}
+}
+
+func mapToLowerCase(source map[string]string) map[string]string {
+	result := make(map[string]string)
+	for k, v := range source {
+		result[strings.ToLower(k)] = v
+	}
+	return result
 }
