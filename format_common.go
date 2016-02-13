@@ -2,6 +2,8 @@ package monday
 
 import "strings"
 
+// import "fmt"
+
 func findInString(where string, what string, foundIndex *int, trimRight *int) (found bool) {
 	ind := strings.Index(strings.ToLower(where), strings.ToLower(what))
 	if ind != -1 {
@@ -19,7 +21,11 @@ func commonFormatFunc(value, format string,
 	knownDaysShort, knownDaysLong, knownMonthsShort, knownMonthsLong, knownPeriods map[string]string) (res string) {
 	l := stringToLayoutItems(value)
 	f := stringToLayoutItems(format)
-
+	if len(l) != len(f) {
+		// fmt.Printf("fatal: len(l):%d, len(f):%d\n", len(l), len(f))
+		// fmt.Printf(" value:'%s' format: '%s'\n", value, format)
+		return value
+	}
 	for i, v := range l {
 		var knw map[string]string
 

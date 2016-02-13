@@ -32,7 +32,7 @@ func (this *LocaleDetector) addWords(words []string, v Locale) {
 }
 
 func NewLocaleDetector() *LocaleDetector {
-	this := &LocaleDetector{localeMap: make(map[string]*set.Set)}
+	this := &LocaleDetector{localeMap: make(map[string]*set.Set), lastLocale: LocaleEnGB}
 	for _, v := range ListLocales() {
 		days := GetShortDays(v)
 		this.addWords(days, v)
@@ -47,14 +47,10 @@ func NewLocaleDetector() *LocaleDetector {
 }
 
 func (this *LocaleDetector) Parse(layout, value string) (time.Time, error) {
-	if this.lastLocale != "" {
-		this.lastLocale = this.detectLocale(value)
-	} else {
-		t, e := ParseInLocation(layout, value, time.UTC, this.lastLocale)
-		if e == nil {
-			return t, nil
-		}
-	}
+	// t, e := ParseInLocation(layout, value, time.UTC, this.lastLocale)
+	// if e == nil {
+	// 	return t, nil
+	// }
 	this.lastLocale = this.detectLocale(value)
 	return ParseInLocation(layout, value, time.UTC, this.lastLocale)
 }
