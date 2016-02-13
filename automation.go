@@ -78,7 +78,7 @@ func (this *LocaleDetector) detectLocale(value string) Locale {
 	var frequency int = 0
 	for key, counter := range localesMap {
 		if counter > frequency {
-			counter = frequency
+			frequency = counter
 			result = key
 		}
 	}
