@@ -372,6 +372,17 @@ func GetShortDays(locale Locale) (arr []string) {
 	return
 }
 
+func GetShortMonths(locale Locale) (arr []string) {
+	months, ok := knownMonthsShort[locale]
+	if !ok {
+		return
+	}
+	for _, month := range months {
+		arr = append(arr, month)
+	}
+	return
+}
+
 func GetLongDays(locale Locale) (arr []string) {
 	days, ok := knownDaysLong[locale]
 	if !ok {
@@ -379,6 +390,17 @@ func GetLongDays(locale Locale) (arr []string) {
 	}
 	for _, day := range days {
 		arr = append(arr, day)
+	}
+	return
+}
+
+func GetLongMonths(locale Locale) (arr []string) {
+	months, ok := knownMonthsLong[locale]
+	if !ok {
+		return
+	}
+	for _, month := range months {
+		arr = append(arr, month)
 	}
 	return
 }

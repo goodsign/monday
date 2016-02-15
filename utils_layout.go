@@ -54,7 +54,6 @@ func extractLetterSequence(originalStr string, index int) (it dateStringLayoutIt
 	it.item = letters
 	it.isWord = isWord
 	it.isDigit = isDigit
-
 	return
 }
 
