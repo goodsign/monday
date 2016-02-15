@@ -284,10 +284,21 @@ func NewLocaleDetector() *LocaleDetector {
 	return this
 }
 
-func (this *LocaleDetector) Parse(layout, value string) (time.Time, error) {
+/**
 
-	this.lastLocale = this.detectLocale(value)
-	return ParseInLocation(layout, value, time.UTC, this.lastLocale)
+**/
+
+func (this *LocaleDetector) Parse(layout, value string) (time.Time, error) {
+	if this.validateValue(layout, value) {
+		this.lastLocale = this.detectLocale(value)
+		return ParseInLocation(layout, value, time.UTC, this.lastLocale)
+	} else {
+		return time.Time{}, &time.ParseError{
+			Value:   value,
+			Layout:  layout,
+			Message: fmt.Sprintf("'%s' not matches to '%s' last error position = %d\n", value, layout, this.lastErrorPosition),
+		}
+	}
 }
 
 func (this *LocaleDetector) detectLocale(value string) Locale {
