@@ -106,6 +106,8 @@ func (this rangeIntSpan) scanInt(s *scanner.Scanner) (int, error) {
 			fmt.Printf("scan negative:'%s'\n", s.TokenText())
 		}
 		tok = s.Scan()
+	} else if tok == 43 { // positive
+		tok = s.Scan()
 	}
 	if tok == -3 {
 		str := s.TokenText()
@@ -220,6 +222,9 @@ func (this *LocaleDetector) prepareLayout(layout string) layoutDef {
 			sign = true
 			// neg = s.TokenText() == "-"
 			continue
+		case 43: // positive sign
+			sign = true
+			continue
 		case scanner.EOF:
 			continue
 		default: // fixed character
@@ -305,11 +310,11 @@ func (this *LocaleDetector) detectLocale(value string) Locale {
 	var localesMap map[Locale]int = make(map[Locale]int)
 	for _, v := range wordsRx.FindAllStringSubmatchIndex(value, -1) {
 		word := strings.ToLower(value[v[0]:v[1]])
-		// fmt.Printf("--word:'%s'\n", word)
+
 		if localesSet, ok := this.localeMap[word]; ok {
 			localesSet.Each(func(i interface{}) bool {
 				if loc, ok := i.(Locale); ok {
-					//      fmt.Printf("\tinc %s\n", loc)
+
 					if _, ok := localesMap[loc]; !ok {
 						localesMap[loc] = 1
 					} else {
