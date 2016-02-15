@@ -353,7 +353,6 @@ func Format(dt time.Time, layout string, locale Locale) string {
 func ParseInLocation(layout, value string, loc *time.Location, locale Locale) (time.Time, error) {
 	intFunc, ok := internalParseFuncs[locale]
 	if ok {
-		// fmt.Printf("layout:'%s' value:'%s' locale:'%s'\n", layout, value, locale)
 		value = intFunc(layout, value)
 	} else {
 		return time.Now(), fmt.Errorf("unsupported locale: %v", locale)

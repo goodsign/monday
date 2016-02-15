@@ -1,7 +1,8 @@
 package monday
 
 import (
-	"fmt"
+	// "fmt"
+	"gopkg.in/fatih/set.v0"
 	"testing"
 )
 
@@ -35,7 +36,7 @@ var (
 			},
 		},
 		layoutData{
-			layout: "2006-02-01T15:04:05+07:00",
+			layout: "2006-01-02T15:04:05-07:00",
 			matches: []string{
 				"2016-02-02T00:00:00+03:00",
 				"2016-01-26T00:10:21-03:00",
@@ -91,33 +92,66 @@ func TestLayoutValidator(t *testing.T) {
 		for i, m := range ltd.matches {
 			if !ld.validateValue(ltd.layout, m) {
 				t.Errorf("'%s' not matches to '%s' last error position = %d\n", m, ltd.layout, ld.errorPosition())
-				fmt.Printf("!\n")
 			} else {
-				fmt.Printf("'%s' matches to '%s'..OK\n", m, ltd.layout)
+				t.Logf("'%s' matches to '%s'..OK\n", m, ltd.layout)
 			}
 			var locale Locale = ld.detectLocale(m)
-			if locale != ltd.locales[i] {
+			if !compareLocales(locale, ltd.locales[i]) {
 				t.Errorf("locales detect error, expected '%s', result '%s'\n", ltd.locales[i], locale)
 			} else {
-				fmt.Printf("detect locale for '%s': expected '%s', result '%s'\n", m, ltd.locales[i], locale)
+				t.Logf("detect locale for '%s': expected '%s', result '%s'\n", m, ltd.locales[i], locale)
 			}
 		}
 		for _, u := range ltd.unmatches {
 			if ld.validateValue(ltd.layout, u) {
 				t.Errorf("'%s' matches to '%s'\n", u, ltd.layout)
 			} else {
-				fmt.Printf("'%s' not matches to '%s'..OK\n", u, ltd.layout)
+				t.Logf("'%s' not matches to '%s'..OK\n", u, ltd.layout)
 			}
 		}
 	}
 }
 
-func TestLocaleDetector(t *testing.T) {
+// TODO: locale groups.
+var englishLocales *set.Set = set.New(LocaleEnUS, LocaleEnGB)
 
+func compareLocales(a, b Locale) bool {
+	if a == b {
+		return true
+	}
+	if englishLocales.Has(string(a)) && englishLocales.Has(string(b)) {
+		return true
+	}
+	return false
+}
+
+func TestCompareLocales(t *testing.T) {
+	if !compareLocales(LocaleEnGB, LocaleEnUS) {
+		t.Errorf("compareLocales not works as expected")
+	}
 }
 
 func TestParsing(t *testing.T) {
-
+	ld := NewLocaleDetector()
+	for _, ltd := range testingLayoutsData {
+		for i, formatted := range ltd.matches {
+			dt, err := ld.Parse(ltd.layout, formatted)
+			if err != nil {
+				t.Errorf("error parsing '%s' with layout: '%s' [error:%s]\n", formatted, ltd.layout, err.Error())
+			} else {
+				restored := Format(dt, ltd.layout, ltd.locales[i])
+				if restored != formatted {
+					dt2, err2 := ld.Parse(ltd.layout, restored)
+					if err2 != nil {
+						t.Errorf("parsed time '%s' (%s) does not match restored time '%s'\n", formatted, dt, restored)
+					}
+					if dt2.Unix() != dt.Unix() {
+						t.Errorf("restored time '%v' != parsed time '%v' (restored='%s')", dt2, dt, restored)
+					}
+				}
+			}
+		}
+	}
 }
 
 func makeSingleLocalesArray(loc Locale, length int) []Locale {
