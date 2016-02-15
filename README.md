@@ -109,6 +109,20 @@ const (
 )
 ```
 
+LocaleDetector
+====
+
+```go
+    var timeLocaleDetector *monday.LocaleDetector = monday.NewLocaleDetector()
+    dateTime, err := timeLocaleDetector.Parse(layout,datestr) 
+```
+parses datetime with **unknown** locale (for now - layout must be defined, as for time.Parse())
+
+useful for text parsing tools/crawlers (f.e.: rss-feeds crawler)
+
+TODO:
+ * make LocaleDetector insensitive to whitespaces count
+
 Thread-safety
 ====
 
