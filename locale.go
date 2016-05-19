@@ -32,6 +32,7 @@ const (
 	LocaleZhHK = "zh_HK" // Chinese (Hong Kong)
 	LocaleJaJP = "ja_JP" // Japanese (Japan)
 	LocaleElGR = "el_GR" // Greek (Greece)
+	LocaleIdID = "id_ID" // Indonesian (Indonesia)
 )
 
 // ListLocales returns all locales supported by the package.
