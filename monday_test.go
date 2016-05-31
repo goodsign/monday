@@ -131,6 +131,15 @@ var formatTests = []FormatTest{
 	{LocaleNbNO, time.Date(0, 5, 1, 0, 0, 0, 0, time.UTC), "January", "mai"},
 	{LocaleNbNO, time.Date(0, 5, 13, 0, 0, 0, 0, time.UTC), "2 January", "13 mai"},
 
+	{LocalePlPL, time.Date(2013, 9, 3, 0, 0, 0, 0, time.UTC), "Mon Jan 2 2006", "Wto Wrz 3 2013"},
+	{LocalePlPL, time.Date(2013, 9, 4, 0, 0, 0, 0, time.UTC), "Monday Jan 2 2006", "Środa Wrz 4 2013"},
+	{LocalePlPL, time.Date(2013, 10, 3, 0, 0, 0, 0, time.UTC), "Monday January 02 2006", "Czwartek Październik 03 2013"},
+	{LocalePlPL, time.Date(2013, 11, 3, 0, 0, 0, 0, time.UTC), "Monday. 2 January 2006", "Niedziela. 3 Listopad 2013"},
+	{LocalePlPL, time.Date(2013, 5, 13, 0, 0, 0, 0, time.UTC), "2006. 2 January. Monday", "2013. 13 Maj. Poniedziałek"},
+	{LocalePlPL, time.Date(2013, 5, 13, 0, 0, 0, 0, time.UTC), "2 Jan 2006", "13 Maj 2013"},
+	{LocalePlPL, time.Date(0, 5, 1, 0, 0, 0, 0, time.UTC), "January", "Maj"},
+	{LocalePlPL, time.Date(0, 5, 13, 0, 0, 0, 0, time.UTC), "2 January", "13 Maj"},
+
 	{LocalePtPT, time.Date(2013, 9, 3, 0, 0, 0, 0, time.UTC), "Mon Jan 2 2006", "ter Set 3 2013"},
 	{LocalePtPT, time.Date(2013, 9, 4, 0, 0, 0, 0, time.UTC), "Monday Jan 2 2006", "Quarta-feira Set 4 2013"},
 	{LocalePtPT, time.Date(2013, 10, 3, 0, 0, 0, 0, time.UTC), "Monday January 02 2006", "Quinta-feira Outubro 03 2013"},
@@ -219,6 +228,22 @@ var formatTests = []FormatTest{
 	{LocaleZhCN, time.Date(2013, 5, 13, 0, 0, 0, 0, time.UTC), "2006年 Jan 2日", "2013年 5 13日"},
 	{LocaleZhCN, time.Date(2013, 5, 13, 0, 0, 0, 0, time.UTC), "2006年 January 2日", "2013年 5 月 13日"},
 	{LocaleZhCN, time.Date(0, 5, 1, 0, 0, 0, 0, time.UTC), "January", "5 月"},
+
+	{LocaleZhTW, time.Date(2013, 5, 13, 0, 0, 0, 0, time.UTC), "2006-01-2", "2013-05-13"},
+	{LocaleZhTW, time.Date(2013, 5, 13, 0, 0, 0, 0, time.UTC), "2006/1/2 Monday", "2013/5/13 星期一"},
+	{LocaleZhTW, time.Date(2013, 5, 13, 0, 0, 0, 0, time.UTC), "2006年1月2日 Monday", "2013年5月13日 星期一"},
+	{LocaleZhTW, time.Date(2013, 5, 13, 0, 0, 0, 0, time.UTC), "2006年1月2日", "2013年5月13日"},
+	{LocaleZhTW, time.Date(2013, 5, 13, 0, 0, 0, 0, time.UTC), "2006年 Jan 2日", "2013年 5 13日"},
+	{LocaleZhTW, time.Date(2013, 5, 13, 0, 0, 0, 0, time.UTC), "2006年 January 2日", "2013年 5 月 13日"},
+	{LocaleZhTW, time.Date(0, 5, 1, 0, 0, 0, 0, time.UTC), "January", "5 月"},
+
+	{LocaleZhHK, time.Date(2013, 5, 13, 0, 0, 0, 0, time.UTC), "2006-01-2", "2013-05-13"},
+	{LocaleZhHK, time.Date(2013, 5, 13, 0, 0, 0, 0, time.UTC), "2006/1/2 Monday", "2013/5/13 星期一"},
+	{LocaleZhHK, time.Date(2013, 5, 13, 0, 0, 0, 0, time.UTC), "2006年1月2日 Monday", "2013年5月13日 星期一"},
+	{LocaleZhHK, time.Date(2013, 5, 13, 0, 0, 0, 0, time.UTC), "2006年1月2日", "2013年5月13日"},
+	{LocaleZhHK, time.Date(2013, 5, 13, 0, 0, 0, 0, time.UTC), "2006年 Jan 2日", "2013年 5 13日"},
+	{LocaleZhHK, time.Date(2013, 5, 13, 0, 0, 0, 0, time.UTC), "2006年 January 2日", "2013年 5 月 13日"},
+	{LocaleZhHK, time.Date(0, 5, 1, 0, 0, 0, 0, time.UTC), "January", "5 月"},
 
 	{LocaleJaJP, time.Date(2013, 5, 13, 0, 0, 0, 0, time.UTC), "2006/01/2", "2013/05/13"},
 	{LocaleJaJP, time.Date(2013, 5, 13, 0, 0, 0, 0, time.UTC), "2006/1/2 Monday", "2013/5/13 月曜日"},

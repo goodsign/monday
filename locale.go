@@ -18,6 +18,7 @@ const (
 	LocaleItIT = "it_IT" // Italian (Italy)
 	LocaleNnNO = "nn_NO" // Norwegian Nynorsk (Norway)
 	LocaleNbNO = "nb_NO" // Norwegian Bokmål (Norway)
+	LocalePlPL = "pl_PL" // Polish (Poland)
 	LocalePtPT = "pt_PT" // Portuguese (Portugal)
 	LocalePtBR = "pt_BR" // Portuguese (Brazil)
 	LocaleRoRO = "ro_RO" // Romanian (Romania)
@@ -26,7 +27,7 @@ const (
 	LocaleCaES = "ca_ES" // Catalan (Spain)
 	LocaleSvSE = "sv_SE" // Swedish (Sweden)
 	LocaleTrTR = "tr_TR" // Turkish (Turkey)
-	LocaleBgBG = "bt_BG" // Bulgarian (Bulgaria)
+	LocaleBgBG = "bg_BG" // Bulgarian (Bulgaria)
 	LocaleZhCN = "zh_CN" // Chinese (Mainland)
 	LocaleZhTW = "zh_TW" // Chinese (Taiwan)
 	LocaleZhHK = "zh_HK" // Chinese (Hong Kong)
@@ -51,6 +52,7 @@ func ListLocales() []Locale {
 		LocaleItIT,
 		LocaleNnNO,
 		LocaleNbNO,
+		LocalePlPL,
 		LocalePtPT,
 		LocalePtBR,
 		LocaleRoRO,
