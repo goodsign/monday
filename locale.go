@@ -34,7 +34,7 @@ const (
 	LocaleJaJP = "ja_JP" // Japanese (Japan)
 	LocaleElGR = "el_GR" // Greek (Greece)
 	LocaleIdID = "id_ID" // Indonesian (Indonesia)
-	LocaleFrGP = "fr_GP" // Guadeloupe
+	LocaleFrGP = "fr_GP" // French (Guadeloupe)
 )
 
 // ListLocales returns all locales supported by the package.
