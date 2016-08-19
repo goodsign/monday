@@ -17,6 +17,7 @@ var internalFormatFuncs = map[Locale]internalFormatFunc{
 	LocaleFrFR: createCommonFormatFunc(LocaleFrFR),
 	LocaleFrCA: createCommonFormatFunc(LocaleFrFR),
 	LocaleFrGP: createCommonFormatFunc(LocaleFrFR),
+	LocaleFrLU: createCommonFormatFunc(LocaleFrFR),
 	LocaleRuRU: createCommonFormatFuncWithGenitive(LocaleRuRU),
 	LocaleFiFI: createCommonFormatFuncWithGenitive(LocaleFiFI),
 	LocaleDeDE: createCommonFormatFunc(LocaleDeDE),
@@ -53,6 +54,7 @@ var internalParseFuncs = map[Locale]internalParseFunc{
 	LocaleFrFR: createCommonParseFunc(LocaleFrFR),
 	LocaleFrCA: createCommonParseFunc(LocaleFrFR),
 	LocaleFrGP: createCommonParseFunc(LocaleFrFR),
+	LocaleFrLU: createCommonParseFunc(LocaleFrFR),
 	LocaleRuRU: createCommonParsetFuncWithGenitive(LocaleRuRU),
 	LocaleFiFI: createCommonParsetFuncWithGenitive(LocaleFiFI),
 	LocaleDeDE: createCommonParseFunc(LocaleDeDE),
@@ -156,6 +158,12 @@ func fillKnownWords() {
 	fillKnownDaysShort(shortDayNamesFrFR, LocaleFrGP)
 	fillKnownMonthsLong(longMonthNamesFrFR, LocaleFrGP)
 	fillKnownMonthsShort(shortMonthNamesFrFR, LocaleFrGP)
+
+	// Fr_GP: French (Luxembourg)
+	fillKnownDaysLong(longDayNamesFrFR, LocaleFrLU)
+	fillKnownDaysShort(longDayNamesFrFR, LocaleFrLU)
+	fillKnownMonthsLong(longDayNamesFrFR, LocaleFrLU)
+	fillKnownMonthsShort(longDayNamesFrFR, LocaleFrLU)
 
 	// De_DE: German (Germany)
 	fillKnownDaysLong(longDayNamesDeDE, LocaleDeDE)

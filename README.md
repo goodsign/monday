@@ -108,6 +108,7 @@ const (
     LocaleElGR = "el_GR" // Greek (Greece)
     LocaleIdID = "id_ID" // Indonesian (Indonesia)
     LocaleFrGP = "fr_GP" // French (Guadeloupe)
+    LocaleFrLU = "fr_LU" // French (Luxembourg)
 )
 ```
 
