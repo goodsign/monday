@@ -86,6 +86,15 @@ var formatTests = []FormatTest{
 	{LocaleFrCA, time.Date(0, 5, 1, 0, 0, 0, 0, time.UTC), "January", "mai"},
 	{LocaleFrCA, time.Date(0, 5, 13, 0, 0, 0, 0, time.UTC), "2 January", "13 mai"},
 
+	{LocaleFrGP, time.Date(2013, 9, 3, 0, 0, 0, 0, time.UTC), "Mon Jan 2 2006", "mar sept 3 2013"},
+	{LocaleFrGP, time.Date(2013, 9, 4, 0, 0, 0, 0, time.UTC), "Monday Jan 2 2006", "mercredi sept 4 2013"},
+	{LocaleFrGP, time.Date(2013, 10, 3, 0, 0, 0, 0, time.UTC), "Monday January 02 2006", "jeudi octobre 03 2013"},
+	{LocaleFrGP, time.Date(2013, 11, 3, 0, 0, 0, 0, time.UTC), "Monday. 2 January 2006", "dimanche. 3 novembre 2013"},
+	{LocaleFrGP, time.Date(2013, 5, 13, 0, 0, 0, 0, time.UTC), "2006. 2 January. Monday", "2013. 13 mai. lundi"},
+	{LocaleFrGP, time.Date(2013, 5, 13, 0, 0, 0, 0, time.UTC), "2 Jan 2006", "13 mai 2013"},
+	{LocaleFrGP, time.Date(0, 5, 1, 0, 0, 0, 0, time.UTC), "January", "mai"},
+	{LocaleFrGP, time.Date(0, 5, 13, 0, 0, 0, 0, time.UTC), "2 January", "13 mai"},
+
 	{LocaleDeDE, time.Date(2013, 9, 3, 0, 0, 0, 0, time.UTC), "Mon Jan 2 2006", "Di Sep 3 2013"},
 	{LocaleDeDE, time.Date(2013, 9, 4, 0, 0, 0, 0, time.UTC), "Monday Jan 2 2006", "Mittwoch Sep 4 2013"},
 	{LocaleDeDE, time.Date(2013, 10, 3, 0, 0, 0, 0, time.UTC), "Monday January 02 2006", "Donnerstag Oktober 03 2013"},
