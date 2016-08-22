@@ -34,6 +34,8 @@ const (
 	LocaleJaJP = "ja_JP" // Japanese (Japan)
 	LocaleElGR = "el_GR" // Greek (Greece)
 	LocaleIdID = "id_ID" // Indonesian (Indonesia)
+	LocaleFrGP = "fr_GP" // French (Guadeloupe)
+	LocaleFrLU = "fr_LU" // French (Luxembourg)
 )
 
 // ListLocales returns all locales supported by the package.
@@ -67,5 +69,7 @@ func ListLocales() []Locale {
 		LocaleZhHK,
 		LocaleJaJP,
 		LocaleElGR,
+		LocaleFrGP,
+		LocaleFrLU,
 	}
 }
