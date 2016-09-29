@@ -65,6 +65,18 @@ const (
 	DefaultFormatFrLUShort    = "06-01-02"
 	DefaultFormatFrLUDateTime = "06-01-02 15:04"
 
+	DefaultFormatFrMQFull     = "Monday 2 January 2006" // French (Martinique)
+	DefaultFormatFrMQLong     = "2 January 2006"
+	DefaultFormatFrMQMedium   = "2006-01-02"
+	DefaultFormatFrMQShort    = "06-01-02"
+	DefaultFormatFrMQDateTime = "06-01-02 15:04"
+
+	DefaultFormatFrGFFull     = "Monday 2 January 2006" // French (French Guiana)
+	DefaultFormatFrGFLong     = "2 January 2006"
+	DefaultFormatFrGFMedium   = "2006-01-02"
+	DefaultFormatFrGFShort    = "06-01-02"
+	DefaultFormatFrGFDateTime = "06-01-02 15:04"
+
 	DefaultFormatDeDEFull     = "Monday, 2. January 2006" // German (Germany)
 	DefaultFormatDeDELong     = "2. January 2006"
 	DefaultFormatDeDEMedium   = "02.01.2006"

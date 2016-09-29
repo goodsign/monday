@@ -175,7 +175,7 @@ func fillKnownWords() {
 	fillKnownMonthsLong(longDayNamesFrFR, LocaleFrMQ)
 	fillKnownMonthsShort(longDayNamesFrFR, LocaleFrMQ)
 
-	// Fr_MQ: French (Martinique)
+	// Fr_MQ: French (French Guiana)
 	fillKnownDaysLong(longDayNamesFrFR, LocaleFrGF)
 	fillKnownDaysShort(longDayNamesFrFR, LocaleFrGF)
 	fillKnownMonthsLong(longDayNamesFrFR, LocaleFrGF)
