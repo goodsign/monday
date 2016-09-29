@@ -36,6 +36,7 @@ const (
 	LocaleIdID = "id_ID" // Indonesian (Indonesia)
 	LocaleFrGP = "fr_GP" // French (Guadeloupe)
 	LocaleFrLU = "fr_LU" // French (Luxembourg)
+	LocaleFrMQ = "fr_MQ" // French (Luxembourg)
 )
 
 // ListLocales returns all locales supported by the package.
@@ -71,5 +72,6 @@ func ListLocales() []Locale {
 		LocaleElGR,
 		LocaleFrGP,
 		LocaleFrLU,
+		LocaleFrMQ,
 	}
 }
