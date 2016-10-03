@@ -65,6 +65,18 @@ const (
 	DefaultFormatFrLUShort    = "06-01-02"
 	DefaultFormatFrLUDateTime = "06-01-02 15:04"
 
+	DefaultFormatFrMQFull     = "Monday 2 January 2006" // French (Martinique)
+	DefaultFormatFrMQLong     = "2 January 2006"
+	DefaultFormatFrMQMedium   = "2006-01-02"
+	DefaultFormatFrMQShort    = "06-01-02"
+	DefaultFormatFrMQDateTime = "06-01-02 15:04"
+
+	DefaultFormatFrGFFull     = "Monday 2 January 2006" // French (French Guiana)
+	DefaultFormatFrGFLong     = "2 January 2006"
+	DefaultFormatFrGFMedium   = "2006-01-02"
+	DefaultFormatFrGFShort    = "06-01-02"
+	DefaultFormatFrGFDateTime = "06-01-02 15:04"
+
 	DefaultFormatDeDEFull     = "Monday, 2. January 2006" // German (Germany)
 	DefaultFormatDeDELong     = "2. January 2006"
 	DefaultFormatDeDEMedium   = "02.01.2006"
@@ -192,6 +204,8 @@ var FullFormatsByLocale = map[Locale]string{
 	LocaleFrCA: DefaultFormatFrCAFull,
 	LocaleFrGP: DefaultFormatFrGPFull,
 	LocaleFrLU: DefaultFormatFrLUFull,
+	LocaleFrMQ: DefaultFormatFrMQFull,
+	LocaleFrGF: DefaultFormatFrGFFull,
 	LocaleDeDE: DefaultFormatDeDEFull,
 	LocaleHuHU: DefaultFormatHuHUFull,
 	LocaleItIT: DefaultFormatItITFull,
@@ -225,6 +239,8 @@ var LongFormatsByLocale = map[Locale]string{
 	LocaleFrCA: DefaultFormatFrCALong,
 	LocaleFrGP: DefaultFormatFrGPLong,
 	LocaleFrLU: DefaultFormatFrLULong,
+	LocaleFrMQ: DefaultFormatFrMQLong,
+	LocaleFrGF: DefaultFormatFrGFLong,
 	LocaleDeDE: DefaultFormatDeDELong,
 	LocaleHuHU: DefaultFormatHuHULong,
 	LocaleItIT: DefaultFormatItITLong,
@@ -258,6 +274,8 @@ var MediumFormatsByLocale = map[Locale]string{
 	LocaleFrGP: DefaultFormatFrGPMedium,
 	LocaleFrCA: DefaultFormatFrCAMedium,
 	LocaleFrLU: DefaultFormatFrLUMedium,
+	LocaleFrMQ: DefaultFormatFrMQMedium,
+	LocaleFrGF: DefaultFormatFrGFMedium,
 	LocaleDeDE: DefaultFormatDeDEMedium,
 	LocaleHuHU: DefaultFormatHuHUMedium,
 	LocaleItIT: DefaultFormatItITMedium,
@@ -290,6 +308,8 @@ var ShortFormatsByLocale = map[Locale]string{
 	LocaleFrFR: DefaultFormatFrFRShort,
 	LocaleFrCA: DefaultFormatFrCAShort,
 	LocaleFrLU: DefaultFormatFrLUShort,
+	LocaleFrMQ: DefaultFormatFrMQShort,
+	LocaleFrGF: DefaultFormatFrGFShort,
 	LocaleFrGP: DefaultFormatFrGPShort,
 	LocaleDeDE: DefaultFormatDeDEShort,
 	LocaleHuHU: DefaultFormatHuHUShort,
@@ -324,6 +344,8 @@ var DateTimeFormatsByLocale = map[Locale]string{
 	LocaleFrCA: DefaultFormatFrCADateTime,
 	LocaleFrGP: DefaultFormatFrGPDateTime,
 	LocaleFrLU: DefaultFormatFrLUDateTime,
+	LocaleFrMQ: DefaultFormatFrMQDateTime,
+	LocaleFrGF: DefaultFormatFrGFDateTime,
 	LocaleDeDE: DefaultFormatDeDEDateTime,
 	LocaleHuHU: DefaultFormatHuHUDateTime,
 	LocaleItIT: DefaultFormatItITDateTime,

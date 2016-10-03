@@ -109,6 +109,8 @@ const (
     LocaleIdID = "id_ID" // Indonesian (Indonesia)
     LocaleFrGP = "fr_GP" // French (Guadeloupe)
     LocaleFrLU = "fr_LU" // French (Luxembourg)
+    LocaleFrLU = "fr_MQ" // French (Martinique)
+    LocaleFrLU = "fr_GF" // French (French Guiana)
 )
 ```
 
