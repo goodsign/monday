@@ -42,6 +42,7 @@ var internalFormatFuncs = map[Locale]internalFormatFunc{
 	LocaleJaJP: createCommonFormatFunc(LocaleJaJP),
 	LocaleElGR: createCommonFormatFuncWithGenitive(LocaleElGR),
 	LocaleIdID: createCommonFormatFunc(LocaleIdID),
+	LocaleCsCZ: createCommonFormatFunc(LocaleCsCZ),
 }
 
 // internalParseFunc is a preprocessor for default time.ParseInLocation func
@@ -81,6 +82,7 @@ var internalParseFuncs = map[Locale]internalParseFunc{
 	LocaleJaJP: parseFuncJaCommon(LocaleJaJP),
 	LocaleElGR: createCommonParsetFuncWithGenitive(LocaleElGR),
 	LocaleIdID: createCommonParseFunc(LocaleIdID),
+	LocaleCsCZ: createCommonParseFunc(LocaleCsCZ),
 }
 
 var knownDaysShort = map[Locale]map[string]string{}           // Mapping for 'Format', days of week, short form
@@ -312,6 +314,14 @@ func fillKnownWords() {
 	fillKnownDaysShort(shortDayNamesIdID, LocaleIdID)
 	fillKnownMonthsLong(longMonthNamesIdID, LocaleIdID)
 	fillKnownMonthsShort(shortMonthNamesIdID, LocaleIdID)
+
+	// Cs_CZ: Czech (Czech Republic)
+	fillKnownDaysLong(longDayNamesCsCZ, LocaleCsCZ)
+	fillKnownDaysShort(shortDayNamesCsCZ, LocaleCsCZ)
+	fillKnownMonthsLong(longMonthNamesCsCZ, LocaleCsCZ)
+	fillKnownMonthsShort(shortMonthNamesCsCZ, LocaleCsCZ)
+	fillKnownMonthsGenitiveLong(longMonthNamesGenitiveCsCZ, LocaleCsCZ)
+	fillKnownMonthsGenitiveShort(shortMonthNamesGenitiveCsCZ, LocaleCsCZ)
 }
 
 func fill(src map[string]string, dest map[Locale]map[string]string, locale Locale) {

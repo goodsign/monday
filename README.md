@@ -111,6 +111,7 @@ const (
     LocaleFrLU = "fr_LU" // French (Luxembourg)
     LocaleFrLU = "fr_MQ" // French (Martinique)
     LocaleFrLU = "fr_GF" // French (French Guiana)
+    LocaleCsCZ = "cs_CZ" // Czech (Czech Republic)
 )
 ```
 
