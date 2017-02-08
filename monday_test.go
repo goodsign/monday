@@ -307,6 +307,15 @@ var formatTests = []FormatTest{
 	{LocaleIdID, time.Date(2013, 5, 13, 0, 0, 0, 0, time.UTC), "2 Jan 2006", "13 Mei 2013"},
 	{LocaleIdID, time.Date(0, 5, 1, 0, 0, 0, 0, time.UTC), "January", "Mei"},
 	{LocaleIdID, time.Date(0, 5, 13, 0, 0, 0, 0, time.UTC), "2 January", "13 Mei"},
+
+	{LocaleCsCZ, time.Date(2013, 9, 3, 0, 0, 0, 0, time.UTC), "Mon Jan 2 2006", "út zář 3 2013"},
+	{LocaleCsCZ, time.Date(2013, 9, 4, 0, 0, 0, 0, time.UTC), "Monday Jan 2 2006", "středa zář 4 2013"},
+	{LocaleCsCZ, time.Date(2013, 10, 3, 0, 0, 0, 0, time.UTC), "Monday January 02 2006", "čtvrtek říjen 03 2013"},
+	{LocaleCsCZ, time.Date(2013, 11, 3, 0, 0, 0, 0, time.UTC), "Monday. 2 January 2006", "neděle. 3 listopad 2013"},
+	{LocaleCsCZ, time.Date(2013, 5, 13, 0, 0, 0, 0, time.UTC), "2006. 2 January. Monday", "2013. 13 květen. pondělí"},
+	{LocaleCsCZ, time.Date(2013, 5, 13, 0, 0, 0, 0, time.UTC), "2 Jan 2006", "13 kvě 2013"},
+	{LocaleCsCZ, time.Date(0, 5, 1, 0, 0, 0, 0, time.UTC), "January", "květen"},
+	{LocaleCsCZ, time.Date(0, 5, 13, 0, 0, 0, 0, time.UTC), "2 January", "13 květen"},
 }
 
 func TestFormat(t *testing.T) {
