@@ -153,13 +153,13 @@ func fillKnownWords() {
 	fillKnownMonthsLong(longMonthNamesFrFR, LocaleFrFR)
 	fillKnownMonthsShort(shortMonthNamesFrFR, LocaleFrFR)
 
-	// Fr_CA: French (France)
+	// Fr_CA: French (Canada)
 	fillKnownDaysLong(longDayNamesFrFR, LocaleFrCA)
 	fillKnownDaysShort(shortDayNamesFrFR, LocaleFrCA)
 	fillKnownMonthsLong(longMonthNamesFrFR, LocaleFrCA)
 	fillKnownMonthsShort(shortMonthNamesFrFR, LocaleFrCA)
 
-	// Fr_GP: French (France)
+	// Fr_GP: French (Guadeloupe)
 	fillKnownDaysLong(longDayNamesFrFR, LocaleFrGP)
 	fillKnownDaysShort(shortDayNamesFrFR, LocaleFrGP)
 	fillKnownMonthsLong(longMonthNamesFrFR, LocaleFrGP)
@@ -177,7 +177,7 @@ func fillKnownWords() {
 	fillKnownMonthsLong(longDayNamesFrFR, LocaleFrMQ)
 	fillKnownMonthsShort(longDayNamesFrFR, LocaleFrMQ)
 
-	// Fr_MQ: French (French Guiana)
+	// Fr_GF: French (French Guiana)
 	fillKnownDaysLong(longDayNamesFrFR, LocaleFrGF)
 	fillKnownDaysShort(longDayNamesFrFR, LocaleFrGF)
 	fillKnownMonthsLong(longDayNamesFrFR, LocaleFrGF)
@@ -231,7 +231,7 @@ func fillKnownWords() {
 	fillKnownMonthsLong(longMonthNamesPtBR, LocalePtBR)
 	fillKnownMonthsShort(shortMonthNamesPtBR, LocalePtBR)
 
-	// Ro_RO: Portuguese (Brazil)
+	// Ro_RO: Romanian (Romania)
 	fillKnownDaysLong(longDayNamesRoRO, LocaleRoRO)
 	fillKnownDaysShort(shortDayNamesRoRO, LocaleRoRO)
 	fillKnownMonthsLong(longMonthNamesRoRO, LocaleRoRO)
