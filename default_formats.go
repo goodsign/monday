@@ -77,6 +77,12 @@ const (
 	DefaultFormatFrGFShort    = "06-01-02"
 	DefaultFormatFrGFDateTime = "06-01-02 15:04"
 
+	DefaultFormatFrREFull     = "Monday 2 January 2006" // French (Reunion)
+	DefaultFormatFrRELong     = "2 January 2006"
+	DefaultFormatFrREMedium   = "2006-01-02"
+	DefaultFormatFrREShort    = "06-01-02"
+	DefaultFormatFrREDateTime = "06-01-02 15:04"
+
 	DefaultFormatDeDEFull     = "Monday, 2. January 2006" // German (Germany)
 	DefaultFormatDeDELong     = "2. January 2006"
 	DefaultFormatDeDEMedium   = "02.01.2006"
@@ -212,6 +218,7 @@ var FullFormatsByLocale = map[Locale]string{
 	LocaleFrLU: DefaultFormatFrLUFull,
 	LocaleFrMQ: DefaultFormatFrMQFull,
 	LocaleFrGF: DefaultFormatFrGFFull,
+	LocaleFrRE: DefaultFormatFrREFull,
 	LocaleDeDE: DefaultFormatDeDEFull,
 	LocaleHuHU: DefaultFormatHuHUFull,
 	LocaleItIT: DefaultFormatItITFull,
@@ -247,6 +254,7 @@ var LongFormatsByLocale = map[Locale]string{
 	LocaleFrGP: DefaultFormatFrGPLong,
 	LocaleFrLU: DefaultFormatFrLULong,
 	LocaleFrMQ: DefaultFormatFrMQLong,
+	LocaleFrRE: DefaultFormatFrRELong,
 	LocaleFrGF: DefaultFormatFrGFLong,
 	LocaleDeDE: DefaultFormatDeDELong,
 	LocaleHuHU: DefaultFormatHuHULong,
@@ -284,6 +292,7 @@ var MediumFormatsByLocale = map[Locale]string{
 	LocaleFrLU: DefaultFormatFrLUMedium,
 	LocaleFrMQ: DefaultFormatFrMQMedium,
 	LocaleFrGF: DefaultFormatFrGFMedium,
+	LocaleFrRE: DefaultFormatFrREMedium,
 	LocaleDeDE: DefaultFormatDeDEMedium,
 	LocaleHuHU: DefaultFormatHuHUMedium,
 	LocaleItIT: DefaultFormatItITMedium,
@@ -320,6 +329,7 @@ var ShortFormatsByLocale = map[Locale]string{
 	LocaleFrMQ: DefaultFormatFrMQShort,
 	LocaleFrGF: DefaultFormatFrGFShort,
 	LocaleFrGP: DefaultFormatFrGPShort,
+	LocaleFrRE: DefaultFormatFrREShort,
 	LocaleDeDE: DefaultFormatDeDEShort,
 	LocaleHuHU: DefaultFormatHuHUShort,
 	LocaleItIT: DefaultFormatItITShort,
@@ -356,6 +366,7 @@ var DateTimeFormatsByLocale = map[Locale]string{
 	LocaleFrLU: DefaultFormatFrLUDateTime,
 	LocaleFrMQ: DefaultFormatFrMQDateTime,
 	LocaleFrGF: DefaultFormatFrGFDateTime,
+	LocaleFrRE: DefaultFormatFrREDateTime,
 	LocaleDeDE: DefaultFormatDeDEDateTime,
 	LocaleHuHU: DefaultFormatHuHUDateTime,
 	LocaleItIT: DefaultFormatItITDateTime,
