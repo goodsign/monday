@@ -37,6 +37,7 @@ const (
 	LocaleFrGP = "fr_GP" // French (Guadeloupe)
 	LocaleFrLU = "fr_LU" // French (Luxembourg)
 	LocaleFrMQ = "fr_MQ" // French (Martinique)
+	LocaleFrRE = "fr_RE" // French (Reunion)
 	LocaleFrGF = "fr_GF" // French (French Guiana)
 	LocaleCsCZ = "cs_CZ" // Czech (Czech Republic)
 )
@@ -75,6 +76,7 @@ func ListLocales() []Locale {
 		LocaleFrGP,
 		LocaleFrLU,
 		LocaleFrMQ,
+		LocaleFrRE,
 		LocaleFrGF,
 		LocaleCsCZ,
 	}
