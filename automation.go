@@ -3,7 +3,6 @@ package monday
 import (
 	"errors"
 	"fmt"
-	"gopkg.in/fatih/set.v0"
 	"regexp"
 	"strconv"
 	"strings"
@@ -121,7 +120,7 @@ func (this rangeIntSpan) scanInt(s *scanner.Scanner) (int, error) {
 		return i, nil
 	} else {
 		if debugLayoutDef {
-			fmt.Printf("invalid tok: %s '%s'\n", tok, s.TokenText())
+			fmt.Printf("invalid tok: %v '%s'\n", tok, s.TokenText())
 		}
 	}
 	return 0, NewInvalidTypeError()
@@ -192,7 +191,7 @@ func (this *layoutDef) validate(value string) bool {
 }
 
 type LocaleDetector struct {
-	localeMap         map[string]*set.Set
+	localeMap         map[string]*set
 	lastLocale        Locale
 	layoutsMap        map[string]layoutDef
 	lastErrorPosition int
@@ -261,9 +260,9 @@ func (this *LocaleDetector) addWords(words []string, v Locale) {
 	for _, w := range words {
 		l := strings.ToLower(w)
 		if _, ok := this.localeMap[w]; !ok {
-			this.localeMap[w] = set.New(v)
+			this.localeMap[w] = newSet(v)
 			if l != w {
-				this.localeMap[l] = set.New(v)
+				this.localeMap[l] = newSet(v)
 			}
 		} else {
 			this.localeMap[w].Add(v)
@@ -275,7 +274,7 @@ func (this *LocaleDetector) addWords(words []string, v Locale) {
 }
 
 func NewLocaleDetector() *LocaleDetector {
-	this := &LocaleDetector{localeMap: make(map[string]*set.Set), lastLocale: LocaleEnGB, layoutsMap: make(map[string]layoutDef)}
+	this := &LocaleDetector{localeMap: make(map[string]*set), lastLocale: LocaleEnGB, layoutsMap: make(map[string]layoutDef)}
 	for _, v := range ListLocales() {
 		days := GetShortDays(v)
 		this.addWords(days, v)
@@ -312,14 +311,11 @@ func (this *LocaleDetector) detectLocale(value string) Locale {
 		word := strings.ToLower(value[v[0]:v[1]])
 
 		if localesSet, ok := this.localeMap[word]; ok {
-			localesSet.Each(func(i interface{}) bool {
-				if loc, ok := i.(Locale); ok {
-
-					if _, ok := localesMap[loc]; !ok {
-						localesMap[loc] = 1
-					} else {
-						localesMap[loc]++
-					}
+			localesSet.Each(func(loc Locale) bool {
+				if _, ok := localesMap[loc]; !ok {
+					localesMap[loc] = 1
+				} else {
+					localesMap[loc]++
 				}
 				return true
 			})
