@@ -5,11 +5,11 @@ package monday
 const (
 	DefaultFormatEnUS = "01/02/06"
 
-	DefaultFormatNlBEFull     = "Monday, 2 January 2006" // Afrikaans (South Africa)
-	DefaultFormatNlBELong     = "2 January 2006"
-	DefaultFormatNlBEMedium   = "02-Jan-2006"
-	DefaultFormatNlBEShort    = "2/01/06"
-	DefaultFormatNlBEDateTime = "2/01/06 15:04"
+	DefaultFormatAfZAFull     = "Monday, 2 January 2006" // Afrikaans (South Africa)
+	DefaultFormatAfZALong     = "2 January 2006"
+	DefaultFormatAfZAMedium   = "02-Jan-2006"
+	DefaultFormatAfZAShort    = "2/01/06"
+	DefaultFormatAfZADateTime = "2/01/06 15:04"
 
 	DefaultFormatEnUSFull     = "Monday, January 2, 2006" // English (United States)
 	DefaultFormatEnUSLong     = "January 2, 2006"
