@@ -5,6 +5,7 @@ package monday
 type Locale string
 
 const (
+	LocaleAfZA = "af_ZA" // Afrikaans (South Africa)
 	LocaleEnUS = "en_US" // English (United States)
 	LocaleEnGB = "en_GB" // English (United Kingdom)
 	LocaleDaDK = "da_DK" // Danish (Denmark)
@@ -45,6 +46,7 @@ const (
 // ListLocales returns all locales supported by the package.
 func ListLocales() []Locale {
 	return []Locale{
+		LocaleAfZA,
 		LocaleEnUS,
 		LocaleEnGB,
 		LocaleDaDK,

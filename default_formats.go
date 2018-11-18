@@ -5,6 +5,12 @@ package monday
 const (
 	DefaultFormatEnUS = "01/02/06"
 
+	DefaultFormatNlBEFull     = "Monday, 2 January 2006" // Afrikaans (South Africa)
+	DefaultFormatNlBELong     = "2 January 2006"
+	DefaultFormatNlBEMedium   = "02-Jan-2006"
+	DefaultFormatNlBEShort    = "2/01/06"
+	DefaultFormatNlBEDateTime = "2/01/06 15:04"
+
 	DefaultFormatEnUSFull     = "Monday, January 2, 2006" // English (United States)
 	DefaultFormatEnUSLong     = "January 2, 2006"
 	DefaultFormatEnUSMedium   = "Jan 02, 2006"
@@ -206,6 +212,7 @@ const (
 
 // 'Full' date formats for all supported locales
 var FullFormatsByLocale = map[Locale]string{
+	LocaleAfZA: DefaultFormatAfZAFull,
 	LocaleEnUS: DefaultFormatEnUSFull,
 	LocaleEnGB: DefaultFormatEnGBFull,
 	LocaleDaDK: DefaultFormatDaDKFull,
@@ -243,6 +250,7 @@ var FullFormatsByLocale = map[Locale]string{
 
 // 'Long' date formats for all supported locales
 var LongFormatsByLocale = map[Locale]string{
+	LocaleAfZA: DefaultFormatAfZALong,
 	LocaleEnUS: DefaultFormatEnUSLong,
 	LocaleEnGB: DefaultFormatEnGBLong,
 	LocaleDaDK: DefaultFormatDaDKLong,
@@ -280,6 +288,7 @@ var LongFormatsByLocale = map[Locale]string{
 
 // 'Medium' date formats for all supported locales
 var MediumFormatsByLocale = map[Locale]string{
+	LocaleAfZA: DefaultFormatAfZAMedium,
 	LocaleEnUS: DefaultFormatEnUSMedium,
 	LocaleEnGB: DefaultFormatEnGBMedium,
 	LocaleDaDK: DefaultFormatDaDKMedium,
@@ -317,6 +326,7 @@ var MediumFormatsByLocale = map[Locale]string{
 
 // 'Short' date formats for all supported locales
 var ShortFormatsByLocale = map[Locale]string{
+	LocaleAfZA: DefaultFormatAfZAShort,
 	LocaleEnUS: DefaultFormatEnUSShort,
 	LocaleEnGB: DefaultFormatEnGBShort,
 	LocaleDaDK: DefaultFormatDaDKShort,
@@ -354,6 +364,7 @@ var ShortFormatsByLocale = map[Locale]string{
 
 // 'DateTime' date formats for all supported locales
 var DateTimeFormatsByLocale = map[Locale]string{
+	LocaleAfZA: DefaultFormatAfZADateTime,
 	LocaleEnUS: DefaultFormatEnUSDateTime,
 	LocaleEnGB: DefaultFormatEnGBDateTime,
 	LocaleDaDK: DefaultFormatDaDKDateTime,

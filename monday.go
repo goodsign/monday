@@ -9,6 +9,7 @@ import (
 type internalFormatFunc func(value, layout string) string
 
 var internalFormatFuncs = map[Locale]internalFormatFunc{
+	LocaleAfZA: createCommonFormatFunc(LocaleAfZA),
 	LocaleEnUS: createCommonFormatFunc(LocaleEnUS),
 	LocaleEnGB: createCommonFormatFunc(LocaleEnGB),
 	LocaleDaDK: createCommonFormatFunc(LocaleDaDK),
@@ -50,6 +51,7 @@ var internalFormatFuncs = map[Locale]internalFormatFunc{
 type internalParseFunc func(layout, value string) string
 
 var internalParseFuncs = map[Locale]internalParseFunc{
+	LocaleAfZA: createCommonParseFunc(LocaleAfZA),
 	LocaleEnUS: createCommonParseFunc(LocaleEnUS),
 	LocaleEnGB: createCommonParseFunc(LocaleEnGB),
 	LocaleDaDK: createCommonParseFunc(LocaleDaDK),
