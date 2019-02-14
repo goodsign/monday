@@ -28,7 +28,7 @@ with
 
 ```go
   // Change LocaleEnUS to the locale you want to use for translation
-  monday.Format(yourTime, yourLayout, monday.LocaleEnUS) 
+  monday.Format(yourTime, yourLayout, monday.LocaleEnUS)
 ```
 
 Parse
@@ -45,7 +45,7 @@ with
 
 ```go
   // Change LocaleEnUS to the locale you want to use for translation
-  monday.ParseInLocation(yourLayout, yourString, yourLocation, monday.LocaleEnUS) 
+  monday.ParseInLocation(yourLayout, yourString, yourLocation, monday.LocaleEnUS)
 ```
 
 Predefined formats
@@ -113,6 +113,7 @@ const (
     LocaleFrGF = "fr_GF" // French (French Guiana)
     LocaleFrGF = "fr_RE" // French (Reunion)
     LocaleCsCZ = "cs_CZ" // Czech (Czech Republic)
+    LocaleSlSI = "sl_SI" // Slovenian (Slovenia)
 )
 ```
 
@@ -121,7 +122,7 @@ LocaleDetector
 
 ```go
     var timeLocaleDetector *monday.LocaleDetector = monday.NewLocaleDetector()
-    dateTime, err := timeLocaleDetector.Parse(layout,datestr) 
+    dateTime, err := timeLocaleDetector.Parse(layout,datestr)
 ```
 parses datetime with **unknown** locale (for now - layout must be defined, as for time.Parse())
 
@@ -134,7 +135,7 @@ Thread-safety
 ====
 
 **Monday** initializes all its data once in the **init** func and then uses only
-func calls and local vars. Thus, it's thread-safe and doesn't need any mutexes to be 
+func calls and local vars. Thus, it's thread-safe and doesn't need any mutexes to be
 used with.
 
 Monday Licence
