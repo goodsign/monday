@@ -25,18 +25,18 @@ var shortDayNamesZhTW = map[string]string{
 }
 
 var longMonthNamesZhTW = map[string]string{
-	"January":   "1 月",
-	"February":  "2 月",
-	"March":     "3 月",
-	"April":     "4 月",
-	"May":       "5 月",
-	"June":      "6 月",
-	"July":      "7 月",
-	"August":    "8 月",
-	"September": "9 月",
-	"October":   "10 月",
-	"November":  "11 月",
-	"December":  "12 月",
+	"January":   "一月",
+	"February":  "二月",
+	"March":     "三月",
+	"April":     "四月",
+	"May":       "五月",
+	"June":      "六月",
+	"July":      "七月",
+	"August":    "八月",
+	"September": "九月",
+	"October":   "十月",
+	"November":  "十一月",
+	"December":  "十二月",
 }
 
 var shortMonthNamesZhTW = map[string]string{
