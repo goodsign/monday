@@ -342,7 +342,7 @@ func fill(src map[string]string, dest map[Locale]map[string]string, locale Local
 	loc, ok := dest[locale]
 
 	if !ok {
-		loc = make(map[string]string)
+		loc = make(map[string]string, len(src))
 		dest[locale] = loc
 	}
 
@@ -355,7 +355,7 @@ func fillReverse(src map[string]string, dest map[Locale]map[string]string, local
 	loc, ok := dest[locale]
 
 	if !ok {
-		loc = make(map[string]string)
+		loc = make(map[string]string, len(src))
 		dest[locale] = loc
 	}
 
@@ -433,46 +433,54 @@ func ParseInLocation(layout, value string, loc *time.Location, locale Locale) (t
 	return time.ParseInLocation(layout, value, loc)
 }
 
-func GetShortDays(locale Locale) (arr []string) {
+func GetShortDays(locale Locale) []string {
 	days, ok := knownDaysShort[locale]
 	if !ok {
-		return
+		return nil
 	}
+
+	ret := make([]string, 0, len(days))
 	for _, day := range days {
-		arr = append(arr, day)
+		ret = append(ret, day)
 	}
-	return
+	return ret
 }
 
-func GetShortMonths(locale Locale) (arr []string) {
+func GetShortMonths(locale Locale) []string {
 	months, ok := knownMonthsShort[locale]
 	if !ok {
-		return
+		return nil
 	}
+
+	ret := make([]string, 0, len(months))
 	for _, month := range months {
-		arr = append(arr, month)
+		ret = append(ret, month)
 	}
-	return
+	return ret
 }
 
-func GetLongDays(locale Locale) (arr []string) {
+func GetLongDays(locale Locale) []string {
 	days, ok := knownDaysLong[locale]
 	if !ok {
-		return
+		return nil
 	}
+
+	ret := make([]string, 0, len(days))
 	for _, day := range days {
-		arr = append(arr, day)
+		ret = append(ret, day)
 	}
-	return
+	return ret
 }
 
-func GetLongMonths(locale Locale) (arr []string) {
+func GetLongMonths(locale Locale) []string {
 	months, ok := knownMonthsLong[locale]
 	if !ok {
-		return
+		return nil
 	}
+
+	ret := make([]string, 0, len(months))
 	for _, month := range months {
-		arr = append(arr, month)
+		ret = append(ret, month)
 	}
-	return
+	return ret
 }

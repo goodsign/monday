@@ -360,6 +360,19 @@ func TestFormat(t *testing.T) {
 	}
 }
 
+func BenchmarkFormat(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		for _, ts := range formatTests {
+			txt := Format(ts.date, ts.layout, ts.locale)
+
+			if txt != ts.expected {
+				b.Errorf("failed")
+				continue
+			}
+		}
+	}
+}
+
 func TestBadLocale(t *testing.T) {
 	txt := Format(time.Date(2013, 9, 3, 0, 0, 0, 0, time.UTC), "Mon Jan 2 2006", "aa_AA")
 	if txt != "Tue Sep 3 2013" {

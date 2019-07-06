@@ -16,12 +16,16 @@ func findInString(where string, what string, foundIndex *int, trimRight *int) (f
 // commonFormatFunc is used for languages which don't have changed forms of month names dependent
 // on their position (after day or standalone)
 func commonFormatFunc(value, format string,
-	knownDaysShort, knownDaysLong, knownMonthsShort, knownMonthsLong, knownPeriods map[string]string) (res string) {
+	knownDaysShort, knownDaysLong, knownMonthsShort, knownMonthsLong, knownPeriods map[string]string) string {
 	l := stringToLayoutItems(value)
 	f := stringToLayoutItems(format)
 	if len(l) != len(f) {
 		return value // layouts does not matches
 	}
+
+	sb := &strings.Builder{}
+	sb.Grow(32) // Reasonable default size that should fit most strings.
+
 	for i, v := range l {
 
 		var knw map[string]string
@@ -57,15 +61,17 @@ func commonFormatFunc(value, format string,
 			}
 
 			if ok {
-				res = res + v.item[:foundIndex] + tr + v.item[len(v.item)-trimRight:]
+				sb.WriteString(v.item[:foundIndex])
+				sb.WriteString(tr)
+				sb.WriteString(v.item[len(v.item)-trimRight:])
 			} else {
-				res = res + v.item
+				sb.WriteString(v.item)
 			}
 		} else {
-			res = res + v.item
+			sb.WriteString(v.item)
 		}
 	}
-	return res
+	return sb.String()
 }
 
 func hasDigitBefore(l []dateStringLayoutItem, position int) bool {
@@ -78,7 +84,7 @@ func hasDigitBefore(l []dateStringLayoutItem, position int) bool {
 // commonGenitiveFormatFunc is used for languages with genitive forms of names, like Russian.
 func commonGenitiveFormatFunc(value, format string,
 	knownDaysShort, knownDaysLong, knownMonthsShort, knownMonthsLong,
-	knownMonthsGenShort, knownMonthsGenLong, knownPeriods map[string]string) (res string) {
+	knownMonthsGenShort, knownMonthsGenLong, knownPeriods map[string]string) string {
 
 	l := stringToLayoutItems(value)
 	f := stringToLayoutItems(format)
@@ -86,6 +92,9 @@ func commonGenitiveFormatFunc(value, format string,
 	if len(l) != len(f) {
 		return value // layouts does not matches
 	}
+
+	sb := &strings.Builder{}
+	sb.Grow(32) // Reasonable default size that should fit most strings.
 
 	for i, v := range l {
 		lowerCase := false
@@ -119,18 +128,18 @@ func commonGenitiveFormatFunc(value, format string,
 		if knw != nil {
 			tr, ok := knw[strings.ToLower(v.item)]
 			if !ok {
-				res = res + v.item
+				sb.WriteString(v.item)
 				continue
 			}
 			if lowerCase == true {
 				tr = strings.ToLower(tr)
 			}
-			res = res + tr
+			sb.WriteString(tr)
 		} else {
-			res = res + v.item
+			sb.WriteString(v.item)
 		}
 	}
-	return res
+	return sb.String()
 }
 
 func createCommonFormatFunc(locale Locale) internalFormatFunc {
@@ -166,7 +175,7 @@ func createCommonParsetFuncWithGenitive(locale Locale) internalParseFunc {
 }
 
 func mapToLowerCase(source map[string]string) map[string]string {
-	result := make(map[string]string)
+	result := make(map[string]string, len(source))
 	for k, v := range source {
 		result[strings.ToLower(k)] = v
 	}
