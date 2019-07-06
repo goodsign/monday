@@ -1,6 +1,7 @@
 package monday
 
 import (
+	"strings"
 	"unicode"
 	"unicode/utf8"
 )
@@ -24,7 +25,7 @@ type dateStringLayoutItem struct {
 // starting with the specified index and wraps it to dateStringLayoutItem according to the type
 // of the word.
 func extractLetterSequence(originalStr string, index int) (it dateStringLayoutItem) {
-	letters := ""
+	letters := &strings.Builder{}
 
 	bytesToParse := []byte(originalStr[index:])
 	runeCount := utf8.RuneCount(bytesToParse)
@@ -32,26 +33,27 @@ func extractLetterSequence(originalStr string, index int) (it dateStringLayoutIt
 	var isWord bool
 	var isDigit bool
 
+	letters.Grow(runeCount)
 	for i := 0; i < runeCount; i++ {
-		rune, runeSize := utf8.DecodeRune(bytesToParse)
+		rne, runeSize := utf8.DecodeRune(bytesToParse)
 		bytesToParse = bytesToParse[runeSize:]
 
 		if i == 0 {
-			isWord = unicode.IsLetter(rune)
-			isDigit = unicode.IsDigit(rune)
+			isWord = unicode.IsLetter(rne)
+			isDigit = unicode.IsDigit(rne)
 		} else {
-			if (isWord && (!unicode.IsLetter(rune) && !unicode.IsDigit(rune))) ||
-				(isDigit && !unicode.IsDigit(rune)) ||
-				(!isWord && unicode.IsLetter(rune)) ||
-				(!isDigit && unicode.IsDigit(rune)) {
+			if (isWord && (!unicode.IsLetter(rne) && !unicode.IsDigit(rne))) ||
+				(isDigit && !unicode.IsDigit(rne)) ||
+				(!isWord && unicode.IsLetter(rne)) ||
+				(!isDigit && unicode.IsDigit(rne)) {
 				break
 			}
 		}
 
-		letters += string(rune)
+		letters.WriteRune(rne)
 	}
 
-	it.item = letters
+	it.item = letters.String()
 	it.isWord = isWord
 	it.isDigit = isDigit
 	return
@@ -72,9 +74,19 @@ func stringToLayoutItems(dateStr string) (seqs []dateStringLayoutItem) {
 	return
 }
 
-func layoutToString(li []dateStringLayoutItem) (s string) {
+func layoutToString(li []dateStringLayoutItem) string {
+	// This function is expensive enough to be worth counting
+	// bytes and allocating all in one go.
+	numChars := 0
 	for _, v := range li {
-		s += v.item
+		numChars += len(v.item)
 	}
-	return
+
+	sb := &strings.Builder{}
+	sb.Grow(numChars)
+	for _, v := range li {
+		sb.WriteString(v.item)
+	}
+
+	return sb.String()
 }
