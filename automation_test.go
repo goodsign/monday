@@ -13,7 +13,7 @@ type layoutData struct {
 }
 
 var (
-	testingLayoutsData []layoutData = []layoutData{
+	testingLayoutsData = []layoutData{
 		layoutData{
 			layout: "Mon, 2 Jan 2006 15:4:5 -0700",
 			matches: []string{
@@ -94,7 +94,7 @@ func TestLayoutValidator(t *testing.T) {
 			} else {
 				t.Logf("'%s' matches to '%s'..OK\n", m, ltd.layout)
 			}
-			var locale Locale = ld.detectLocale(m)
+			locale := ld.detectLocale(m)
 			if !compareLocales(locale, ltd.locales[i]) {
 				t.Errorf("locales detect error, expected '%s', result '%s'\n", ltd.locales[i], locale)
 			} else {

@@ -433,6 +433,12 @@ func ParseInLocation(layout, value string, loc *time.Location, locale Locale) (t
 	return time.ParseInLocation(layout, value, loc)
 }
 
+// GetShortDays retrieves the list of days for the given locale.
+// "Short" days are abbreviated versions of the full day names. In English,
+// for example, this might return "Tues" for "Tuesday". For certain locales,
+// the long and short form of the days of the week may be the same.
+//
+// If the locale cannot be found, the resulting slice will be nil.
 func GetShortDays(locale Locale) []string {
 	days, ok := knownDaysShort[locale]
 	if !ok {
@@ -446,6 +452,12 @@ func GetShortDays(locale Locale) []string {
 	return ret
 }
 
+// GetShortMonths retrieves the list of months for the given locale.
+// "Short" months are abbreviated versions of the full month names. In
+// English, for example, this might return "Jan" for "January". For
+// certain locales, the long and short form of the months may be the same.
+//
+// If the locale cannot be found, the resulting slice will be nil.
 func GetShortMonths(locale Locale) []string {
 	months, ok := knownMonthsShort[locale]
 	if !ok {
@@ -459,6 +471,10 @@ func GetShortMonths(locale Locale) []string {
 	return ret
 }
 
+// GetLongDays retrieves the list of days for the given locale. It will return
+// the full name of the days of the week.
+//
+// If the locale cannot be found, the resulting slice will be nil.
 func GetLongDays(locale Locale) []string {
 	days, ok := knownDaysLong[locale]
 	if !ok {
@@ -472,6 +488,11 @@ func GetLongDays(locale Locale) []string {
 	return ret
 }
 
+// GetLongMonths retrieves the list of months for the given locale. In
+// contrast to the "short" version of this function, this functions returns
+// the full name of the month.
+//
+// If the locale cannot be found, the resulting slice will be nil.
 func GetLongMonths(locale Locale) []string {
 	months, ok := knownMonthsLong[locale]
 	if !ok {
