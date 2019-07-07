@@ -204,7 +204,8 @@ const (
 	DefaultFormatCsCZDateTime = "02/01/2006 15:04"
 )
 
-// 'Full' date formats for all supported locales
+// FullFormatsByLocale maps locales to the'full' date formats for all
+// supported locales.
 var FullFormatsByLocale = map[Locale]string{
 	LocaleEnUS: DefaultFormatEnUSFull,
 	LocaleEnGB: DefaultFormatEnGBFull,
@@ -241,7 +242,8 @@ var FullFormatsByLocale = map[Locale]string{
 	LocaleCsCZ: DefaultFormatCsCZFull,
 }
 
-// 'Long' date formats for all supported locales
+// LongFormatsByLocale maps locales to the 'long' date formats for all
+// supported locales.
 var LongFormatsByLocale = map[Locale]string{
 	LocaleEnUS: DefaultFormatEnUSLong,
 	LocaleEnGB: DefaultFormatEnGBLong,
@@ -278,7 +280,8 @@ var LongFormatsByLocale = map[Locale]string{
 	LocaleCsCZ: DefaultFormatCsCZLong,
 }
 
-// 'Medium' date formats for all supported locales
+// MediumFormatsByLocale maps locales to the 'medium' date formats for all
+// supported locales.
 var MediumFormatsByLocale = map[Locale]string{
 	LocaleEnUS: DefaultFormatEnUSMedium,
 	LocaleEnGB: DefaultFormatEnGBMedium,
@@ -315,7 +318,8 @@ var MediumFormatsByLocale = map[Locale]string{
 	LocaleCsCZ: DefaultFormatCsCZMedium,
 }
 
-// 'Short' date formats for all supported locales
+// ShortFormatsByLocale maps locales to the 'short' date formats for all
+// supported locales.
 var ShortFormatsByLocale = map[Locale]string{
 	LocaleEnUS: DefaultFormatEnUSShort,
 	LocaleEnGB: DefaultFormatEnGBShort,
@@ -352,7 +356,8 @@ var ShortFormatsByLocale = map[Locale]string{
 	LocaleCsCZ: DefaultFormatCsCZShort,
 }
 
-// 'DateTime' date formats for all supported locales
+// DateTimeFormatsByLocale maps locales to the 'DateTime' date formats for
+// all supported locales.
 var DateTimeFormatsByLocale = map[Locale]string{
 	LocaleEnUS: DefaultFormatEnUSDateTime,
 	LocaleEnGB: DefaultFormatEnGBDateTime,

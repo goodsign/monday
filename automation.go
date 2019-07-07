@@ -11,22 +11,28 @@ import (
 )
 
 var (
-	wordsRx             = regexp.MustCompile("(\\p{L}+)")
-	debugLayoutDef bool = false
+	wordsRx        = regexp.MustCompile("(\\p{L}+)")
+	debugLayoutDef = false
 )
 
+// An InvalidTypeError indicates that data was parsed incorrectly as a result
+// of a type mismatch.
 type InvalidTypeError struct {
 	error
 }
 
+// An InvalidLengthError is returned when an item's length was longer or
+// shorter than expected for a particular token.
 type InvalidLengthError struct {
 	error
 }
 
+// NewInvalidTypeError instantiates an InvalidTypeError.
 func NewInvalidTypeError() InvalidTypeError {
 	return InvalidTypeError{error: errors.New("invalid type for token")}
 }
 
+// NewInvalidLengthError instantiates an InvalidLengthError.
 func NewInvalidLengthError() InvalidLengthError {
 	return InvalidLengthError{error: errors.New("invalid length for token")}
 }
@@ -43,16 +49,16 @@ type lengthLimitSpan struct {
 	maxLength int
 }
 
-func (this lengthLimitSpan) scanInt(s *scanner.Scanner) (int, error) {
+func (lls lengthLimitSpan) scanInt(s *scanner.Scanner) (int, error) {
 	return -1, NewInvalidTypeError()
 }
 
-func (this lengthLimitSpan) scanString(s *scanner.Scanner) (string, error) {
+func (lls lengthLimitSpan) scanString(s *scanner.Scanner) (string, error) {
 	return "", NewInvalidTypeError()
 }
 
-func (this lengthLimitSpan) isString() bool    { return false }
-func (this lengthLimitSpan) isDelimiter() bool { return false }
+func (lls lengthLimitSpan) isString() bool    { return false }
+func (lls lengthLimitSpan) isDelimiter() bool { return false }
 
 func initLengthLimitSpan(min, max int) lengthLimitSpan {
 	return lengthLimitSpan{
@@ -69,7 +75,7 @@ func initLimitedStringSpan(minLength, maxLength int) limitedStringSpan {
 	return limitedStringSpan{lengthLimitSpan: initLengthLimitSpan(minLength, maxLength)}
 }
 
-func (this limitedStringSpan) scanString(s *scanner.Scanner) (string, error) {
+func (lss limitedStringSpan) scanString(s *scanner.Scanner) (string, error) {
 	tok := s.Scan()
 	if tok != scanner.EOF && tok == -2 {
 		return s.TokenText(), nil
@@ -77,9 +83,9 @@ func (this limitedStringSpan) scanString(s *scanner.Scanner) (string, error) {
 	return "", NewInvalidTypeError()
 }
 
-func (this limitedStringSpan) isString() bool { return true }
-func (this limitedStringSpan) String() string {
-	return fmt.Sprintf("[limitedStringSpan:%v]", this.lengthLimitSpan)
+func (lss limitedStringSpan) isString() bool { return true }
+func (lss limitedStringSpan) String() string {
+	return fmt.Sprintf("[limitedStringSpan:%v]", lss.lengthLimitSpan)
 }
 
 type rangeIntSpan struct {
@@ -96,9 +102,9 @@ func initRangeIntSpan(minValue, maxValue, minLength, maxLength int) rangeIntSpan
 	}
 }
 
-func (this rangeIntSpan) scanInt(s *scanner.Scanner) (int, error) {
+func (rs rangeIntSpan) scanInt(s *scanner.Scanner) (int, error) {
 	var tok = s.Scan()
-	var negative bool = false
+	var negative bool
 	if tok == 45 {
 		negative = true
 		if debugLayoutDef {
@@ -118,16 +124,17 @@ func (this rangeIntSpan) scanInt(s *scanner.Scanner) (int, error) {
 			i = i * -1
 		}
 		return i, nil
-	} else {
-		if debugLayoutDef {
-			fmt.Printf("invalid tok: %v '%s'\n", tok, s.TokenText())
-		}
 	}
+
+	if debugLayoutDef {
+		fmt.Printf("invalid tok: %v '%s'\n", tok, s.TokenText())
+	}
+
 	return 0, NewInvalidTypeError()
 }
 
-func (this rangeIntSpan) String() string {
-	return fmt.Sprintf("[rangeIntSpan:%v]", this.lengthLimitSpan)
+func (rs rangeIntSpan) String() string {
+	return fmt.Sprintf("[rangeIntSpan:%v]", rs.lengthLimitSpan)
 }
 
 type delimiterSpan struct {
@@ -142,22 +149,22 @@ func initDelimiterSpan(character string, minLength, maxLength int) delimiterSpan
 	}
 }
 
-func (this delimiterSpan) scanString(s *scanner.Scanner) (string, error) {
+func (ds delimiterSpan) scanString(s *scanner.Scanner) (string, error) {
 	tok := s.Scan()
 	if tok != scanner.EOF && tok != -2 && tok != 45 && tok != -3 {
 		return s.TokenText(), nil
-	} else {
-		if debugLayoutDef {
-			fmt.Printf("expected tok:=!(-2,-3,45), received:%d ('%s')\n", tok, s.TokenText())
-		}
 	}
+	if debugLayoutDef {
+		fmt.Printf("expected tok:=!(-2,-3,45), received:%d ('%s')\n", tok, s.TokenText())
+	}
+
 	return "", NewInvalidTypeError()
 }
 
-func (this delimiterSpan) isString() bool    { return false }
-func (this delimiterSpan) isDelimiter() bool { return true }
-func (this delimiterSpan) String() string {
-	return fmt.Sprintf("[delimiterSpan '%s':%v]", this.character, this.lengthLimitSpan)
+func (ds delimiterSpan) isString() bool    { return false }
+func (ds delimiterSpan) isDelimiter() bool { return true }
+func (ds delimiterSpan) String() string {
+	return fmt.Sprintf("[delimiterSpan '%s':%v]", ds.character, ds.lengthLimitSpan)
 }
 
 type layoutDef struct {
@@ -165,14 +172,14 @@ type layoutDef struct {
 	errorPosition int
 }
 
-func (this *layoutDef) validate(value string) bool {
+func (ld *layoutDef) validate(value string) bool {
 	s := &scanner.Scanner{}
 	s.Init(strings.NewReader(value))
 	s.Whitespace = 0
-	for _, span := range this.spans {
+	for _, span := range ld.spans {
 		if span.isString() || span.isDelimiter() {
 			if _, err := span.scanString(s); err != nil {
-				this.errorPosition = s.Pos().Offset
+				ld.errorPosition = s.Pos().Offset
 				if debugLayoutDef {
 					fmt.Printf("error at pos: %d: %s (span=%+v) - expected string or delimiter\n", s.Pos().Offset, err.Error(), span)
 				}
@@ -182,14 +189,18 @@ func (this *layoutDef) validate(value string) bool {
 			if debugLayoutDef {
 				fmt.Printf("error at pos: %d: %s (span=%+v) - expected integer\n", s.Pos().Offset, err.Error(), span)
 			}
-			this.errorPosition = s.Pos().Offset
+			ld.errorPosition = s.Pos().Offset
 			return false
 		}
 	}
-	this.errorPosition = s.Pos().Offset
+	ld.errorPosition = s.Pos().Offset
 	return s.Pos().Offset == len(value)
 }
 
+// A LocaleDetector parses time.Time values by using various heuristics and
+// techniques to determine which locale should be used to parse the
+// time.Time value. As not all possible locales and formats are supported,
+// this process can be somewhat lossy and inaccurate.
 type LocaleDetector struct {
 	localeMap         map[string]*set
 	lastLocale        Locale
@@ -197,7 +208,7 @@ type LocaleDetector struct {
 	lastErrorPosition int
 }
 
-func (this *LocaleDetector) prepareLayout(layout string) layoutDef {
+func (ld *LocaleDetector) prepareLayout(layout string) layoutDef {
 	s := scanner.Scanner{}
 	s.Init(strings.NewReader(layout))
 	s.Whitespace = 0
@@ -205,7 +216,7 @@ func (this *LocaleDetector) prepareLayout(layout string) layoutDef {
 	var tok rune
 	// var pos int = 0
 	var span layoutSpanI
-	var sign bool = false
+	var sign bool
 	//	var neg bool = false
 	for tok != scanner.EOF {
 		tok = s.Scan()
@@ -239,78 +250,79 @@ func (this *LocaleDetector) prepareLayout(layout string) layoutDef {
 		fmt.Printf("layout:'%s'\n", layout)
 		fmt.Printf("layout:%v\n", result)
 	}
-	ld := layoutDef{spans: result}
-	this.layoutsMap[layout] = ld
-	return ld
+	ret := layoutDef{spans: result}
+	ld.layoutsMap[layout] = ret
+	return ret
 }
 
-func (this *LocaleDetector) validateValue(layout string, value string) bool {
-	l, ok := this.layoutsMap[layout]
+func (ld *LocaleDetector) validateValue(layout string, value string) bool {
+	l, ok := ld.layoutsMap[layout]
 	if !ok {
-		l = this.prepareLayout(layout)
+		l = ld.prepareLayout(layout)
 	}
 	result := l.validate(value)
-	this.lastErrorPosition = l.errorPosition
+	ld.lastErrorPosition = l.errorPosition
 	return result
 }
 
-func (this *LocaleDetector) errorPosition() int { return this.lastErrorPosition }
+func (ld *LocaleDetector) errorPosition() int { return ld.lastErrorPosition }
 
-func (this *LocaleDetector) addWords(words []string, v Locale) {
+func (ld *LocaleDetector) addWords(words []string, v Locale) {
 	for _, w := range words {
 		l := strings.ToLower(w)
-		if _, ok := this.localeMap[w]; !ok {
-			this.localeMap[w] = newSet(v)
+		if _, ok := ld.localeMap[w]; !ok {
+			ld.localeMap[w] = newSet(v)
 			if l != w {
-				this.localeMap[l] = newSet(v)
+				ld.localeMap[l] = newSet(v)
 			}
 		} else {
-			this.localeMap[w].Add(v)
+			ld.localeMap[w].Add(v)
 			if l != w {
-				this.localeMap[l].Add(v)
+				ld.localeMap[l].Add(v)
 			}
 		}
 	}
 }
 
+// NewLocaleDetector instances a LocaleDetector instance.
 func NewLocaleDetector() *LocaleDetector {
-	this := &LocaleDetector{localeMap: make(map[string]*set), lastLocale: LocaleEnGB, layoutsMap: make(map[string]layoutDef)}
+	ld := &LocaleDetector{localeMap: make(map[string]*set), lastLocale: LocaleEnGB, layoutsMap: make(map[string]layoutDef)}
 	for _, v := range ListLocales() {
 		days := GetShortDays(v)
-		this.addWords(days, v)
+		ld.addWords(days, v)
 		days = GetLongDays(v)
-		this.addWords(days, v)
+		ld.addWords(days, v)
 		months := GetShortMonths(v)
-		this.addWords(months, v)
+		ld.addWords(months, v)
 		months = GetLongMonths(v)
-		this.addWords(months, v)
+		ld.addWords(months, v)
 	}
-	return this
+	return ld
 }
 
-/**
-
-**/
-
-func (this *LocaleDetector) Parse(layout, value string) (time.Time, error) {
-	if this.validateValue(layout, value) {
-		this.lastLocale = this.detectLocale(value)
-		return ParseInLocation(layout, value, time.UTC, this.lastLocale)
-	} else {
-		return time.Time{}, &time.ParseError{
-			Value:   value,
-			Layout:  layout,
-			Message: fmt.Sprintf("'%s' not matches to '%s' last error position = %d\n", value, layout, this.lastErrorPosition),
-		}
+// Parse will attempt to parse a time.Time struct from a layout (format) and a
+// value to parse from.
+//
+// If no locale can be determined, this method will return an error and an
+// empty time object.
+func (ld *LocaleDetector) Parse(layout, value string) (time.Time, error) {
+	if ld.validateValue(layout, value) {
+		ld.lastLocale = ld.detectLocale(value)
+		return ParseInLocation(layout, value, time.UTC, ld.lastLocale)
+	}
+	return time.Time{}, &time.ParseError{
+		Value:   value,
+		Layout:  layout,
+		Message: fmt.Sprintf("'%s' not matches to '%s' last error position = %d\n", value, layout, ld.lastErrorPosition),
 	}
 }
 
-func (this *LocaleDetector) detectLocale(value string) Locale {
-	var localesMap map[Locale]int = make(map[Locale]int)
+func (ld *LocaleDetector) detectLocale(value string) Locale {
+	localesMap := make(map[Locale]int)
 	for _, v := range wordsRx.FindAllStringSubmatchIndex(value, -1) {
 		word := strings.ToLower(value[v[0]:v[1]])
 
-		if localesSet, ok := this.localeMap[word]; ok {
+		if localesSet, ok := ld.localeMap[word]; ok {
 			localesSet.Each(func(loc Locale) bool {
 				if _, ok := localesMap[loc]; !ok {
 					localesMap[loc] = 1
@@ -322,7 +334,7 @@ func (this *LocaleDetector) detectLocale(value string) Locale {
 		}
 	}
 	var result Locale = LocaleEnUS
-	var frequency int = 0
+	frequency := 0
 	for key, counter := range localesMap {
 		if counter > frequency {
 			frequency = counter
