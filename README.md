@@ -154,3 +154,4 @@ Thanks
 * [Luis Azevedo](https://github.com/braceta)
 * [imikod](https://github.com/imikod)
 * [Renato Serra](https://github.com/RenatoSerra22)
+* [Zachary Stewart](https://github.com/ztstewart)
