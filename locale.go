@@ -4,6 +4,8 @@ package monday
 // Monday uses ICU locale identifiers. See http://userguide.icu-project.org/locale
 type Locale string
 
+// Locale constants represent all locales that are currently supported by
+// this package.
 const (
 	LocaleEnUS = "en_US" // English (United States)
 	LocaleEnGB = "en_GB" // English (United Kingdom)
