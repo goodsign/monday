@@ -13,9 +13,41 @@ func findInString(where string, what string, foundIndex *int, trimRight *int) (f
 	return false
 }
 
-// commonFormatFunc is used for languages which don't have changed forms of month names dependent
-// on their position (after day or standalone)
 func commonFormatFunc(value, format string,
+	knownDaysShort, knownDaysLong, knownMonthsShort, knownMonthsLong, knownPeriods *strings.Replacer) string {
+
+	// The format strings supported by Go are all case-sensitive for the
+	// most part.
+	if strings.Contains(format, "Mon") {
+		if strings.Contains(format, "Monday") {
+			value = knownDaysLong.Replace(value)
+		} else {
+			value = knownDaysShort.Replace(value)
+		}
+	}
+
+	if strings.Contains(format, "Jan") {
+		if strings.Contains(format, "January") {
+			value = knownMonthsLong.Replace(value)
+		} else {
+			value = knownMonthsShort.Replace(value)
+		}
+	}
+
+	// PM is a unique case; both are supported by Go but have different
+	// output. The map already contains both types of output, however.
+	if strings.Contains(format, "PM") || strings.Contains(format, "pm") {
+		value = knownPeriods.Replace(value)
+	}
+
+	return value
+}
+
+// commonParseFunc is used for languages which don't have changed forms of month names dependent
+// on their position (after day or standalone).
+//
+// It is used exclusively for parsing.
+func commonParseFunc(value, format string,
 	knownDaysShort, knownDaysLong, knownMonthsShort, knownMonthsLong, knownPeriods map[string]string) string {
 	l := stringToLayoutItems(value)
 	f := stringToLayoutItems(format)
@@ -145,7 +177,7 @@ func commonGenitiveFormatFunc(value, format string,
 func createCommonFormatFunc(locale Locale) internalFormatFunc {
 	return func(value, layout string) (res string) {
 		return commonFormatFunc(value, layout,
-			knownDaysShort[locale], knownDaysLong[locale], knownMonthsShort[locale], knownMonthsLong[locale], knownPeriods[locale])
+			replacerDaysShort[locale], replacerDaysLong[locale], replacerMonthsShort[locale], replacerMonthsLong[locale], replacerPeriods[locale])
 	}
 }
 
@@ -159,7 +191,7 @@ func createCommonFormatFuncWithGenitive(locale Locale) internalFormatFunc {
 
 func createCommonParseFunc(locale Locale) internalParseFunc {
 	return func(layout, value string) string {
-		return commonFormatFunc(value, layout,
+		return commonParseFunc(value, layout,
 			knownDaysShortReverse[locale], knownDaysLongReverse[locale],
 			knownMonthsShortReverse[locale], knownMonthsLongReverse[locale], knownPeriodsReverse[locale])
 	}

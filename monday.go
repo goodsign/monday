@@ -2,6 +2,7 @@ package monday
 
 import (
 	"fmt"
+	"strings"
 	"time"
 )
 
@@ -106,6 +107,16 @@ var knownMonthsShortReverse = map[Locale]map[string]string{}         // Mapping 
 var knownMonthsGenitiveShortReverse = map[Locale]map[string]string{} // Mapping for 'Format', special for names in genitive, short form
 var knownMonthsGenitiveLongReverse = map[Locale]map[string]string{}  // Mapping for 'Format', special for names in genitive, long form
 var knownPeriodsReverse = map[Locale]map[string]string{}
+
+// Replacer maps; caches locale-specific strings.Replacer instances for fast
+// string formatting operations.
+var replacerDaysShort = map[Locale]*strings.Replacer{}           // Replacer for 'Format', days of week, short form
+var replacerDaysLong = map[Locale]*strings.Replacer{}            // Replacer for 'Format', days of week, long form
+var replacerMonthsLong = map[Locale]*strings.Replacer{}          // Replacer for 'Format', months: long form
+var replacerMonthsShort = map[Locale]*strings.Replacer{}         // Replacer for 'Format', months: short form
+var replacerMonthsGenitiveShort = map[Locale]*strings.Replacer{} // Replacer for 'Format', special for names in genitive, short form
+var replacerMonthsGenitiveLong = map[Locale]*strings.Replacer{}  // Replacer for 'Format', special for names in genitive, long form
+var replacerPeriods = map[Locale]*strings.Replacer{}
 
 func init() {
 	fillKnownWords()
@@ -364,6 +375,15 @@ func fillReverse(src map[string]string, dest map[Locale]map[string]string, local
 	}
 }
 
+func fillReplacer(src map[string]string, dest map[Locale]*strings.Replacer, locale Locale) {
+	toBeReplaced := make([]string, 0, len(src)*2)
+	for origStr, newStr := range src {
+		toBeReplaced = append(toBeReplaced, origStr, newStr)
+	}
+
+	dest[locale] = strings.NewReplacer(toBeReplaced...)
+}
+
 func fillKnownMonthsGenitiveShort(src map[string]string, locale Locale) {
 	fillReverse(src, knownMonthsGenitiveShortReverse, locale)
 	fill(src, knownMonthsGenitiveShort, locale)
@@ -377,26 +397,32 @@ func fillKnownMonthsGenitiveLong(src map[string]string, locale Locale) {
 func fillKnownDaysShort(src map[string]string, locale Locale) {
 	fillReverse(src, knownDaysShortReverse, locale)
 	fill(src, knownDaysShort, locale)
+	fillReplacer(src, replacerDaysShort, locale)
 }
 
 func fillKnownDaysLong(src map[string]string, locale Locale) {
 	fillReverse(src, knownDaysLongReverse, locale)
 	fill(src, knownDaysLong, locale)
+	fillReplacer(src, replacerDaysLong, locale)
 }
 
 func fillKnownMonthsShort(src map[string]string, locale Locale) {
 	fillReverse(src, knownMonthsShortReverse, locale)
 	fill(src, knownMonthsShort, locale)
+	fillReplacer(src, replacerMonthsShort, locale)
 }
 
 func fillKnownMonthsLong(src map[string]string, locale Locale) {
 	fillReverse(src, knownMonthsLongReverse, locale)
 	fill(src, knownMonthsLong, locale)
+	fillReplacer(src, replacerMonthsLong, locale)
 }
 
 func fillKnownPeriods(src map[string]string, locale Locale) {
 	fillReverse(src, knownPeriodsReverse, locale)
 	fill(src, knownPeriods, locale)
+	fillReplacer(src, replacerPeriods, locale)
+
 }
 
 // Format is the standard time.Format wrapper, that replaces known standard 'time' package

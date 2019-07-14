@@ -65,7 +65,7 @@ func parseFuncPtCommon(locale Locale) internalParseFunc {
 			value = strings.Replace(value, k, v, -1)
 		}
 
-		return commonFormatFunc(value, layout,
+		return commonParseFunc(value, layout,
 			knownDaysShortReverse[locale], knownDaysLongReverse[locale],
 			knownMonthsShortReverse[locale], knownMonthsLongReverse[locale], knownPeriods[locale])
 	}
