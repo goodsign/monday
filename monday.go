@@ -433,6 +433,20 @@ func ParseInLocation(layout, value string, loc *time.Location, locale Locale) (t
 	return time.ParseInLocation(layout, value, loc)
 }
 
+// Parse is the standard time.Parse wrapper, which replaces
+// known month/day translations for a specified locale back to English before
+// calling time.Parse.
+func Parse(layout, value string, locale Locale) (time.Time, error) {
+	intFunc, ok := internalParseFuncs[locale]
+	if ok {
+		value = intFunc(layout, value)
+	} else {
+		return time.Now(), fmt.Errorf("unsupported locale: %v", locale)
+	}
+
+	return time.Parse(layout, value)
+}
+
 // GetShortDays retrieves the list of days for the given locale.
 // "Short" days are abbreviated versions of the full day names. In English,
 // for example, this might return "Tues" for "Tuesday". For certain locales,
