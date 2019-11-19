@@ -429,3 +429,10 @@ func ExampleParseInLocation() {
 	fmt.Println(ParseInLocation(layout, "12 April 2013 00:00:00 MST", time.UTC, LocaleEnUS))
 	fmt.Println(ParseInLocation(layout, "12 апреля 2013 00:00:00 MST", time.UTC, LocaleRuRU))
 }
+
+func ExampleParse() {
+	layout := "2 January 2006 15:04:05 MST"
+
+	fmt.Println(Parse(layout, "12 April 2013 00:00:00 MST", LocaleEnUS))
+	fmt.Println(Parse(layout, "12 апреля 2013 00:00:00 MST", LocaleRuRU))
+}
