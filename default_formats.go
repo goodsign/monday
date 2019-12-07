@@ -185,6 +185,12 @@ const (
 	DefaultFormatZhHKShort    = "2006/1/2"
 	DefaultFormatZhHKDateTime = "2006-01-02 15:04"
 
+	DefaultFormatKoKRFull     = "2006년1월2일 월요일" // Korean (Korea)
+	DefaultFormatKoKRLong     = "2006년1월2일"
+	DefaultFormatKoKRMedium   = "2006-01-02"
+	DefaultFormatKoKRShort    = "2006/1/2"
+	DefaultFormatKoKRDateTime = "2006-01-02 15:04"
+
 	DefaultFormatJaJPFull     = "2006年1月2日 Monday" // Japanese (Japan)
 	DefaultFormatJaJPLong     = "2006年1月2日"
 	DefaultFormatJaJPMedium   = "2006/01/02"
@@ -237,6 +243,7 @@ var FullFormatsByLocale = map[Locale]string{
 	LocaleZhCN: DefaultFormatZhCNFull,
 	LocaleZhTW: DefaultFormatZhTWFull,
 	LocaleZhHK: DefaultFormatZhHKFull,
+	LocaleKoKR: DefaultFormatKoKRFull,
 	LocaleJaJP: DefaultFormatJaJPFull,
 	LocaleElGR: DefaultFormatElGRFull,
 	LocaleCsCZ: DefaultFormatCsCZFull,
@@ -275,6 +282,7 @@ var LongFormatsByLocale = map[Locale]string{
 	LocaleZhCN: DefaultFormatZhCNLong,
 	LocaleZhTW: DefaultFormatZhTWLong,
 	LocaleZhHK: DefaultFormatZhHKLong,
+	LocaleKoKR: DefaultFormatKoKRLong,
 	LocaleJaJP: DefaultFormatJaJPLong,
 	LocaleElGR: DefaultFormatElGRLong,
 	LocaleCsCZ: DefaultFormatCsCZLong,
@@ -313,6 +321,7 @@ var MediumFormatsByLocale = map[Locale]string{
 	LocaleZhCN: DefaultFormatZhCNMedium,
 	LocaleZhTW: DefaultFormatZhTWMedium,
 	LocaleZhHK: DefaultFormatZhHKMedium,
+	LocaleKoKR: DefaultFormatKoKRMedium,
 	LocaleJaJP: DefaultFormatJaJPMedium,
 	LocaleElGR: DefaultFormatElGRMedium,
 	LocaleCsCZ: DefaultFormatCsCZMedium,
@@ -351,6 +360,7 @@ var ShortFormatsByLocale = map[Locale]string{
 	LocaleZhCN: DefaultFormatZhCNShort,
 	LocaleZhTW: DefaultFormatZhTWShort,
 	LocaleZhHK: DefaultFormatZhHKShort,
+	LocaleKoKR: DefaultFormatKoKRShort,
 	LocaleJaJP: DefaultFormatJaJPShort,
 	LocaleElGR: DefaultFormatElGRShort,
 	LocaleCsCZ: DefaultFormatCsCZShort,
@@ -389,6 +399,7 @@ var DateTimeFormatsByLocale = map[Locale]string{
 	LocaleZhCN: DefaultFormatZhCNDateTime,
 	LocaleZhTW: DefaultFormatZhTWDateTime,
 	LocaleZhHK: DefaultFormatZhHKDateTime,
+	LocaleKoKR: DefaultFormatKoKRDateTime,
 	LocaleJaJP: DefaultFormatJaJPDateTime,
 	LocaleElGR: DefaultFormatElGRDateTime,
 	LocaleCsCZ: DefaultFormatCsCZDateTime,

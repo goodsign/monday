@@ -33,6 +33,7 @@ const (
 	LocaleZhCN = "zh_CN" // Chinese (Mainland)
 	LocaleZhTW = "zh_TW" // Chinese (Taiwan)
 	LocaleZhHK = "zh_HK" // Chinese (Hong Kong)
+	LocaleKoKR = "ko_KR" // Korean (Korea)
 	LocaleJaJP = "ja_JP" // Japanese (Japan)
 	LocaleElGR = "el_GR" // Greek (Greece)
 	LocaleIdID = "id_ID" // Indonesian (Indonesia)
@@ -74,6 +75,7 @@ func ListLocales() []Locale {
 		LocaleZhCN,
 		LocaleZhTW,
 		LocaleZhHK,
+		LocaleKoKR,
 		LocaleJaJP,
 		LocaleElGR,
 		LocaleFrGP,

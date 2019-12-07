@@ -40,6 +40,7 @@ var internalFormatFuncs = map[Locale]internalFormatFunc{
 	LocaleZhCN: createCommonFormatFunc(LocaleZhCN),
 	LocaleZhTW: createCommonFormatFunc(LocaleZhTW),
 	LocaleZhHK: createCommonFormatFunc(LocaleZhHK),
+	LocaleKoKR: createCommonFormatFunc(LocaleKoKR),
 	LocaleJaJP: createCommonFormatFunc(LocaleJaJP),
 	LocaleElGR: createCommonFormatFuncWithGenitive(LocaleElGR),
 	LocaleIdID: createCommonFormatFunc(LocaleIdID),
@@ -82,6 +83,7 @@ var internalParseFuncs = map[Locale]internalParseFunc{
 	LocaleZhCN: parseFuncZhCommon(LocaleZhCN),
 	LocaleZhTW: parseFuncZhCommon(LocaleZhTW),
 	LocaleZhHK: parseFuncZhCommon(LocaleZhHK),
+	LocaleKoKR: parseFuncKoCommon(LocaleKoKR),
 	LocaleJaJP: parseFuncJaCommon(LocaleJaJP),
 	LocaleElGR: createCommonParsetFuncWithGenitive(LocaleElGR),
 	LocaleIdID: createCommonParseFunc(LocaleIdID),
@@ -95,7 +97,7 @@ var knownMonthsLong = map[Locale]map[string]string{}          // Mapping for 'Fo
 var knownMonthsShort = map[Locale]map[string]string{}         // Mapping for 'Format', months: short form
 var knownMonthsGenitiveShort = map[Locale]map[string]string{} // Mapping for 'Format', special for names in genitive, short form
 var knownMonthsGenitiveLong = map[Locale]map[string]string{}  // Mapping for 'Format', special for names in genitive, long form
-var knownPeriods = map[Locale]map[string]string{}
+var knownPeriods = map[Locale]map[string]string{}			  // Mapping for 'Format', AM/PM
 
 // Reverse maps for the same
 
@@ -105,7 +107,7 @@ var knownMonthsLongReverse = map[Locale]map[string]string{}          // Mapping 
 var knownMonthsShortReverse = map[Locale]map[string]string{}         // Mapping for 'Format', months: short form
 var knownMonthsGenitiveShortReverse = map[Locale]map[string]string{} // Mapping for 'Format', special for names in genitive, short form
 var knownMonthsGenitiveLongReverse = map[Locale]map[string]string{}  // Mapping for 'Format', special for names in genitive, long form
-var knownPeriodsReverse = map[Locale]map[string]string{}
+var knownPeriodsReverse = map[Locale]map[string]string{}             // Mapping for 'Format', AM/PM
 
 func init() {
 	fillKnownWords()
@@ -302,6 +304,13 @@ func fillKnownWords() {
 	fillKnownDaysShort(shortDayNamesZhHK, LocaleZhHK)
 	fillKnownMonthsLong(longMonthNamesZhHK, LocaleZhHK)
 	fillKnownMonthsShort(shortMonthNamesZhHK, LocaleZhHK)
+
+	// Ko_KR: Korean (Korea)
+	fillKnownDaysLong(longDayNamesKoKR, LocaleKoKR)
+	fillKnownDaysShort(shortDayNamesKoKR, LocaleKoKR)
+	fillKnownMonthsLong(longMonthNamesKoKR, LocaleKoKR)
+	fillKnownMonthsShort(shortMonthNamesKoKR, LocaleKoKR)
+	fillKnownPeriods(periodsKoKR, LocaleKoKR)
 
 	// Ja_JP: Japanese (Japan)
 	fillKnownDaysLong(longDayNamesJaJP, LocaleJaJP)
