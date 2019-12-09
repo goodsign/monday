@@ -81,7 +81,7 @@ func parseFuncJaCommon(locale Locale) internalParseFunc {
 			knownDaysShortReverse[locale], knownDaysLongReverse[locale],
 			knownMonthsShortReverse[locale], knownMonthsLongReverse[locale], knownPeriods[locale])
 
-		// knownPeriodsReverse has hash colisions
+		// knownPeriodsReverse has hash collisions
 		for k, v := range knownPeriodsReverse[locale] {
 			targetValue := strings.ToLower(v)
 			if strings.Index(layout, "PM") != -1 {

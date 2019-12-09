@@ -290,6 +290,15 @@ var formatTests = []FormatTest{
 	{LocaleZhHK, time.Date(2013, 5, 13, 0, 0, 0, 0, time.UTC), "2006年 January 2日", "2013年 5 月 13日"},
 	{LocaleZhHK, time.Date(0, 5, 1, 0, 0, 0, 0, time.UTC), "January", "5 月"},
 
+	{LocaleKoKR, time.Date(2013, 5, 13, 0, 0, 0, 0, time.UTC), "2006/01/2", "2013/05/13"},
+	{LocaleKoKR, time.Date(2013, 5, 13, 0, 0, 0, 0, time.UTC), "2006/1/2 Monday", "2013/5/13 월요일"},
+	{LocaleKoKR, time.Date(2013, 5, 13, 10, 30, 0, 0, time.UTC), "2006/1/2 Monday 3:04pm", "2013/5/13 월요일 10:30오전"},
+	{LocaleKoKR, time.Date(2013, 5, 13, 23, 30, 0, 0, time.UTC), "2006/1/2 Monday 3:04PM", "2013/5/13 월요일 11:30오후"},
+	{LocaleKoKR, time.Date(2013, 5, 13, 0, 0, 0, 0, time.UTC), "2006 Jan 2 Monday", "2013 5월 13 월요일"},
+	{LocaleKoKR, time.Date(2013, 5, 13, 0, 0, 0, 0, time.UTC), "2006 Jan 2", "2013 5월 13"},
+	{LocaleKoKR, time.Date(2013, 5, 13, 0, 0, 0, 0, time.UTC), "2006 January 2", "2013 5월 13"},
+	{LocaleKoKR, time.Date(0, 5, 1, 0, 0, 0, 0, time.UTC), "January", "5월"},
+
 	{LocaleJaJP, time.Date(2013, 5, 13, 0, 0, 0, 0, time.UTC), "2006/01/2", "2013/05/13"},
 	{LocaleJaJP, time.Date(2013, 5, 13, 0, 0, 0, 0, time.UTC), "2006/1/2 Monday", "2013/5/13 月曜日"},
 	{LocaleJaJP, time.Date(2013, 5, 13, 10, 30, 0, 0, time.UTC), "2006/1/2 Monday 3:04pm", "2013/5/13 月曜日 10:30午前"},
