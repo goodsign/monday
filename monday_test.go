@@ -397,8 +397,27 @@ func TestBadLocale(t *testing.T) {
 func TestGetShortDays(t *testing.T) {
 	locales := ListLocales()
 	for _, locale := range locales {
-		if days := GetShortDays(locale); days == nil {
+		days := GetShortDays(locale)
+		if days == nil {
 			t.Error("Not expected result. ", days)
+		}
+
+		// according to https://www.timeanddate.com/calendar/days/monday.html
+		// only Canada, USA and Japan use Sunday as first day of the week
+		switch locale {
+		case LocaleEnUS:
+			if days[0] != shortDayNamesEnUS["Sun"] {
+				t.Error("first day of week in US should be Sunday", days)
+			}
+		case LocaleJaJP:
+			if days[0] != shortDayNamesJaJP["Sun"] {
+				t.Error("first day of week in JP should be Sunday", days)
+			}
+
+		default:
+			if days[0] != knownDaysShort[locale]["Mon"] {
+				t.Error("first day of week should be Monday", days, locale)
+			}
 		}
 	}
 }
@@ -406,8 +425,27 @@ func TestGetShortDays(t *testing.T) {
 func TestGetLongDays(t *testing.T) {
 	locales := ListLocales()
 	for _, locale := range locales {
-		if days := GetLongDays(locale); days == nil {
+		days := GetLongDays(locale)
+		if days == nil {
 			t.Error("Not expected result. ", days)
+		}
+
+		// according to https://www.timeanddate.com/calendar/days/monday.html
+		// only Canada, USA and Japan use Sunday as first day of the week
+		switch locale {
+		case LocaleEnUS:
+			if days[0] != longDayNamesEnUS["Sunday"] {
+				t.Error("first day of week in US should be Sunday", days)
+			}
+		case LocaleJaJP:
+			if days[0] != longDayNamesJaJP["Sunday"] {
+				t.Error("first day of week in JP should be Sunday", days)
+			}
+
+		default:
+			if days[0] != knownDaysLong[locale]["Monday"] {
+				t.Error("first day of week should be Monday", days, locale)
+			}
 		}
 	}
 }
