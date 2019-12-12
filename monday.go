@@ -97,7 +97,7 @@ var knownMonthsLong = map[Locale]map[string]string{}          // Mapping for 'Fo
 var knownMonthsShort = map[Locale]map[string]string{}         // Mapping for 'Format', months: short form
 var knownMonthsGenitiveShort = map[Locale]map[string]string{} // Mapping for 'Format', special for names in genitive, short form
 var knownMonthsGenitiveLong = map[Locale]map[string]string{}  // Mapping for 'Format', special for names in genitive, long form
-var knownPeriods = map[Locale]map[string]string{}			  // Mapping for 'Format', AM/PM
+var knownPeriods = map[Locale]map[string]string{}             // Mapping for 'Format', AM/PM
 
 // Reverse maps for the same
 
@@ -468,9 +468,20 @@ func GetShortDays(locale Locale) []string {
 		return nil
 	}
 
+	var dayOrder []string
+
+	// according to https://www.timeanddate.com/calendar/days/monday.html
+	// only Canada, USA and Japan use Sunday as first day of the week
+	switch locale {
+	case LocaleEnUS, LocaleJaJP:
+		dayOrder = dayShortOrderSundayFirst
+	default:
+		dayOrder = dayShortOrderMondayFirst
+	}
+
 	ret := make([]string, 0, len(days))
-	for _, day := range days {
-		ret = append(ret, day)
+	for _, day := range dayOrder {
+		ret = append(ret, days[day])
 	}
 	return ret
 }
@@ -488,8 +499,8 @@ func GetShortMonths(locale Locale) []string {
 	}
 
 	ret := make([]string, 0, len(months))
-	for _, month := range months {
-		ret = append(ret, month)
+	for _, m := range monthShortOrder {
+		ret = append(ret, months[m])
 	}
 	return ret
 }
@@ -504,9 +515,20 @@ func GetLongDays(locale Locale) []string {
 		return nil
 	}
 
+	var dayOrder []string
+
+	// according to https://www.timeanddate.com/calendar/days/monday.html
+	// only Canada, USA and Japan use Sunday as first day of the week
+	switch locale {
+	case LocaleEnUS, LocaleJaJP:
+		dayOrder = dayLongOrderSundayFirst
+	default:
+		dayOrder = dayLongOrderMondayFirst
+	}
+
 	ret := make([]string, 0, len(days))
-	for _, day := range days {
-		ret = append(ret, day)
+	for _, day := range dayOrder {
+		ret = append(ret, days[day])
 	}
 	return ret
 }
@@ -523,8 +545,9 @@ func GetLongMonths(locale Locale) []string {
 	}
 
 	ret := make([]string, 0, len(months))
-	for _, month := range months {
-		ret = append(ret, month)
+	for _, m := range monthLongOrder {
+		ret = append(ret, months[m])
 	}
+
 	return ret
 }
