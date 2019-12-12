@@ -398,7 +398,7 @@ func TestGetShortDays(t *testing.T) {
 	locales := ListLocales()
 	for _, locale := range locales {
 		days := GetShortDays(locale)
-		if days == nil {
+		if days == nil || len(days) != 7 {
 			t.Error("Not expected result. ", days)
 		}
 
@@ -426,7 +426,7 @@ func TestGetLongDays(t *testing.T) {
 	locales := ListLocales()
 	for _, locale := range locales {
 		days := GetLongDays(locale)
-		if days == nil {
+		if days == nil || len(days) != 7 {
 			t.Error("Not expected result. ", days)
 		}
 
