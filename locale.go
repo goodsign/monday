@@ -29,6 +29,7 @@ const (
 	LocaleCaES = "ca_ES" // Catalan (Spain)
 	LocaleSvSE = "sv_SE" // Swedish (Sweden)
 	LocaleTrTR = "tr_TR" // Turkish (Turkey)
+	LocaleUkUA = "uk_UA" // Ukrainian (Ukraine)
 	LocaleBgBG = "bg_BG" // Bulgarian (Bulgaria)
 	LocaleZhCN = "zh_CN" // Chinese (Mainland)
 	LocaleZhTW = "zh_TW" // Chinese (Taiwan)
@@ -71,6 +72,7 @@ func ListLocales() []Locale {
 		LocaleCaES,
 		LocaleSvSE,
 		LocaleTrTR,
+		LocaleUkUA,
 		LocaleBgBG,
 		LocaleZhCN,
 		LocaleZhTW,

@@ -36,6 +36,7 @@ var internalFormatFuncs = map[Locale]internalFormatFunc{
 	LocaleCaES: createCommonFormatFunc(LocaleCaES),
 	LocaleSvSE: createCommonFormatFunc(LocaleSvSE),
 	LocaleTrTR: createCommonFormatFunc(LocaleTrTR),
+	LocaleUkUA: createCommonFormatFuncWithGenitive(LocaleUkUA),
 	LocaleBgBG: createCommonFormatFunc(LocaleBgBG),
 	LocaleZhCN: createCommonFormatFunc(LocaleZhCN),
 	LocaleZhTW: createCommonFormatFunc(LocaleZhTW),
@@ -79,6 +80,7 @@ var internalParseFuncs = map[Locale]internalParseFunc{
 	LocaleCaES: createCommonParseFunc(LocaleCaES),
 	LocaleSvSE: createCommonParseFunc(LocaleSvSE),
 	LocaleTrTR: createCommonParseFunc(LocaleTrTR),
+	LocaleUkUA: createCommonParsetFuncWithGenitive(LocaleUkUA),
 	LocaleBgBG: createCommonParseFunc(LocaleBgBG),
 	LocaleZhCN: parseFuncZhCommon(LocaleZhCN),
 	LocaleZhTW: parseFuncZhCommon(LocaleZhTW),
@@ -280,6 +282,14 @@ func fillKnownWords() {
 	fillKnownDaysShort(shortDayNamesTrTR, LocaleTrTR)
 	fillKnownMonthsLong(longMonthNamesTrTR, LocaleTrTR)
 	fillKnownMonthsShort(shortMonthNamesTrTR, LocaleTrTR)
+
+	// Uk_UA: Ukrainian (Ukraine)
+	fillKnownDaysLong(longDayNamesUkUA, LocaleUkUA)
+	fillKnownDaysShort(shortDayNamesUkUA, LocaleUkUA)
+	fillKnownMonthsLong(longMonthNamesUkUA, LocaleUkUA)
+	fillKnownMonthsShort(shortMonthNamesUkUA, LocaleUkUA)
+	fillKnownMonthsGenitiveLong(longMonthNamesGenitiveUkUA, LocaleUkUA)
+	fillKnownMonthsGenitiveShort(shortMonthNamesGenitiveUkUA, LocaleUkUA)
 
 	// Bg_BG: Bulgarian (Bulgaria)
 	fillKnownDaysLong(longDayNamesBgBG, LocaleBgBG)
