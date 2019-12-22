@@ -161,6 +161,12 @@ const (
 	DefaultFormatTrTRShort    = "2.01.2006"
 	DefaultFormatTrTRDateTime = "2.01.2006 15:04"
 
+	DefaultFormatUkUAFull     = "Monday, 2 January 2006 р." // Ukrainian (Ukraine)
+	DefaultFormatUkUALong     = "2 January 2006 р."
+	DefaultFormatUkUAMedium   = "02 Jan 2006 р."
+	DefaultFormatUkUAShort    = "02.01.06"
+	DefaultFormatUkUADateTime = "02.01.06, 15:04"
+
 	DefaultFormatBgBGFull     = "Monday, 2 January 2006" // Bulgarian (Bulgaria)
 	DefaultFormatBgBGLong     = "2 January 2006"
 	DefaultFormatBgBGMedium   = "2 Jan 2006"

@@ -257,6 +257,15 @@ var formatTests = []FormatTest{
 	{LocaleTrTR, time.Date(0, 5, 1, 0, 0, 0, 0, time.UTC), "January", "Mayıs"},
 	{LocaleTrTR, time.Date(0, 5, 13, 0, 0, 0, 0, time.UTC), "2 January", "13 Mayıs"},
 
+	{LocaleUkUA, time.Date(2013, 9, 3, 0, 0, 0, 0, time.UTC), "Mon Jan 2 2006", "Вт Вер 3 2013"},
+	{LocaleUkUA, time.Date(2013, 9, 4, 0, 0, 0, 0, time.UTC), "Monday Jan 2 2006", "Середа Вер 4 2013"},
+	{LocaleUkUA, time.Date(2013, 10, 3, 0, 0, 0, 0, time.UTC), "Monday January 02 2006", "Четвер Жовтень 03 2013"},
+	{LocaleUkUA, time.Date(2013, 11, 3, 0, 0, 0, 0, time.UTC), "Monday. 2 January 2006", "Неділя. 3 листопада 2013"},
+	{LocaleUkUA, time.Date(2013, 5, 13, 0, 0, 0, 0, time.UTC), "2006. 2 January. Monday", "2013. 13 травня. Понеділок"},
+	{LocaleUkUA, time.Date(2013, 5, 13, 0, 0, 0, 0, time.UTC), "2 Jan 2006", "13 тра 2013"},
+	{LocaleUkUA, time.Date(0, 5, 1, 0, 0, 0, 0, time.UTC), "January", "Травень"},
+	{LocaleUkUA, time.Date(0, 5, 13, 0, 0, 0, 0, time.UTC), "2 January", "13 травня"},
+
 	{LocaleBgBG, time.Date(2013, 9, 3, 0, 0, 0, 0, time.UTC), "Mon Jan 2 2006", "Вт Сеп 3 2013"},
 	{LocaleBgBG, time.Date(2013, 9, 4, 0, 0, 0, 0, time.UTC), "Monday Jan 2 2006", "Сряда Сеп 4 2013"},
 	{LocaleBgBG, time.Date(2013, 10, 3, 0, 0, 0, 0, time.UTC), "Monday January 02 2006", "Четвъртък Октомври 03 2013"},
@@ -475,6 +484,7 @@ func ExampleParseInLocation() {
 
 	fmt.Println(ParseInLocation(layout, "12 April 2013 00:00:00 MST", time.UTC, LocaleEnUS))
 	fmt.Println(ParseInLocation(layout, "12 апреля 2013 00:00:00 MST", time.UTC, LocaleRuRU))
+	fmt.Println(ParseInLocation(layout, "12 квітня 2013 00:00:00 MST", time.UTC, LocaleUkUA))
 }
 
 func ExampleParse() {
@@ -482,4 +492,5 @@ func ExampleParse() {
 
 	fmt.Println(Parse(layout, "12 April 2013 00:00:00 MST", LocaleEnUS))
 	fmt.Println(Parse(layout, "12 апреля 2013 00:00:00 MST", LocaleRuRU))
+	fmt.Println(Parse(layout, "12 квітня 2013 00:00:00 MST", LocaleUkUA))
 }
