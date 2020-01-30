@@ -1,3 +1,3 @@
-module monday
+module github.com/bmarguer/monday
 
 go 1.13
