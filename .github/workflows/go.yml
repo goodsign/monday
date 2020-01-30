@@ -25,4 +25,10 @@ jobs:
         fi
 
     - name: Build
-      run: go build -v .
+      run: |
+        go vet
+        go build -v .
+
+    - name: Test
+      run: go test -v -race monday
+
