@@ -4,6 +4,8 @@ Description
 Monday is a minimalistic translator for month and day of week names in time.Date objects. Supports 20+ different locales.
 Written in pure [Go](http://golang.org).
 
+![Go](https://github.com/goodsign/monday/workflows/Go/badge.svg)
+
 Installing
 ====
 
