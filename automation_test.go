@@ -49,43 +49,8 @@ var (
 		layoutData{
 			layout: "Пон, 2 Янв 2006 15:4:5 -0700",
 		},
-		// layoutData{
-		// 	layout: "Mon, 2 Jan 2006 15:4:5 -0700",
-		// },
-		// layoutData{
-		// 	layout: "Mon, 2 Jan 2006 15:4:5 -0700",
-		// },
-		// layoutData{
-		// 	layout: "Mon, 2 Jan 2006 15:4:5 -0700",
-		// },
-		// layoutData{
-		// 	layout: "Mon, 2 Jan 2006 15:4:5 -0700",
-		// },
 	}
 )
-
-/**
-unparsable date: '2016-02-08T00:00:00+03:00'
-unparsable date: '2016-02-02T00:00:00+03:00'
-unparsable date: '2016-02-01T00:00:00+03:00'
-unparsable date: '2016-01-28T00:00:00+03:00'
-unparsable date: '2016-01-26T00:00:00+03:00'
-unparsable date: '2016-01-25T00:00:00+03:00'
-unparsable date: '2016-01-25T00:00:00+03:00'
-unparsable date: '2016-01-22T00:00:00+03:00'
-unparsable date: '2016-01-19T00:00:00+03:00'
-
-unparsable date: 'Fri, 12 Feb 2016 16:01:00 +0000'
-unparsable date: 'Fri, 12 Feb 2016 15:46:00 +0000'
-unparsable date: 'Fri, 12 Feb 2016 15:20:00 +0000'
-unparsable date: 'Fri, 12 Feb 2016 15:06:00 +0000'
-unparsable date: 'Fri, 12 Feb 2016 15:05:00 +0000'
-unparsable date: 'Fri, 12 Feb 2016 15:02:00 +0000'
-
-'Thu, 11 Feb 2016 21:09:52 +0300'
-
-
-**/
 
 func TestLayoutValidator(t *testing.T) {
 	ld := NewLocaleDetector()
@@ -94,21 +59,15 @@ func TestLayoutValidator(t *testing.T) {
 		for i, m := range ltd.matches {
 			if !ld.validateValue(ltd.layout, m) {
 				t.Errorf("'%s' not matches to '%s' last error position = %d\n", m, ltd.layout, ld.errorPosition())
-			} else {
-				t.Logf("'%s' matches to '%s'..OK\n", m, ltd.layout)
 			}
 			locale := ld.detectLocale(m)
 			if !compareLocales(locale, ltd.locales[i]) {
 				t.Errorf("locales detect error, expected '%s', result '%s'\n", ltd.locales[i], locale)
-			} else {
-				t.Logf("detect locale for '%s': expected '%s', result '%s'\n", m, ltd.locales[i], locale)
 			}
 		}
 		for _, u := range ltd.unmatches {
 			if ld.validateValue(ltd.layout, u) {
 				t.Errorf("'%s' matches to '%s'\n", u, ltd.layout)
-			} else {
-				t.Logf("'%s' not matches to '%s'..OK\n", u, ltd.layout)
 			}
 		}
 	}
