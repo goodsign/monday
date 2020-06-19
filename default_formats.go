@@ -253,6 +253,7 @@ var FullFormatsByLocale = map[Locale]string{
 	LocaleJaJP: DefaultFormatJaJPFull,
 	LocaleElGR: DefaultFormatElGRFull,
 	LocaleCsCZ: DefaultFormatCsCZFull,
+	LocaleUkUA: DefaultFormatUkUAFull,	
 }
 
 // LongFormatsByLocale maps locales to the 'long' date formats for all
@@ -292,6 +293,7 @@ var LongFormatsByLocale = map[Locale]string{
 	LocaleJaJP: DefaultFormatJaJPLong,
 	LocaleElGR: DefaultFormatElGRLong,
 	LocaleCsCZ: DefaultFormatCsCZLong,
+	LocaleUkUA: DefaultFormatUkUALong,
 }
 
 // MediumFormatsByLocale maps locales to the 'medium' date formats for all
@@ -331,6 +333,7 @@ var MediumFormatsByLocale = map[Locale]string{
 	LocaleJaJP: DefaultFormatJaJPMedium,
 	LocaleElGR: DefaultFormatElGRMedium,
 	LocaleCsCZ: DefaultFormatCsCZMedium,
+	LocaleUkUA: DefaultFormatUkUAMedium,
 }
 
 // ShortFormatsByLocale maps locales to the 'short' date formats for all
@@ -370,6 +373,7 @@ var ShortFormatsByLocale = map[Locale]string{
 	LocaleJaJP: DefaultFormatJaJPShort,
 	LocaleElGR: DefaultFormatElGRShort,
 	LocaleCsCZ: DefaultFormatCsCZShort,
+	LocaleUkUA: DefaultFormatUkUAShort,
 }
 
 // DateTimeFormatsByLocale maps locales to the 'DateTime' date formats for
@@ -409,4 +413,5 @@ var DateTimeFormatsByLocale = map[Locale]string{
 	LocaleJaJP: DefaultFormatJaJPDateTime,
 	LocaleElGR: DefaultFormatElGRDateTime,
 	LocaleCsCZ: DefaultFormatCsCZDateTime,
+	LocaleUkUA: DefaultFormatUkUADateTime,
 }
