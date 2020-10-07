@@ -53,7 +53,7 @@ const (
 	DefaultFormatFrCAShort    = "06-01-02"
 	DefaultFormatFrCADateTime = "06-01-02 15:04"
 
-	DefaultFormatFrGPFull     = "Monday 2 January 2006" // French (Canada)
+	DefaultFormatFrGPFull     = "Monday 2 January 2006" // French (Guadeloupe)
 	DefaultFormatFrGPLong     = "2 January 2006"
 	DefaultFormatFrGPMedium   = "2006-01-02"
 	DefaultFormatFrGPShort    = "06-01-02"
