@@ -40,7 +40,7 @@ var longMonthNamesUkUA = map[string]string{
 }
 
 var longMonthNamesGenitiveUkUA = map[string]string{
-	"January":   "січеня",
+	"January":   "січня",
 	"February":  "лютого",
 	"March":     "березня",
 	"April":     "квітня",
