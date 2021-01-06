@@ -214,6 +214,12 @@ const (
 	DefaultFormatCsCZMedium   = "02 Jan 2006"
 	DefaultFormatCsCZShort    = "02/01/2006"
 	DefaultFormatCsCZDateTime = "02/01/2006 15:04"
+
+	DefaultFormatLtLTFull     = "2006 m. January 2 d., Monday" // Lithuanian (Lithuania)
+	DefaultFormatLtLTLong     = "2006 January 2 d."
+	DefaultFormatLtLTMedium   = "2006 Jan 2"
+	DefaultFormatLtLTShort    = "2006-01-02"
+	DefaultFormatLtLTDateTime = "2006-01-02, 15:04"
 )
 
 // FullFormatsByLocale maps locales to the'full' date formats for all
@@ -254,6 +260,7 @@ var FullFormatsByLocale = map[Locale]string{
 	LocaleElGR: DefaultFormatElGRFull,
 	LocaleCsCZ: DefaultFormatCsCZFull,
 	LocaleUkUA: DefaultFormatUkUAFull,	
+	LocaleLtLT: DefaultFormatLtLTFull,
 }
 
 // LongFormatsByLocale maps locales to the 'long' date formats for all
@@ -294,6 +301,7 @@ var LongFormatsByLocale = map[Locale]string{
 	LocaleElGR: DefaultFormatElGRLong,
 	LocaleCsCZ: DefaultFormatCsCZLong,
 	LocaleUkUA: DefaultFormatUkUALong,
+	LocaleLtLT: DefaultFormatLtLTLong,
 }
 
 // MediumFormatsByLocale maps locales to the 'medium' date formats for all
@@ -334,6 +342,7 @@ var MediumFormatsByLocale = map[Locale]string{
 	LocaleElGR: DefaultFormatElGRMedium,
 	LocaleCsCZ: DefaultFormatCsCZMedium,
 	LocaleUkUA: DefaultFormatUkUAMedium,
+	LocaleLtLT: DefaultFormatLtLTMedium,
 }
 
 // ShortFormatsByLocale maps locales to the 'short' date formats for all
@@ -374,6 +383,7 @@ var ShortFormatsByLocale = map[Locale]string{
 	LocaleElGR: DefaultFormatElGRShort,
 	LocaleCsCZ: DefaultFormatCsCZShort,
 	LocaleUkUA: DefaultFormatUkUAShort,
+	LocaleLtLT: DefaultFormatLtLTShort,
 }
 
 // DateTimeFormatsByLocale maps locales to the 'DateTime' date formats for
@@ -414,4 +424,5 @@ var DateTimeFormatsByLocale = map[Locale]string{
 	LocaleElGR: DefaultFormatElGRDateTime,
 	LocaleCsCZ: DefaultFormatCsCZDateTime,
 	LocaleUkUA: DefaultFormatUkUADateTime,
+	LocaleLtLT: DefaultFormatLtLTDateTime,
 }

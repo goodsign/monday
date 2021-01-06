@@ -45,6 +45,7 @@ const (
 	LocaleFrGF = "fr_GF" // French (French Guiana)
 	LocaleCsCZ = "cs_CZ" // Czech (Czech Republic)
 	LocaleSlSI = "sl_SI" // Slovenian (Slovenia)
+	LocaleLtLT = "lt_LT" // Lithuanian (Lithuania)
 )
 
 // ListLocales returns all locales supported by the package.
@@ -87,5 +88,6 @@ func ListLocales() []Locale {
 		LocaleFrGF,
 		LocaleCsCZ,
 		LocaleSlSI,
+		LocaleLtLT,
 	}
 }
