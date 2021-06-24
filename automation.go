@@ -317,6 +317,11 @@ func (ld *LocaleDetector) Parse(layout, value string) (time.Time, error) {
 	}
 }
 
+// GetLastLocale Brings last locale value
+func (ld *LocaleDetector) GetLastLocale() Locale {
+	return ld.lastLocale
+}
+
 func (ld *LocaleDetector) detectLocale(value string) Locale {
 	localesMap := make(map[Locale]int)
 	for _, v := range wordsRx.FindAllStringSubmatchIndex(value, -1) {
