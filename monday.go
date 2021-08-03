@@ -51,6 +51,7 @@ var internalFormatFuncs = map[Locale]internalFormatFunc{
 	LocaleEtEE: createCommonFormatFunc(LocaleEtEE),
 	LocaleHrHR: createCommonFormatFunc(LocaleHrHR),
 	LocaleLvLV: createCommonFormatFunc(LocaleLvLV),
+	LocaleSkSK: createCommonFormatFunc(LocaleSkSK),
 }
 
 // internalParseFunc is a preprocessor for default time.ParseInLocation func
@@ -99,6 +100,7 @@ var internalParseFuncs = map[Locale]internalParseFunc{
 	LocaleEtEE: createCommonParseFunc(LocaleEtEE),
 	LocaleHrHR: createCommonParseFunc(LocaleHrHR),
 	LocaleLvLV: createCommonParseFunc(LocaleLvLV),
+	LocaleSkSK: createCommonParseFunc(LocaleSkSK),
 }
 
 var knownDaysShort = map[Locale]map[string]string{}           // Mapping for 'Format', days of week, short form
@@ -389,6 +391,12 @@ func fillKnownWords() {
 	fillKnownDaysShort(shortDayNamesLvLV, LocaleLvLV)
 	fillKnownMonthsLong(longMonthNamesLvLV, LocaleLvLV)
 	fillKnownMonthsShort(shortMonthNamesLvLV, LocaleLvLV)
+
+	// Sk_SK: Slovak (Slovakia)
+	fillKnownDaysLong(longDayNamesSkSK, LocaleSkSK)
+	fillKnownDaysShort(shortDayNamesSkSK, LocaleSkSK)
+	fillKnownMonthsLong(longMonthNamesSkSK, LocaleSkSK)
+	fillKnownMonthsShort(shortMonthNamesSkSK, LocaleSkSK)
 }
 
 func fill(src map[string]string, dest map[Locale]map[string]string, locale Locale) {
