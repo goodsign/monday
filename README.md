@@ -119,6 +119,7 @@ const (
     LocaleCsCZ = "cs_CZ" // Czech (Czech Republic)
     LocaleSlSI = "sl_SI" // Slovenian (Slovenia)
     LocaleLtLT = "lt_LT" // Lithuanian (Lithuania)
+    LocaleEtEE = "et_EE" // Estonian (Estonia)
 )
 ```
 
