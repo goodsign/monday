@@ -165,7 +165,7 @@ func createCommonParseFunc(locale Locale) internalParseFunc {
 	}
 }
 
-func createCommonParsetFuncWithGenitive(locale Locale) internalParseFunc {
+func createCommonParseFuncWithGenitive(locale Locale) internalParseFunc {
 	return func(layout, value string) (res string) {
 		return commonGenitiveFormatFunc(value, layout,
 			knownDaysShortReverse[locale], knownDaysLongReverse[locale],

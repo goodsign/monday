@@ -48,6 +48,7 @@ var internalFormatFuncs = map[Locale]internalFormatFunc{
 	LocaleCsCZ: createCommonFormatFunc(LocaleCsCZ),
 	LocaleSlSI: createCommonFormatFunc(LocaleSlSI),
 	LocaleLtLT: createCommonFormatFuncWithGenitive(LocaleLtLT),
+	LocaleEtEE: createCommonFormatFunc(LocaleEtEE),
 }
 
 // internalParseFunc is a preprocessor for default time.ParseInLocation func
@@ -66,8 +67,8 @@ var internalParseFuncs = map[Locale]internalParseFunc{
 	LocaleFrMQ: createCommonParseFunc(LocaleFrFR),
 	LocaleFrGF: createCommonParseFunc(LocaleFrFR),
 	LocaleFrRE: createCommonParseFunc(LocaleFrFR),
-	LocaleRuRU: createCommonParsetFuncWithGenitive(LocaleRuRU),
-	LocaleFiFI: createCommonParsetFuncWithGenitive(LocaleFiFI),
+	LocaleRuRU: createCommonParseFuncWithGenitive(LocaleRuRU),
+	LocaleFiFI: createCommonParseFuncWithGenitive(LocaleFiFI),
 	LocaleDeDE: createCommonParseFunc(LocaleDeDE),
 	LocaleHuHU: createCommonParseFunc(LocaleHuHU),
 	LocaleItIT: createCommonParseFunc(LocaleItIT),
@@ -81,18 +82,19 @@ var internalParseFuncs = map[Locale]internalParseFunc{
 	LocaleCaES: createCommonParseFunc(LocaleCaES),
 	LocaleSvSE: createCommonParseFunc(LocaleSvSE),
 	LocaleTrTR: createCommonParseFunc(LocaleTrTR),
-	LocaleUkUA: createCommonParsetFuncWithGenitive(LocaleUkUA),
+	LocaleUkUA: createCommonParseFuncWithGenitive(LocaleUkUA),
 	LocaleBgBG: createCommonParseFunc(LocaleBgBG),
 	LocaleZhCN: parseFuncZhCommon(LocaleZhCN),
 	LocaleZhTW: parseFuncZhCommon(LocaleZhTW),
 	LocaleZhHK: parseFuncZhCommon(LocaleZhHK),
 	LocaleKoKR: parseFuncKoCommon(LocaleKoKR),
 	LocaleJaJP: parseFuncJaCommon(LocaleJaJP),
-	LocaleElGR: createCommonParsetFuncWithGenitive(LocaleElGR),
+	LocaleElGR: createCommonParseFuncWithGenitive(LocaleElGR),
 	LocaleIdID: createCommonParseFunc(LocaleIdID),
 	LocaleCsCZ: createCommonParseFunc(LocaleCsCZ),
 	LocaleSlSI: createCommonParseFunc(LocaleSlSI),
-	LocaleLtLT: createCommonParsetFuncWithGenitive(LocaleLtLT),
+	LocaleLtLT: createCommonParseFuncWithGenitive(LocaleLtLT),
+	LocaleEtEE: createCommonParseFunc(LocaleEtEE),
 }
 
 var knownDaysShort = map[Locale]map[string]string{}           // Mapping for 'Format', days of week, short form
@@ -365,6 +367,12 @@ func fillKnownWords() {
 	fillKnownMonthsShort(shortMonthNamesLtLT, LocaleLtLT)
 	fillKnownMonthsGenitiveLong(longMonthNamesGenitiveLtLT, LocaleLtLT)
 	fillKnownMonthsGenitiveShort(shortMonthNamesGenitiveLtLT, LocaleLtLT)
+
+	// Et_EE: Estonian (Estonia)
+	fillKnownDaysLong(longDayNamesEtEE, LocaleEtEE)
+	fillKnownDaysShort(shortDayNamesEtEE, LocaleEtEE)
+	fillKnownMonthsLong(longMonthNamesEtEE, LocaleEtEE)
+	fillKnownMonthsShort(shortMonthNamesEtEE, LocaleEtEE)
 }
 
 func fill(src map[string]string, dest map[Locale]map[string]string, locale Locale) {

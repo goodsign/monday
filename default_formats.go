@@ -220,6 +220,12 @@ const (
 	DefaultFormatLtLTMedium   = "2006 Jan 2"
 	DefaultFormatLtLTShort    = "2006-01-02"
 	DefaultFormatLtLTDateTime = "2006-01-02, 15:04"
+
+	DefaultFormatEtEEFull     = "Monday, 2. January 2006" // Estonian (Estonia)
+	DefaultFormatEtEELong     = "2. January 2006"
+	DefaultFormatEtEEMedium   = "2. Jan 2006"
+	DefaultFormatEtEEShort    = "2.1.2006"
+	DefaultFormatEtEEDateTime = "2.1.2006 15:04"
 )
 
 // FullFormatsByLocale maps locales to the'full' date formats for all
@@ -259,8 +265,9 @@ var FullFormatsByLocale = map[Locale]string{
 	LocaleJaJP: DefaultFormatJaJPFull,
 	LocaleElGR: DefaultFormatElGRFull,
 	LocaleCsCZ: DefaultFormatCsCZFull,
-	LocaleUkUA: DefaultFormatUkUAFull,	
+	LocaleUkUA: DefaultFormatUkUAFull,
 	LocaleLtLT: DefaultFormatLtLTFull,
+	LocaleEtEE: DefaultFormatEtEEFull,
 }
 
 // LongFormatsByLocale maps locales to the 'long' date formats for all
@@ -302,6 +309,7 @@ var LongFormatsByLocale = map[Locale]string{
 	LocaleCsCZ: DefaultFormatCsCZLong,
 	LocaleUkUA: DefaultFormatUkUALong,
 	LocaleLtLT: DefaultFormatLtLTLong,
+	LocaleEtEE: DefaultFormatEtEELong,
 }
 
 // MediumFormatsByLocale maps locales to the 'medium' date formats for all
@@ -343,6 +351,7 @@ var MediumFormatsByLocale = map[Locale]string{
 	LocaleCsCZ: DefaultFormatCsCZMedium,
 	LocaleUkUA: DefaultFormatUkUAMedium,
 	LocaleLtLT: DefaultFormatLtLTMedium,
+	LocaleEtEE: DefaultFormatEtEEMedium,
 }
 
 // ShortFormatsByLocale maps locales to the 'short' date formats for all
@@ -384,6 +393,7 @@ var ShortFormatsByLocale = map[Locale]string{
 	LocaleCsCZ: DefaultFormatCsCZShort,
 	LocaleUkUA: DefaultFormatUkUAShort,
 	LocaleLtLT: DefaultFormatLtLTShort,
+	LocaleEtEE: DefaultFormatEtEEShort,
 }
 
 // DateTimeFormatsByLocale maps locales to the 'DateTime' date formats for
@@ -425,4 +435,5 @@ var DateTimeFormatsByLocale = map[Locale]string{
 	LocaleCsCZ: DefaultFormatCsCZDateTime,
 	LocaleUkUA: DefaultFormatUkUADateTime,
 	LocaleLtLT: DefaultFormatLtLTDateTime,
+	LocaleEtEE: DefaultFormatEtEEDateTime,
 }
