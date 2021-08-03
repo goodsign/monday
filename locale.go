@@ -48,6 +48,7 @@ const (
 	LocaleLtLT = "lt_LT" // Lithuanian (Lithuania)
 	LocaleEtEE = "et_EE" // Estonian (Estonia)
 	LocaleHrHR = "hr_HR" // Croatian (Croatia)
+	LocaleLvLV = "lv_LV" // Latvian (Latvia)
 )
 
 // ListLocales returns all locales supported by the package.
@@ -93,5 +94,6 @@ func ListLocales() []Locale {
 		LocaleLtLT,
 		LocaleEtEE,
 		LocaleHrHR,
+		LocaleLvLV,
 	}
 }

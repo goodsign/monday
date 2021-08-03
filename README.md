@@ -121,6 +121,7 @@ const (
     LocaleLtLT = "lt_LT" // Lithuanian (Lithuania)
     LocaleEtEE = "et_EE" // Estonian (Estonia)
     LocaleHrHR = "hr_HR" // Croatian (Croatia)
+    LocaleLvLV = "lv_LV" // Latvian (Latvia)
 )
 ```
 

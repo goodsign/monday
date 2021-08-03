@@ -226,6 +226,18 @@ const (
 	DefaultFormatEtEEMedium   = "2. Jan 2006"
 	DefaultFormatEtEEShort    = "2.1.2006"
 	DefaultFormatEtEEDateTime = "2.1.2006 15:04"
+
+	DefaultFormatHrHRFull     = "Monday, 2. January 2006." // Croatian (Croatia)
+	DefaultFormatHrHRLong     = "2. January 2006."
+	DefaultFormatHrHRMedium   = "2. Jan 2006."
+	DefaultFormatHrHRShort    = "2.1.2006."
+	DefaultFormatHrHRDateTime = "2.1.2006. 15:04"
+
+	DefaultFormatLvLVFull     = "Monday, 2006. gada 2. January" // Latvian (Latvia)
+	DefaultFormatLvLVLong     = "2006. gada 2. January"
+	DefaultFormatLvLVMedium   = "2006. g. 2. Jan."
+	DefaultFormatLvLVShort    = "2.1.2006."
+	DefaultFormatLvLVDateTime = "2.1.2006. 15:04"
 )
 
 // FullFormatsByLocale maps locales to the'full' date formats for all
@@ -268,6 +280,8 @@ var FullFormatsByLocale = map[Locale]string{
 	LocaleUkUA: DefaultFormatUkUAFull,
 	LocaleLtLT: DefaultFormatLtLTFull,
 	LocaleEtEE: DefaultFormatEtEEFull,
+	LocaleHrHR: DefaultFormatHrHRFull,
+	LocaleLvLV: DefaultFormatLvLVFull,
 }
 
 // LongFormatsByLocale maps locales to the 'long' date formats for all
@@ -310,6 +324,8 @@ var LongFormatsByLocale = map[Locale]string{
 	LocaleUkUA: DefaultFormatUkUALong,
 	LocaleLtLT: DefaultFormatLtLTLong,
 	LocaleEtEE: DefaultFormatEtEELong,
+	LocaleHrHR: DefaultFormatHrHRLong,
+	LocaleLvLV: DefaultFormatLvLVLong,
 }
 
 // MediumFormatsByLocale maps locales to the 'medium' date formats for all
@@ -352,6 +368,8 @@ var MediumFormatsByLocale = map[Locale]string{
 	LocaleUkUA: DefaultFormatUkUAMedium,
 	LocaleLtLT: DefaultFormatLtLTMedium,
 	LocaleEtEE: DefaultFormatEtEEMedium,
+	LocaleHrHR: DefaultFormatHrHRMedium,
+	LocaleLvLV: DefaultFormatLvLVMedium,
 }
 
 // ShortFormatsByLocale maps locales to the 'short' date formats for all
@@ -394,6 +412,8 @@ var ShortFormatsByLocale = map[Locale]string{
 	LocaleUkUA: DefaultFormatUkUAShort,
 	LocaleLtLT: DefaultFormatLtLTShort,
 	LocaleEtEE: DefaultFormatEtEEShort,
+	LocaleHrHR: DefaultFormatHrHRShort,
+	LocaleLvLV: DefaultFormatLvLVShort,
 }
 
 // DateTimeFormatsByLocale maps locales to the 'DateTime' date formats for
@@ -436,4 +456,6 @@ var DateTimeFormatsByLocale = map[Locale]string{
 	LocaleUkUA: DefaultFormatUkUADateTime,
 	LocaleLtLT: DefaultFormatLtLTDateTime,
 	LocaleEtEE: DefaultFormatEtEEDateTime,
+	LocaleHrHR: DefaultFormatHrHRDateTime,
+	LocaleLvLV: DefaultFormatLvLVDateTime,
 }
