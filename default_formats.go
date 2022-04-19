@@ -256,6 +256,18 @@ const (
 	DefaultFormatLtLTShort    = "2006-01-02"
 	DefaultFormatLtLTDateTime = "2006-01-02, 15:04"
 	DefaultFormatLtLTTime     = "15:04"
+
+	DefaultFormatThTHFull     = "Monday, 2 January 2006" // Thai (Thailand)
+	DefaultFormatThTHLong     = "2 January 2006"
+	DefaultFormatThTHMedium   = "2 Jan 2006"
+	DefaultFormatThTHShort    = "2/1/2006"
+	DefaultFormatThTHDateTime = "2/1/2006 3:04 PM"
+
+	DefaultFormatVnVNFull     = "Monday, 2 January 2006" // Vietnamese (Vietnam)
+	DefaultFormatVnVNLong     = "2 January 2006"
+	DefaultFormatVnVNMedium   = "2 Jan 2006"
+	DefaultFormatVnVNShort    = "2/1/2006"
+	DefaultFormatVnVNDateTime = "2/1/2006 3:04 PM"
 )
 
 // FullFormatsByLocale maps locales to the'full' date formats for all
