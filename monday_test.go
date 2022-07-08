@@ -352,6 +352,14 @@ var formatTests = []FormatTest{
 	{LocaleSlSI, time.Date(2013, 5, 13, 0, 0, 0, 0, time.UTC), "2 Jan 2006", "13 maj 2013"},
 	{LocaleSlSI, time.Date(0, 5, 1, 0, 0, 0, 0, time.UTC), "January", "maj"},
 	{LocaleSlSI, time.Date(0, 5, 13, 0, 0, 0, 0, time.UTC), "2 January", "13 maj"},
+
+	{LocaleThTH, time.Date(2022, 7, 8, 0, 0, 0, 0, time.UTC), "Mon Jan 2 2006", "ศ. ก.ค. 8 2022"},
+	{LocaleThTH, time.Date(2022, 7, 8, 0, 0, 0, 0, time.UTC), "Monday Jan 2 2006", "วันศุกร์ ก.ค. 8 2022"},
+	{LocaleThTH, time.Date(2022, 2, 1, 0, 0, 0, 0, time.UTC), "Monday January 02 2006", "วันอังคาร กุมภาพันธ์ 01 2022"},
+	{LocaleThTH, time.Date(2022, 5, 13, 0, 0, 0, 0, time.UTC), "2006. 2 January.", "2022. 13 พฤษภาคม."},
+	{LocaleThTH, time.Date(2022, 5, 13, 0, 0, 0, 0, time.UTC), "2 Jan 2006", "13 พ.ค. 2022"},
+	{LocaleThTH, time.Date(0, 5, 1, 0, 0, 0, 0, time.UTC), "January", "พฤษภาคม"},
+	{LocaleThTH, time.Date(0, 5, 13, 0, 0, 0, 0, time.UTC), "2 January", "13 พฤษภาคม"},
 }
 
 func TestFormat(t *testing.T) {
