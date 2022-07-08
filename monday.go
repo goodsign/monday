@@ -48,6 +48,7 @@ var internalFormatFuncs = map[Locale]internalFormatFunc{
 	LocaleCsCZ: createCommonFormatFunc(LocaleCsCZ),
 	LocaleSlSI: createCommonFormatFunc(LocaleSlSI),
 	LocaleLtLT: createCommonFormatFuncWithGenitive(LocaleLtLT),
+	LocaleThTH: createCommonFormatFunc(LocaleThTH),
 }
 
 // internalParseFunc is a preprocessor for default time.ParseInLocation func
@@ -93,6 +94,7 @@ var internalParseFuncs = map[Locale]internalParseFunc{
 	LocaleCsCZ: createCommonParseFunc(LocaleCsCZ),
 	LocaleSlSI: createCommonParseFunc(LocaleSlSI),
 	LocaleLtLT: createCommonParsetFuncWithGenitive(LocaleLtLT),
+	LocaleThTH: parseFuncThCommon(LocaleThTH),
 }
 
 var knownDaysShort = map[Locale]map[string]string{}           // Mapping for 'Format', days of week, short form
@@ -365,6 +367,12 @@ func fillKnownWords() {
 	fillKnownMonthsShort(shortMonthNamesLtLT, LocaleLtLT)
 	fillKnownMonthsGenitiveLong(longMonthNamesGenitiveLtLT, LocaleLtLT)
 	fillKnownMonthsGenitiveShort(shortMonthNamesGenitiveLtLT, LocaleLtLT)
+
+	// Th_TH: Thai (Thailand)
+	fillKnownDaysLong(longDayNamesThTH, LocaleThTH)
+	fillKnownDaysShort(shortDayNamesThTH, LocaleThTH)
+	fillKnownMonthsLong(longMonthNamesThTH, LocaleThTH)
+	fillKnownMonthsShort(shortMonthNamesThTH, LocaleThTH)
 }
 
 func fill(src map[string]string, dest map[Locale]map[string]string, locale Locale) {
