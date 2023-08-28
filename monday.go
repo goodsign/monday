@@ -48,6 +48,10 @@ var internalFormatFuncs = map[Locale]internalFormatFunc{
 	LocaleCsCZ: createCommonFormatFunc(LocaleCsCZ),
 	LocaleSlSI: createCommonFormatFunc(LocaleSlSI),
 	LocaleLtLT: createCommonFormatFuncWithGenitive(LocaleLtLT),
+	LocaleEtEE: createCommonFormatFunc(LocaleEtEE),
+	LocaleHrHR: createCommonFormatFunc(LocaleHrHR),
+	LocaleLvLV: createCommonFormatFunc(LocaleLvLV),
+	LocaleSkSK: createCommonFormatFunc(LocaleSkSK),
 	LocaleThTH: createCommonFormatFunc(LocaleThTH),
 	LocaleUzUZ: createCommonFormatFuncWithGenitive(LocaleUzUZ),
 	LocaleKkKZ: createCommonFormatFuncWithGenitive(LocaleKkKZ),
@@ -69,8 +73,8 @@ var internalParseFuncs = map[Locale]internalParseFunc{
 	LocaleFrMQ: createCommonParseFunc(LocaleFrFR),
 	LocaleFrGF: createCommonParseFunc(LocaleFrFR),
 	LocaleFrRE: createCommonParseFunc(LocaleFrFR),
-	LocaleRuRU: createCommonParsetFuncWithGenitive(LocaleRuRU),
-	LocaleFiFI: createCommonParsetFuncWithGenitive(LocaleFiFI),
+	LocaleRuRU: createCommonParseFuncWithGenitive(LocaleRuRU),
+	LocaleFiFI: createCommonParseFuncWithGenitive(LocaleFiFI),
 	LocaleDeDE: createCommonParseFunc(LocaleDeDE),
 	LocaleHuHU: createCommonParseFunc(LocaleHuHU),
 	LocaleItIT: createCommonParseFunc(LocaleItIT),
@@ -84,21 +88,25 @@ var internalParseFuncs = map[Locale]internalParseFunc{
 	LocaleCaES: createCommonParseFunc(LocaleCaES),
 	LocaleSvSE: createCommonParseFunc(LocaleSvSE),
 	LocaleTrTR: createCommonParseFunc(LocaleTrTR),
-	LocaleUkUA: createCommonParsetFuncWithGenitive(LocaleUkUA),
+	LocaleUkUA: createCommonParseFuncWithGenitive(LocaleUkUA),
 	LocaleBgBG: createCommonParseFunc(LocaleBgBG),
 	LocaleZhCN: parseFuncZhCommon(LocaleZhCN),
 	LocaleZhTW: parseFuncZhCommon(LocaleZhTW),
 	LocaleZhHK: parseFuncZhCommon(LocaleZhHK),
 	LocaleKoKR: parseFuncKoCommon(LocaleKoKR),
 	LocaleJaJP: parseFuncJaCommon(LocaleJaJP),
-	LocaleElGR: createCommonParsetFuncWithGenitive(LocaleElGR),
+	LocaleElGR: createCommonParseFuncWithGenitive(LocaleElGR),
 	LocaleIdID: createCommonParseFunc(LocaleIdID),
 	LocaleCsCZ: createCommonParseFunc(LocaleCsCZ),
 	LocaleSlSI: createCommonParseFunc(LocaleSlSI),
-	LocaleLtLT: createCommonParsetFuncWithGenitive(LocaleLtLT),
+	LocaleLtLT: createCommonParseFuncWithGenitive(LocaleLtLT),
+	LocaleEtEE: createCommonParseFunc(LocaleEtEE),
+	LocaleHrHR: createCommonParseFunc(LocaleHrHR),
+	LocaleLvLV: createCommonParseFunc(LocaleLvLV),
+	LocaleSkSK: createCommonParseFunc(LocaleSkSK),
 	LocaleThTH: parseFuncThCommon(LocaleThTH),
-	LocaleUzUZ: createCommonParsetFuncWithGenitive(LocaleUzUZ),
-	LocaleKkKZ: createCommonParsetFuncWithGenitive(LocaleKkKZ),
+	LocaleUzUZ: createCommonParseFuncWithGenitive(LocaleUzUZ),
+	LocaleKkKZ: createCommonParseFuncWithGenitive(LocaleKkKZ),
 }
 
 var knownDaysShort = map[Locale]map[string]string{}           // Mapping for 'Format', days of week, short form
@@ -371,6 +379,30 @@ func fillKnownWords() {
 	fillKnownMonthsShort(shortMonthNamesLtLT, LocaleLtLT)
 	fillKnownMonthsGenitiveLong(longMonthNamesGenitiveLtLT, LocaleLtLT)
 	fillKnownMonthsGenitiveShort(shortMonthNamesGenitiveLtLT, LocaleLtLT)
+
+	// Et_EE: Estonian (Estonia)
+	fillKnownDaysLong(longDayNamesEtEE, LocaleEtEE)
+	fillKnownDaysShort(shortDayNamesEtEE, LocaleEtEE)
+	fillKnownMonthsLong(longMonthNamesEtEE, LocaleEtEE)
+	fillKnownMonthsShort(shortMonthNamesEtEE, LocaleEtEE)
+
+	// Hr_HR: Croatian (Croatia)
+	fillKnownDaysLong(longDayNamesHrHR, LocaleHrHR)
+	fillKnownDaysShort(shortDayNamesHrHR, LocaleHrHR)
+	fillKnownMonthsLong(longMonthNamesHrHR, LocaleHrHR)
+	fillKnownMonthsShort(shortMonthNamesHrHR, LocaleHrHR)
+
+	// Lv_LV: Latvian (Latvia)
+	fillKnownDaysLong(longDayNamesLvLV, LocaleLvLV)
+	fillKnownDaysShort(shortDayNamesLvLV, LocaleLvLV)
+	fillKnownMonthsLong(longMonthNamesLvLV, LocaleLvLV)
+	fillKnownMonthsShort(shortMonthNamesLvLV, LocaleLvLV)
+
+	// Sk_SK: Slovak (Slovakia)
+	fillKnownDaysLong(longDayNamesSkSK, LocaleSkSK)
+	fillKnownDaysShort(shortDayNamesSkSK, LocaleSkSK)
+	fillKnownMonthsLong(longMonthNamesSkSK, LocaleSkSK)
+	fillKnownMonthsShort(shortMonthNamesSkSK, LocaleSkSK)
 
 	// Th_TH: Thai (Thailand)
 	fillKnownDaysLong(longDayNamesThTH, LocaleThTH)

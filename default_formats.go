@@ -257,6 +257,34 @@ const (
 	DefaultFormatLtLTDateTime = "2006-01-02, 15:04"
 	DefaultFormatLtLTTime     = "15:04"
 
+	DefaultFormatEtEEFull     = "Monday, 2. January 2006" // Estonian (Estonia)
+	DefaultFormatEtEELong     = "2. January 2006"
+	DefaultFormatEtEEMedium   = "2. Jan 2006"
+	DefaultFormatEtEEShort    = "2.1.2006"
+	DefaultFormatEtEEDateTime = "2.1.2006 15:04"
+	DefaultFormatEtEETime     = "2.1.2006 15:04"
+
+	DefaultFormatHrHRFull     = "Monday, 2. January 2006." // Croatian (Croatia)
+	DefaultFormatHrHRLong     = "2. January 2006."
+	DefaultFormatHrHRMedium   = "2. Jan 2006."
+	DefaultFormatHrHRShort    = "2.1.2006."
+	DefaultFormatHrHRDateTime = "2.1.2006. 15:04"
+	DefaultFormatHrHRTime     = "15:04"
+
+	DefaultFormatLvLVFull     = "Monday, 2006. gada 2. January" // Latvian (Latvia)
+	DefaultFormatLvLVLong     = "2006. gada 2. January"
+	DefaultFormatLvLVMedium   = "2006. g. 2. Jan."
+	DefaultFormatLvLVShort    = "2.1.2006."
+	DefaultFormatLvLVDateTime = "2.1.2006. 15:04"
+	DefaultFormatLvLVTime     = "15:04"
+
+	DefaultFormatSkSKFull     = "Monday, 2. January 2006" // Slovak (Slovakia)
+	DefaultFormatSkSKLong     = "2. January 2006"
+	DefaultFormatSkSKMedium   = "2. 1. 2006"
+	DefaultFormatSkSKShort    = "2. 1. 2006"
+	DefaultFormatSkSKDateTime = "2. 1. 2006, 15:04"
+	DefaultFormatSkSKTime     = "15:04"
+
 	DefaultFormatThTHFull     = "Monday ที่ 2 January 2006" // Thai (Thailand)
 	DefaultFormatThTHLong     = "วันที่ 2 January 2006"
 	DefaultFormatThTHMedium   = "2 Jan 2006"
@@ -318,6 +346,10 @@ var FullFormatsByLocale = map[Locale]string{
 	LocaleCsCZ: DefaultFormatCsCZFull,
 	LocaleUkUA: DefaultFormatUkUAFull,
 	LocaleLtLT: DefaultFormatLtLTFull,
+	LocaleEtEE: DefaultFormatEtEEFull,
+	LocaleHrHR: DefaultFormatHrHRFull,
+	LocaleLvLV: DefaultFormatLvLVFull,
+	LocaleSkSK: DefaultFormatSkSKFull,
 	LocaleThTH: DefaultFormatThTHFull,
 	LocaleUzUZ: DefaultFormatUzUZFull,
 	LocaleKkKZ: DefaultFormatKkKZFull,
@@ -362,6 +394,10 @@ var LongFormatsByLocale = map[Locale]string{
 	LocaleCsCZ: DefaultFormatCsCZLong,
 	LocaleUkUA: DefaultFormatUkUALong,
 	LocaleLtLT: DefaultFormatLtLTLong,
+	LocaleEtEE: DefaultFormatEtEELong,
+	LocaleHrHR: DefaultFormatHrHRLong,
+	LocaleLvLV: DefaultFormatLvLVLong,
+	LocaleSkSK: DefaultFormatSkSKLong,
 	LocaleThTH: DefaultFormatThTHLong,
 	LocaleUzUZ: DefaultFormatUzUZLong,
 	LocaleKkKZ: DefaultFormatKkKZLong,
@@ -406,6 +442,10 @@ var MediumFormatsByLocale = map[Locale]string{
 	LocaleCsCZ: DefaultFormatCsCZMedium,
 	LocaleUkUA: DefaultFormatUkUAMedium,
 	LocaleLtLT: DefaultFormatLtLTMedium,
+	LocaleEtEE: DefaultFormatEtEEMedium,
+	LocaleHrHR: DefaultFormatHrHRMedium,
+	LocaleLvLV: DefaultFormatLvLVMedium,
+	LocaleSkSK: DefaultFormatSkSKMedium,
 	LocaleThTH: DefaultFormatThTHMedium,
 	LocaleUzUZ: DefaultFormatUzUZMedium,
 	LocaleKkKZ: DefaultFormatKkKZMedium,
@@ -450,6 +490,10 @@ var ShortFormatsByLocale = map[Locale]string{
 	LocaleCsCZ: DefaultFormatCsCZShort,
 	LocaleUkUA: DefaultFormatUkUAShort,
 	LocaleLtLT: DefaultFormatLtLTShort,
+	LocaleEtEE: DefaultFormatEtEEShort,
+	LocaleHrHR: DefaultFormatHrHRShort,
+	LocaleLvLV: DefaultFormatLvLVShort,
+	LocaleSkSK: DefaultFormatSkSKShort,
 	LocaleUzUZ: DefaultFormatUzUZShort,
 	LocaleKkKZ: DefaultFormatKkKZShort,
 }
@@ -493,6 +537,10 @@ var DateTimeFormatsByLocale = map[Locale]string{
 	LocaleCsCZ: DefaultFormatCsCZDateTime,
 	LocaleUkUA: DefaultFormatUkUADateTime,
 	LocaleLtLT: DefaultFormatLtLTDateTime,
+	LocaleEtEE: DefaultFormatEtEEDateTime,
+	LocaleHrHR: DefaultFormatHrHRDateTime,
+	LocaleLvLV: DefaultFormatLvLVDateTime,
+	LocaleSkSK: DefaultFormatSkSKDateTime,
 	LocaleUzUZ: DefaultFormatUzUZDateTime,
 	LocaleKkKZ: DefaultFormatKkKZDateTime,
 }
