@@ -388,6 +388,32 @@ var formatTests = []FormatTest{
 	{LocaleSkSK, time.Date(2013, 5, 13, 0, 0, 0, 0, time.UTC), "2 Jan 2006", "13 máj 2013"},
 	{LocaleSkSK, time.Date(0, 5, 1, 0, 0, 0, 0, time.UTC), "January", "máj"},
 	{LocaleSkSK, time.Date(0, 5, 13, 0, 0, 0, 0, time.UTC), "2 January", "13 máj"},
+
+	{LocaleThTH, time.Date(2022, 7, 8, 0, 0, 0, 0, time.UTC), "Mon Jan 2 2006", "ศ. ก.ค. 8 2022"},
+	{LocaleThTH, time.Date(2022, 7, 8, 0, 0, 0, 0, time.UTC), "Monday Jan 2 2006", "วันศุกร์ ก.ค. 8 2022"},
+	{LocaleThTH, time.Date(2022, 2, 1, 0, 0, 0, 0, time.UTC), "Monday January 02 2006", "วันอังคาร กุมภาพันธ์ 01 2022"},
+	{LocaleThTH, time.Date(2022, 5, 13, 0, 0, 0, 0, time.UTC), "2006. 2 January.", "2022. 13 พฤษภาคม."},
+	{LocaleThTH, time.Date(2022, 5, 13, 0, 0, 0, 0, time.UTC), "2 Jan 2006", "13 พ.ค. 2022"},
+	{LocaleThTH, time.Date(0, 5, 1, 0, 0, 0, 0, time.UTC), "January", "พฤษภาคม"},
+	{LocaleThTH, time.Date(0, 5, 13, 0, 0, 0, 0, time.UTC), "2 January", "13 พฤษภาคม"},
+
+	{LocaleUzUZ, time.Date(2013, 9, 3, 0, 0, 0, 0, time.UTC), "Mon Jan 2 2006", "Se Sen 3 2013"},
+	{LocaleUzUZ, time.Date(2013, 9, 4, 0, 0, 0, 0, time.UTC), "Monday Jan 2 2006", "Chorshanba Sen 4 2013"},
+	{LocaleUzUZ, time.Date(2013, 10, 3, 0, 0, 0, 0, time.UTC), "Monday January 02 2006", "Payshanba Oktyabr 03 2013"},
+	{LocaleUzUZ, time.Date(2013, 11, 3, 0, 0, 0, 0, time.UTC), "Monday. 2 January 2006", "Yakshanba. 3 noyabr 2013"},
+	{LocaleUzUZ, time.Date(2013, 5, 13, 0, 0, 0, 0, time.UTC), "2006. 2 January. Monday", "2013. 13 may. Dushanba"},
+	{LocaleUzUZ, time.Date(2013, 5, 13, 0, 0, 0, 0, time.UTC), "2 Jan 2006", "13 may 2013"},
+	{LocaleUzUZ, time.Date(0, 5, 1, 0, 0, 0, 0, time.UTC), "January", "May"},
+	{LocaleUzUZ, time.Date(0, 5, 13, 0, 0, 0, 0, time.UTC), "2 January", "13 may"},
+
+	{LocaleKkKZ, time.Date(2013, 9, 3, 0, 0, 0, 0, time.UTC), "Mon Jan 2 2006", "Сс Қыр 3 2013"},
+	{LocaleKkKZ, time.Date(2013, 9, 4, 0, 0, 0, 0, time.UTC), "Monday Jan 2 2006", "Сәрсенбі Қыр 4 2013"},
+	{LocaleKkKZ, time.Date(2013, 10, 3, 0, 0, 0, 0, time.UTC), "Monday January 02 2006", "Бейсенбі Қазан 03 2013"},
+	{LocaleKkKZ, time.Date(2013, 11, 3, 0, 0, 0, 0, time.UTC), "Monday. 2 January 2006", "Жексенбі. 3 қараша 2013"},
+	{LocaleKkKZ, time.Date(2013, 5, 13, 0, 0, 0, 0, time.UTC), "2006. 2 January. Monday", "2013. 13 мамыр. Дүйсенбі"},
+	{LocaleKkKZ, time.Date(2013, 5, 13, 0, 0, 0, 0, time.UTC), "2 Jan 2006", "13 мам 2013"},
+	{LocaleKkKZ, time.Date(0, 5, 1, 0, 0, 0, 0, time.UTC), "January", "Мамыр"},
+	{LocaleKkKZ, time.Date(0, 5, 13, 0, 0, 0, 0, time.UTC), "2 January", "13 мамыр"},
 }
 
 func TestFormat(t *testing.T) {

@@ -52,6 +52,9 @@ var internalFormatFuncs = map[Locale]internalFormatFunc{
 	LocaleHrHR: createCommonFormatFunc(LocaleHrHR),
 	LocaleLvLV: createCommonFormatFunc(LocaleLvLV),
 	LocaleSkSK: createCommonFormatFunc(LocaleSkSK),
+	LocaleThTH: createCommonFormatFunc(LocaleThTH),
+	LocaleUzUZ: createCommonFormatFuncWithGenitive(LocaleUzUZ),
+	LocaleKkKZ: createCommonFormatFuncWithGenitive(LocaleKkKZ),
 }
 
 // internalParseFunc is a preprocessor for default time.ParseInLocation func
@@ -101,6 +104,9 @@ var internalParseFuncs = map[Locale]internalParseFunc{
 	LocaleHrHR: createCommonParseFunc(LocaleHrHR),
 	LocaleLvLV: createCommonParseFunc(LocaleLvLV),
 	LocaleSkSK: createCommonParseFunc(LocaleSkSK),
+	LocaleThTH: parseFuncThCommon(LocaleThTH),
+	LocaleUzUZ: createCommonParseFuncWithGenitive(LocaleUzUZ),
+	LocaleKkKZ: createCommonParseFuncWithGenitive(LocaleKkKZ),
 }
 
 var knownDaysShort = map[Locale]map[string]string{}           // Mapping for 'Format', days of week, short form
@@ -397,6 +403,28 @@ func fillKnownWords() {
 	fillKnownDaysShort(shortDayNamesSkSK, LocaleSkSK)
 	fillKnownMonthsLong(longMonthNamesSkSK, LocaleSkSK)
 	fillKnownMonthsShort(shortMonthNamesSkSK, LocaleSkSK)
+
+	// Th_TH: Thai (Thailand)
+	fillKnownDaysLong(longDayNamesThTH, LocaleThTH)
+	fillKnownDaysShort(shortDayNamesThTH, LocaleThTH)
+	fillKnownMonthsLong(longMonthNamesThTH, LocaleThTH)
+	fillKnownMonthsShort(shortMonthNamesThTH, LocaleThTH)
+
+	// Uz_UZ: Uzbek (Uzbekistan)
+	fillKnownDaysLong(longDayNamesUzUZ, LocaleUzUZ)
+	fillKnownDaysShort(shortDayNamesUzUZ, LocaleUzUZ)
+	fillKnownMonthsLong(longMonthNamesUzUZ, LocaleUzUZ)
+	fillKnownMonthsShort(shortMonthNamesUzUZ, LocaleUzUZ)
+	fillKnownMonthsGenitiveLong(longMonthNamesGenitiveUzUZ, LocaleUzUZ)
+	fillKnownMonthsGenitiveShort(shortMonthNamesGenitiveUzUZ, LocaleUzUZ)
+
+	// Kk_KZ: Kazakh (Kazakhstan)
+	fillKnownDaysLong(longDayNamesKkKZ, LocaleKkKZ)
+	fillKnownDaysShort(shortDayNamesKkKZ, LocaleKkKZ)
+	fillKnownMonthsLong(longMonthNamesKkKZ, LocaleKkKZ)
+	fillKnownMonthsShort(shortMonthNamesKkKZ, LocaleKkKZ)
+	fillKnownMonthsGenitiveLong(longMonthNamesGenitiveKkKZ, LocaleKkKZ)
+	fillKnownMonthsGenitiveShort(shortMonthNamesGenitiveKkKZ, LocaleKkKZ)
 }
 
 func fill(src map[string]string, dest map[Locale]map[string]string, locale Locale) {

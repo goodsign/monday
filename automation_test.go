@@ -36,17 +36,16 @@ var (
 				LocaleEnUS,
 			},
 		},
-		// Failing for the et-EE because the 'T' from the date is matched by the Tuesday (T) of Estonian
-		// layoutData{
-		// 	layout: "2006-01-02T15:04:05-07:00",
-		// 	matches: []string{
-		// 		"2019-12-22T00:35:44+02:00",
-		// 		"2016-02-02T00:00:00+03:00",
-		// 		"2016-01-26T00:10:21-03:00",
-		// 		"2016-01-26T22:15:30+03:00",
-		// 	},
-		// 	locales: makeSingleLocalesArray(LocaleEnUS, 4),
-		// },
+		layoutData{
+			layout: "2006-01-02T15:04:05-07:00",
+			matches: []string{
+				"2019-12-22T00:35:44+02:00",
+				"2016-02-02T00:00:00+03:00",
+				"2016-01-26T00:10:21-03:00",
+				"2016-01-26T22:15:30+03:00",
+			},
+			locales: makeSingleLocalesArray(LocaleEnUS, 4),
+		},
 		layoutData{
 			layout: "Пон, 2 Янв 2006 15:4:5 -0700",
 		},

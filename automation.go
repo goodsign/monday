@@ -322,6 +322,10 @@ func (ld *LocaleDetector) detectLocale(value string) Locale {
 	for _, v := range wordsRx.FindAllStringSubmatchIndex(value, -1) {
 		word := strings.ToLower(value[v[0]:v[1]])
 
+		if len(word) <= 1 {
+			continue
+		}
+
 		if localesSet, ok := ld.localeMap[word]; ok {
 			localesSet.Each(func(loc Locale) bool {
 				if _, ok := localesMap[loc]; !ok {
