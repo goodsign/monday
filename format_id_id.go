@@ -47,7 +47,7 @@ var shortMonthNamesIdID = map[string]string{
 	"May": "Mei",
 	"Jun": "Jun",
 	"Jul": "Jul",
-	"Aug": "Ags",
+	"Aug": "Agu",
 	"Sep": "Sep",
 	"Oct": "Okt",
 	"Nov": "Nov",
