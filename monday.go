@@ -28,7 +28,7 @@ var internalFormatFuncs = map[Locale]internalFormatFunc{
 	LocaleItIT: createCommonFormatFunc(LocaleItIT),
 	LocaleNnNO: createCommonFormatFunc(LocaleNnNO),
 	LocaleNbNO: createCommonFormatFunc(LocaleNbNO),
-	LocalePlPL: createCommonFormatFunc(LocalePlPL),
+	LocalePlPL: createCommonFormatFuncWithGenitive(LocalePlPL),
 	LocalePtPT: createCommonFormatFunc(LocalePtPT),
 	LocalePtBR: createCommonFormatFunc(LocalePtBR),
 	LocaleRoRO: createCommonFormatFunc(LocaleRoRO),
@@ -80,7 +80,7 @@ var internalParseFuncs = map[Locale]internalParseFunc{
 	LocaleItIT: createCommonParseFunc(LocaleItIT),
 	LocaleNnNO: createCommonParseFunc(LocaleNnNO),
 	LocaleNbNO: createCommonParseFunc(LocaleNbNO),
-	LocalePlPL: parseFuncPtCommon(LocalePlPL),
+	LocalePlPL: createCommonParseFuncWithGenitive(LocalePlPL),
 	LocalePtPT: parseFuncPtCommon(LocalePtPT),
 	LocalePtBR: parseFuncPtCommon(LocalePtBR),
 	LocaleRoRO: createCommonParseFunc(LocaleRoRO),
@@ -248,6 +248,8 @@ func fillKnownWords() {
 	fillKnownDaysShort(shortDayNamesPlPL, LocalePlPL)
 	fillKnownMonthsLong(longMonthNamesPlPL, LocalePlPL)
 	fillKnownMonthsShort(shortMonthNamesPlPL, LocalePlPL)
+	fillKnownMonthsGenitiveLong(longMonthNamesGenitivePlPL, LocalePlPL)
+	fillKnownMonthsGenitiveShort(shortMonthNamesGenitivePlPL, LocalePlPL)
 
 	// Pt_PT: Portuguese (Portugal)
 	fillKnownDaysLong(longDayNamesPtPT, LocalePtPT)

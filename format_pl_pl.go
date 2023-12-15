@@ -40,6 +40,21 @@ var longMonthNamesPlPL = map[string]string{
 	"December":  "Grudzień",
 }
 
+var longMonthNamesGenitivePlPL = map[string]string{
+	"January":   "stycznia",
+	"February":  "lutego",
+	"March":     "marca",
+	"April":     "kwietnia",
+	"May":       "maja",
+	"June":      "czerwca",
+	"July":      "lipca",
+	"August":    "sierpnia",
+	"September": "września",
+	"October":   "października",
+	"November":  "listopada",
+	"December":  "grudnia",
+}
+
 var shortMonthNamesPlPL = map[string]string{
 	"Jan": "Sty",
 	"Feb": "Lut",
@@ -53,4 +68,19 @@ var shortMonthNamesPlPL = map[string]string{
 	"Oct": "Paź",
 	"Nov": "Lis",
 	"Dec": "Gru",
+}
+
+var shortMonthNamesGenitivePlPL = map[string]string{
+	"Jan": "sty",
+	"Feb": "lut",
+	"Mar": "mar",
+	"Apr": "kwi",
+	"May": "maj",
+	"Jun": "cze",
+	"Jul": "lip",
+	"Aug": "sie",
+	"Sep": "wrz",
+	"Oct": "paź",
+	"Nov": "lis",
+	"Dec": "gru",
 }

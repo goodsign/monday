@@ -131,6 +131,13 @@ const (
 	DefaultFormatNbNODateTime = "15:04 02.01.06"
 	DefaultFormatNbNOTime     = "15:04"
 
+	DefaultFormatPlPLFull     = "Monday, 2 January 2006" // Polish (Poland)
+	DefaultFormatPlPLLong     = "2 January 2006"
+	DefaultFormatPlPLMedium   = "02 Jan 2006"
+	DefaultFormatPlPLShort    = "02.01.2006"
+	DefaultFormatPlPLDateTime = "02.01.2006, 15:04"
+	DefaultFormatPlPLTime     = "15:04"
+
 	DefaultFormatPtPTFull     = "Monday, 2 de January de 2006" // Portuguese (Portugal)
 	DefaultFormatPtPTLong     = "2 de January de 2006"
 	DefaultFormatPtPTMedium   = "02/01/2006"
