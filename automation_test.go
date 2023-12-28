@@ -1,7 +1,6 @@
 package monday
 
 import (
-	// "fmt"
 	"testing"
 )
 
@@ -14,7 +13,7 @@ type layoutData struct {
 
 var (
 	testingLayoutsData = []layoutData{
-		layoutData{
+		{
 			layout: "Mon, 2 Jan 2006 15:4:5 -0700",
 			matches: []string{
 				"Нд, 22 Гру 2019 00:35:44 +0200",
@@ -36,7 +35,7 @@ var (
 				LocaleEnUS,
 			},
 		},
-		layoutData{
+		{
 			layout: "2006-01-02T15:04:05-07:00",
 			matches: []string{
 				"2019-12-22T00:35:44+02:00",
@@ -46,8 +45,14 @@ var (
 			},
 			locales: makeSingleLocalesArray(LocaleEnUS, 4),
 		},
-		layoutData{
+		{
 			layout: "Пон, 2 Янв 2006 15:4:5 -0700",
+		},
+		{
+			layout: "02-Jan-2006 15:04:05",
+			matches: []string{
+				"14-OCT-2022 14:12:36",
+			},
 		},
 	}
 )
@@ -55,21 +60,23 @@ var (
 func TestLayoutValidator(t *testing.T) {
 	ld := NewLocaleDetector()
 	for _, ltd := range testingLayoutsData {
-		ld.prepareLayout(ltd.layout)
-		for i, m := range ltd.matches {
-			if !ld.validateValue(ltd.layout, m) {
-				t.Errorf("'%s' not matches to '%s' last error position = %d\n", m, ltd.layout, ld.errorPosition())
+		t.Run(ltd.layout, func(t *testing.T) {
+			ld.prepareLayout(ltd.layout)
+			for i, m := range ltd.matches {
+				if !ld.validateValue(ltd.layout, m) {
+					t.Errorf("'%s' not matches to '%s' last error position = %d\n", m, ltd.layout, ld.errorPosition())
+				}
+				locale := ld.detectLocale(m)
+				if len(ltd.locales) > i && !compareLocales(locale, ltd.locales[i]) {
+					t.Errorf("locales detect error, expected '%s', result '%s'\n", ltd.locales[i], locale)
+				}
 			}
-			locale := ld.detectLocale(m)
-			if !compareLocales(locale, ltd.locales[i]) {
-				t.Errorf("locales detect error, expected '%s', result '%s'\n", ltd.locales[i], locale)
+			for _, u := range ltd.unmatches {
+				if ld.validateValue(ltd.layout, u) {
+					t.Errorf("'%s' matches to '%s'\n", u, ltd.layout)
+				}
 			}
-		}
-		for _, u := range ltd.unmatches {
-			if ld.validateValue(ltd.layout, u) {
-				t.Errorf("'%s' matches to '%s'\n", u, ltd.layout)
-			}
-		}
+		})
 	}
 }
 
@@ -95,23 +102,25 @@ func TestCompareLocales(t *testing.T) {
 func TestParsing(t *testing.T) {
 	ld := NewLocaleDetector()
 	for _, ltd := range testingLayoutsData {
-		for i, formatted := range ltd.matches {
-			dt, err := ld.Parse(ltd.layout, formatted)
-			if err != nil {
-				t.Errorf("error parsing '%s' with layout: '%s' [error:%s]\n", formatted, ltd.layout, err.Error())
-			} else {
-				restored := Format(dt, ltd.layout, ltd.locales[i])
-				if restored != formatted {
-					dt2, err2 := ld.Parse(ltd.layout, restored)
-					if err2 != nil {
-						t.Errorf("parsed time '%s' (%s) does not match restored time '%s'\n", formatted, dt, restored)
-					}
-					if dt2.Unix() != dt.Unix() {
-						t.Errorf("restored time '%v' != parsed time '%v' (restored='%s')", dt2, dt, restored)
+		t.Run(ltd.layout, func(t *testing.T) {
+			for i, formatted := range ltd.matches {
+				dt, err := ld.Parse(ltd.layout, formatted)
+				if err != nil {
+					t.Errorf("error parsing '%s' with layout: '%s' [error:%s]\n", formatted, ltd.layout, err.Error())
+				} else if i < len(ltd.locales) {
+					restored := Format(dt, ltd.layout, ltd.locales[i])
+					if restored != formatted {
+						dt2, err2 := ld.Parse(ltd.layout, restored)
+						if err2 != nil {
+							t.Errorf("parsed time '%s' (%s) does not match restored time '%s'\n", formatted, dt, restored)
+						}
+						if dt2.Unix() != dt.Unix() {
+							t.Errorf("restored time '%v' != parsed time '%v' (restored='%s')", dt2, dt, restored)
+						}
 					}
 				}
 			}
-		}
+		})
 	}
 }
 

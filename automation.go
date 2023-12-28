@@ -3,6 +3,7 @@ package monday
 import (
 	"errors"
 	"fmt"
+	"log"
 	"regexp"
 	"strconv"
 	"strings"
@@ -11,8 +12,7 @@ import (
 )
 
 var (
-	wordsRx        = regexp.MustCompile("(\\p{L}+)")
-	debugLayoutDef = false
+	wordsRx = regexp.MustCompile("(\\p{L}+)")
 )
 
 // An InvalidTypeError indicates that data was parsed incorrectly as a result
@@ -77,7 +77,7 @@ func initLimitedStringSpan(minLength, maxLength int) limitedStringSpan {
 
 func (lss limitedStringSpan) scanString(s *scanner.Scanner) (string, error) {
 	tok := s.Scan()
-	if tok != scanner.EOF && tok == -2 {
+	if tok != scanner.EOF && (tok == -2) {
 		return s.TokenText(), nil
 	}
 	return "", NewInvalidTypeError()
@@ -108,7 +108,7 @@ func (rs rangeIntSpan) scanInt(s *scanner.Scanner) (int, error) {
 	if tok == 45 {
 		negative = true
 		if debugLayoutDef {
-			fmt.Printf("scan negative:'%s'\n", s.TokenText())
+			log.Printf("scan negative:'%s'\n", s.TokenText())
 		}
 		tok = s.Scan()
 	} else if tok == 43 { // positive
@@ -127,7 +127,7 @@ func (rs rangeIntSpan) scanInt(s *scanner.Scanner) (int, error) {
 	}
 
 	if debugLayoutDef {
-		fmt.Printf("invalid tok: %v '%s'\n", tok, s.TokenText())
+		log.Printf("invalid tok: %v '%s'\n", tok, s.TokenText())
 	}
 
 	return 0, NewInvalidTypeError()
@@ -151,11 +151,11 @@ func initDelimiterSpan(character string, minLength, maxLength int) delimiterSpan
 
 func (ds delimiterSpan) scanString(s *scanner.Scanner) (string, error) {
 	tok := s.Scan()
-	if tok != scanner.EOF && tok != -2 && tok != 45 && tok != -3 {
+	if tok != scanner.EOF && tok != -2 && tok != -3 {
 		return s.TokenText(), nil
 	}
 	if debugLayoutDef {
-		fmt.Printf("expected tok:=!(-2,-3,45), received:%d ('%s')\n", tok, s.TokenText())
+		log.Printf("expected tok:=!(-2,-3,45), received:%d ('%s')\n", tok, s.TokenText())
 	}
 
 	return "", NewInvalidTypeError()
@@ -181,13 +181,13 @@ func (ld *layoutDef) validate(value string) bool {
 			if _, err := span.scanString(s); err != nil {
 				ld.errorPosition = s.Pos().Offset
 				if debugLayoutDef {
-					fmt.Printf("error at pos: %d: %s (span=%+v) - expected string or delimiter\n", s.Pos().Offset, err.Error(), span)
+					log.Printf("error at pos: %d: %s (span=%+v) - expected string or delimiter\n", s.Pos().Offset, err.Error(), span)
 				}
 				return false
 			}
 		} else if _, err := span.scanInt(s); err != nil {
 			if debugLayoutDef {
-				fmt.Printf("error at pos: %d: %s (span=%+v) - expected integer\n", s.Pos().Offset, err.Error(), span)
+				log.Printf("error at pos: %d: %s (span=%+v) - expected integer\n", s.Pos().Offset, err.Error(), span)
 			}
 			ld.errorPosition = s.Pos().Offset
 			return false
@@ -216,24 +216,34 @@ func (ld *LocaleDetector) prepareLayout(layout string) layoutDef {
 	var tok rune
 	// var pos int = 0
 	var span layoutSpanI
-	var sign bool
+	var sign *rune
 	//	var neg bool = false
 	for tok != scanner.EOF {
 		tok = s.Scan()
 		switch tok {
 		case -2: // text
+			if sign != nil && *sign == 45 {
+				sign = nil
+				result = append(result, initDelimiterSpan("-", 1, 1))
+			}
 			span = initLimitedStringSpan(1, -1)
 		case -3: // digit
 			span = initRangeIntSpan(-1, -1, 1, -1)
-			if sign {
-				sign = false
+			if sign != nil {
+				sign = nil
 			}
 		case 45: // negative sign
-			sign = true
+			if len(result) > 0 {
+				if _, ok := result[len(result)-1].(limitedStringSpan); ok {
+					result = append(result, initDelimiterSpan("-", 1, 1))
+					continue
+				}
+			}
+			sign = p(tok)
 			// neg = s.TokenText() == "-"
 			continue
 		case 43: // positive sign
-			sign = true
+			sign = p(tok)
 			continue
 		case scanner.EOF:
 			continue
@@ -243,16 +253,20 @@ func (ld *LocaleDetector) prepareLayout(layout string) layoutDef {
 		result = append(result, span)
 		// length := s.Pos().Offset - pos
 		// pos = s.Pos().Offset
-		// fmt.Printf("tok'%s' [%d %d] length=%d\n", s.TokenText(), pos, s.Pos().Offset, length)
+		// log.Printf("tok'%s' [%d %d] length=%d\n", s.TokenText(), pos, s.Pos().Offset, length)
 
 	}
 	if debugLayoutDef {
-		fmt.Printf("layout:'%s'\n", layout)
-		fmt.Printf("layout:%v\n", result)
+		log.Printf("layout:'%s'\n", layout)
+		log.Printf("layout:%v\n", result)
 	}
 	ret := layoutDef{spans: result}
 	ld.layoutsMap[layout] = ret
 	return ret
+}
+
+func p(tok rune) *rune {
+	return &tok
 }
 
 func (ld *LocaleDetector) validateValue(layout string, value string) bool {
