@@ -313,7 +313,7 @@ func (ld *LocaleDetector) Parse(layout, value string) (time.Time, error) {
 	return time.Time{}, &time.ParseError{
 		Value:   value,
 		Layout:  layout,
-		Message: fmt.Sprintf("'%s' not matches to '%s' last error position = %d\n", value, layout, ld.lastErrorPosition),
+		Message: fmt.Sprintf(" doesn't match '%s' last error position = %d\n", value, layout, ld.lastErrorPosition),
 	}
 }
 
