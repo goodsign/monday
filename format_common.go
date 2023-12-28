@@ -1,9 +1,13 @@
 package monday
 
-import "strings"
+import (
+	"strings"
+	"unicode"
+	"unicode/utf8"
+)
 
 func findInString(where string, what string, foundIndex *int, trimRight *int) (found bool) {
-	ind := strings.Index(strings.ToLower(where), strings.ToLower(what))
+	ind := caseFoldingIndex(where, what)
 	if ind != -1 {
 		*foundIndex = ind
 		*trimRight = len(where) - ind - len(what)
@@ -11,6 +15,43 @@ func findInString(where string, what string, foundIndex *int, trimRight *int) (f
 	}
 
 	return false
+}
+
+// caseFoldingIndex is like strings.Index, except that it compares strings using case folding.
+// It returns the index of the first instance of substr in s, or -1 if substr is not present in s.
+func caseFoldingIndex(s, substr string) int {
+	n := len(substr)
+	switch {
+	case n == 0:
+		return 0
+	case n == 1:
+		byteIndex := strings.IndexByte(s, substr[0])
+		if byteIndex != -1 {
+			return byteIndex
+		}
+		r, _ := utf8.DecodeRuneInString(substr)
+		for nextr := unicode.SimpleFold(r); nextr != r; nextr = unicode.SimpleFold(nextr) {
+			runeIndex := strings.IndexRune(s, nextr)
+			if runeIndex != -1 {
+				return runeIndex
+			}
+		}
+	case n == len(s):
+		if substr == s || strings.EqualFold(s, substr) {
+			return 0
+		}
+	case n > len(s):
+		return -1
+	default:
+		for i := 0; i <= len(s)-n; i++ {
+			window := []byte(s)
+			window = window[i : i+n]
+			if strings.EqualFold(string(window), substr) {
+				return i
+			}
+		}
+	}
+	return -1
 }
 
 // commonFormatFunc is used for languages which don't have changed forms of month names dependent
