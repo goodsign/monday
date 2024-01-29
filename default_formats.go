@@ -360,6 +360,7 @@ var FullFormatsByLocale = map[Locale]string{
 	LocaleThTH: DefaultFormatThTHFull,
 	LocaleUzUZ: DefaultFormatUzUZFull,
 	LocaleKkKZ: DefaultFormatKkKZFull,
+	LocalePlPL: DefaultFormatPlPLFull,
 }
 
 // LongFormatsByLocale maps locales to the 'long' date formats for all
@@ -408,6 +409,7 @@ var LongFormatsByLocale = map[Locale]string{
 	LocaleThTH: DefaultFormatThTHLong,
 	LocaleUzUZ: DefaultFormatUzUZLong,
 	LocaleKkKZ: DefaultFormatKkKZLong,
+	LocalePlPL: DefaultFormatPlPLLong,
 }
 
 // MediumFormatsByLocale maps locales to the 'medium' date formats for all
@@ -456,6 +458,7 @@ var MediumFormatsByLocale = map[Locale]string{
 	LocaleThTH: DefaultFormatThTHMedium,
 	LocaleUzUZ: DefaultFormatUzUZMedium,
 	LocaleKkKZ: DefaultFormatKkKZMedium,
+	LocalePlPL: DefaultFormatPlPLMedium,
 }
 
 // ShortFormatsByLocale maps locales to the 'short' date formats for all
@@ -503,6 +506,8 @@ var ShortFormatsByLocale = map[Locale]string{
 	LocaleSkSK: DefaultFormatSkSKShort,
 	LocaleUzUZ: DefaultFormatUzUZShort,
 	LocaleKkKZ: DefaultFormatKkKZShort,
+	LocalePlPL: DefaultFormatPlPLShort,
+	LocaleThTH: DefaultFormatThTHShort,
 }
 
 // DateTimeFormatsByLocale maps locales to the 'DateTime' date formats for
@@ -550,6 +555,8 @@ var DateTimeFormatsByLocale = map[Locale]string{
 	LocaleSkSK: DefaultFormatSkSKDateTime,
 	LocaleUzUZ: DefaultFormatUzUZDateTime,
 	LocaleKkKZ: DefaultFormatKkKZDateTime,
+	LocalePlPL: DefaultFormatPlPLDateTime,
+	LocaleThTH: DefaultFormatThTHDateTime,
 }
 
 // TimeFormatsByLocale maps locales to the 'Time' date formats for
@@ -593,4 +600,10 @@ var TimeFormatsByLocale = map[Locale]string{
 	LocaleLtLT: DefaultFormatLtLTTime,
 	LocaleUzUZ: DefaultFormatUzUZTime,
 	LocaleKkKZ: DefaultFormatKkKZTime,
+	LocalePlPL: DefaultFormatPlPLTime,
+	LocaleEtEE: DefaultFormatEtEETime,
+	LocaleHrHR: DefaultFormatHrHRTime,
+	LocaleLvLV: DefaultFormatLvLVTime,
+	LocaleSkSK: DefaultFormatSkSKTime,
+	LocaleThTH: DefaultFormatThTHTime,
 }
