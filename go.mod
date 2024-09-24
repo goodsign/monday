@@ -1,3 +1,3 @@
-module github.com/booking-terminal/monday
+module github.com/goodsign/monday
 
 go 1.13
