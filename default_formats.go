@@ -312,6 +312,13 @@ const (
 	DefaultFormatKkKZShort    = "02.01.06"
 	DefaultFormatKkKZDateTime = "02.01.06, 15:04"
 	DefaultFormatKkKZTime     = "15:04"
+
+	DefaultFormatSlSIFull     = "Monday, 2. January 2006" // Slovenian (Slovenia)
+	DefaultFormatSlSILong     = "2. January 2006"
+	DefaultFormatSlSIMedium   = "02.01.2006"
+	DefaultFormatSlSIShort    = "2. 1. 06"
+	DefaultFormatSlSIDateTime = "2. 1. 2006 15:04"
+	DefaultFormatSlSITime     = "15:04"
 )
 
 // FullFormatsByLocale maps locales to the'full' date formats for all
@@ -360,6 +367,7 @@ var FullFormatsByLocale = map[Locale]string{
 	LocaleThTH: DefaultFormatThTHFull,
 	LocaleUzUZ: DefaultFormatUzUZFull,
 	LocaleKkKZ: DefaultFormatKkKZFull,
+	LocaleSlSI: DefaultFormatSlSIFull,
 }
 
 // LongFormatsByLocale maps locales to the 'long' date formats for all
@@ -408,6 +416,7 @@ var LongFormatsByLocale = map[Locale]string{
 	LocaleThTH: DefaultFormatThTHLong,
 	LocaleUzUZ: DefaultFormatUzUZLong,
 	LocaleKkKZ: DefaultFormatKkKZLong,
+	LocaleSlSI: DefaultFormatSlSILong,
 }
 
 // MediumFormatsByLocale maps locales to the 'medium' date formats for all
@@ -456,6 +465,7 @@ var MediumFormatsByLocale = map[Locale]string{
 	LocaleThTH: DefaultFormatThTHMedium,
 	LocaleUzUZ: DefaultFormatUzUZMedium,
 	LocaleKkKZ: DefaultFormatKkKZMedium,
+	LocaleSlSI: DefaultFormatSlSIMedium,
 }
 
 // ShortFormatsByLocale maps locales to the 'short' date formats for all
@@ -503,6 +513,7 @@ var ShortFormatsByLocale = map[Locale]string{
 	LocaleSkSK: DefaultFormatSkSKShort,
 	LocaleUzUZ: DefaultFormatUzUZShort,
 	LocaleKkKZ: DefaultFormatKkKZShort,
+	LocaleSlSI: DefaultFormatSlSIShort,
 }
 
 // DateTimeFormatsByLocale maps locales to the 'DateTime' date formats for
@@ -550,6 +561,7 @@ var DateTimeFormatsByLocale = map[Locale]string{
 	LocaleSkSK: DefaultFormatSkSKDateTime,
 	LocaleUzUZ: DefaultFormatUzUZDateTime,
 	LocaleKkKZ: DefaultFormatKkKZDateTime,
+	LocaleSlSI: DefaultFormatSlSIDateTime,
 }
 
 // TimeFormatsByLocale maps locales to the 'Time' date formats for
@@ -593,4 +605,5 @@ var TimeFormatsByLocale = map[Locale]string{
 	LocaleLtLT: DefaultFormatLtLTTime,
 	LocaleUzUZ: DefaultFormatUzUZTime,
 	LocaleKkKZ: DefaultFormatKkKZTime,
+	LocaleSlSI: DefaultFormatSlSITime,
 }
