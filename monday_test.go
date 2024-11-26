@@ -441,15 +441,14 @@ func TestFormat(t *testing.T) {
 }
 
 func BenchmarkFormat(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		for _, ts := range formatTests {
-			txt := Format(ts.date, ts.layout, ts.locale)
-
-			if txt != ts.expected {
-				b.Errorf("failed")
-				continue
+	for _, ts := range formatTests {
+		b.Run(string(ts.locale)+"_"+ts.layout, func(b *testing.B) {
+			b.ResetTimer()
+			b.ReportAllocs()
+			for i := 0; i < b.N; i++ {
+				Format(ts.date, ts.layout, ts.locale)
 			}
-		}
+		})
 	}
 }
 
