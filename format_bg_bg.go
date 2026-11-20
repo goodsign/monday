@@ -19,7 +19,7 @@ var shortDayNamesBgBG = map[string]string{
 	"Mon": "Пн",
 	"Tue": "Вт",
 	"Wed": "Ср",
-	"Thu": "Чt",
+	"Thu": "Чт",
 	"Fri": "Пт",
 	"Sat": "Сб",
 }
