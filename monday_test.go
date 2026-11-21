@@ -267,6 +267,7 @@ var formatTests = []FormatTest{
 	{LocaleUkUA, time.Date(0, 5, 13, 0, 0, 0, 0, time.UTC), "2 January", "13 травня"},
 
 	{LocaleBgBG, time.Date(2013, 9, 3, 0, 0, 0, 0, time.UTC), "Mon Jan 2 2006", "Вт Сеп 3 2013"},
+	{LocaleBgBG, time.Date(2013, 10, 3, 0, 0, 0, 0, time.UTC), "Mon Jan 2 2006", "Чт Окт 3 2013"},
 	{LocaleBgBG, time.Date(2013, 9, 4, 0, 0, 0, 0, time.UTC), "Monday Jan 2 2006", "Сряда Сеп 4 2013"},
 	{LocaleBgBG, time.Date(2013, 10, 3, 0, 0, 0, 0, time.UTC), "Monday January 02 2006", "Четвъртък Октомври 03 2013"},
 	{LocaleBgBG, time.Date(2013, 11, 3, 0, 0, 0, 0, time.UTC), "Monday. 2 January 2006", "Неделя. 3 Ноември 2013"},
