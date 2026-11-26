@@ -34,6 +34,7 @@ func commonFormatFunc(value, format string,
 		foundIndex := 0
 		trimRight := 0
 		lowerCase := false
+		upperCase := false
 		switch {
 		case findInString(f[i].item, "Monday", &foundIndex, &trimRight):
 			knw = knownDaysLong
@@ -44,6 +45,7 @@ func commonFormatFunc(value, format string,
 		case findInString(f[i].item, "Jan", &foundIndex, &trimRight):
 			knw = knownMonthsShort
 		case findInString(f[i].item, "PM", &foundIndex, &trimRight):
+			upperCase = true
 			knw = knownPeriods
 		case findInString(f[i].item, "pm", &foundIndex, &trimRight):
 			lowerCase = true
@@ -58,6 +60,9 @@ func commonFormatFunc(value, format string,
 			tr, ok := knw[trimmedItem]
 			if lowerCase == true {
 				tr = strings.ToLower(tr)
+			}
+			if upperCase {
+				tr = strings.ToUpper(tr)
 			}
 
 			if ok {
@@ -98,6 +103,7 @@ func commonGenitiveFormatFunc(value, format string,
 
 	for i, v := range l {
 		lowerCase := false
+		upperCase := false
 		var knw map[string]string
 		switch f[i].item {
 		case "Mon":
@@ -117,6 +123,7 @@ func commonGenitiveFormatFunc(value, format string,
 				knw = knownMonthsLong
 			}
 		case "PM":
+			upperCase = true
 			knw = knownPeriods
 		case "pm":
 			lowerCase = true
@@ -133,6 +140,9 @@ func commonGenitiveFormatFunc(value, format string,
 			}
 			if lowerCase == true {
 				tr = strings.ToLower(tr)
+			}
+			if upperCase {
+				tr = strings.ToUpper(tr)
 			}
 			sb.WriteString(tr)
 		} else {

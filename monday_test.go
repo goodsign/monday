@@ -324,6 +324,8 @@ var formatTests = []FormatTest{
 	{LocaleElGR, time.Date(2013, 11, 3, 0, 0, 0, 0, time.UTC), "Monday. 2 January 2006", "Κυριακή. 3 Νοεμβρίου 2013"},
 	{LocaleElGR, time.Date(2013, 5, 13, 0, 0, 0, 0, time.UTC), "2006. 2 January. Monday", "2013. 13 Μαΐου. Δευτέρα"},
 	{LocaleElGR, time.Date(2015, 5, 23, 22, 7, 0, 0, time.UTC), "2 Jan 2006 3:04pm", "23 Μαϊ 2015 10:07μμ"},
+	{LocaleElGR, time.Date(2015, 5, 23, 22, 7, 0, 0, time.UTC), "2 Jan 2006 3:04PM", "23 Μαϊ 2015 10:07ΜΜ"},
+	{LocaleElGR, time.Date(2015, 5, 23, 10, 7, 0, 0, time.UTC), "2 Jan 2006 3:04PM", "23 Μαϊ 2015 10:07ΠΜ"},
 	{LocaleElGR, time.Date(0, 5, 1, 0, 0, 0, 0, time.UTC), "January", "Μάιος"},
 	{LocaleElGR, time.Date(0, 5, 13, 0, 0, 0, 0, time.UTC), "2 January", "13 Μαΐου"},
 
@@ -437,6 +439,27 @@ func TestFormat(t *testing.T) {
 			t.Errorf("Test #%d (%s: %s) => Reverse parse from '%s' failed.\n         Got: %s\n    Expected: %s\n",
 				i, ts.locale, ts.layout, txt, reverseDate.Format(time.RFC850), ts.date.Format(time.RFC850))
 			continue
+		}
+	}
+}
+
+// Lower and upper case periods (e.g. el_GR "μμ" and "ΜΜ") share one key in a
+// case-insensitive map, so the picked value must not depend on map order.
+func TestPeriodsCaseIsStable(t *testing.T) {
+	date := time.Date(2015, 5, 23, 22, 7, 0, 0, time.UTC)
+	for i := 0; i < 100; i++ {
+		for layout, expected := range map[string]string{"3:04PM": "10:07ΜΜ", "3:04pm": "10:07μμ"} {
+			txt := Format(date, layout, LocaleElGR)
+			if txt != expected {
+				t.Fatalf("Format(%q) = %q, expected %q", layout, txt, expected)
+			}
+			parsed, err := Parse(layout, txt, LocaleElGR)
+			if err != nil {
+				t.Fatalf("Parse(%q, %q) error: %s", layout, txt, err)
+			}
+			if parsed.Hour() != 22 {
+				t.Fatalf("Parse(%q, %q) = %s, expected hour 22", layout, txt, parsed)
+			}
 		}
 	}
 }
